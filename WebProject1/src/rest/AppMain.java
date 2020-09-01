@@ -21,8 +21,8 @@ public class AppMain {
 		//ucitavanje iz fajla u singleton kalsu SingletonDateBase pri pokretanju main-a
 		
 		port(8080);
-		System.out.println(new File(".\\static").getCanonicalPath());
-		staticFiles.externalLocation(new File(".\\static").getCanonicalPath());
+		System.out.println(new File("./static").getCanonicalPath());
+		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		//staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		get("/rest/demo/test", (req, res) -> {
 			return "Works";
