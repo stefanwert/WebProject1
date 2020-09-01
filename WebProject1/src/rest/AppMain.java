@@ -2,6 +2,8 @@ package rest;
 import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
+import static spark.Spark.put;
+import static spark.Spark.after;
 import static spark.Spark.staticFiles;
 import static spark.Spark.webSocket;
 
@@ -14,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+
+
 
 import com.google.gson.Gson;
 
@@ -49,23 +53,19 @@ public class AppMain {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		//ucitavanje iz fajla u singleton kalsu SingletonDateBase pri pokretanju main-a
-		//SingletonDateBase s = g.fromJson(payload, SingletonDateBase.class);
-//		File file = new File("filename.txt");
-//		BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(new Inpu));
-//		g.fro
-//		FileReader fileReader=new FileReader(fileName);
-//		String json;
-//		fileReader.read(json);
-//		s= g.fromJson(json,SingletonDateBase.class);
 		
 		readFromFile();
         
-		
 		port(8080);
 		System.out.println(new File("./static").getCanonicalPath());
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		//staticFiles.externalLocation(new File("./static").getCanonicalPath());
+		
+		after("/Host", (req, res) -> {
+			writeToFile();
+		});
+		
+		
 		get("/rest/demo/test", (req, res) -> {
 			return "Works";
 		});
@@ -98,10 +98,14 @@ public class AppMain {
 			s.getHosts().put(h1.getUserName(), h1);
 			PrintWriter printWriter=new PrintWriter(fileName);
 			
-			writeToFile();
+			
 			
 			return g.toJson(h1);
 		});
+		put("/Host", (req, res) ->{
+		    return 0;
+		});
+		
 	}
 
 }
