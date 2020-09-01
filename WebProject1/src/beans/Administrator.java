@@ -1,5 +1,7 @@
 package beans;
 
+import beans.User;
+
 public class Administrator extends User {
 	
 	public Administrator() {}

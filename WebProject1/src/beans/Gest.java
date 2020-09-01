@@ -3,6 +3,10 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Appartmant;
+import beans.Reservation;
+import beans.User;
+
 public class Gest extends User{
 	
 	private List<Appartmant> rentedApartments =new ArrayList<>();

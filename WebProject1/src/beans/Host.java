@@ -3,6 +3,8 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Appartmant;
+
 public class Host extends User{
 	private List<Appartmant> appartmants = new ArrayList<>();
 	

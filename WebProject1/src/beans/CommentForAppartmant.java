@@ -1,5 +1,8 @@
 package beans;
 
+import beans.Appartmant;
+import beans.Gest;
+
 public class CommentForAppartmant {
 	private Gest gest;
 	private Appartmant appartmant;

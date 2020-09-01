@@ -1,5 +1,7 @@
 package beans;
 
+import beans.Address;
+
 public class Location {
 	private double longitude;
 	private double latitude;

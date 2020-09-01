@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 
 import beans.Gest;
 import beans.Host;
+import rest.SingletonDateBase;
 
 public class AppMain {
 
