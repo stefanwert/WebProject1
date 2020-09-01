@@ -16,15 +16,8 @@ public class SingletonDateBase {
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	
 	
-	private SingletonDateBase() {
+	public SingletonDateBase() {
 		
-	}
-	
-	public static SingletonDateBase getInstance() {
-		if(singletonDateBase==null) {
-			singletonDateBase=new SingletonDateBase();
-		}
-		return singletonDateBase;
 	}
 
 	public static SingletonDateBase getSingletonDateBase() {
