@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="jquery.min.js"></script>
+<script type="text/javascript">
+		function getFormData($form){
+		    var unindexed_array = $form.serializeArray();
+		    var indexed_array = {};
+	
+		    $.map(unindexed_array, function(n, i){
+		        indexed_array[n['name']] = n['value'];
+		    });
+	
+		    return indexed_array;
+		}
+		function registerHost(){
+			var $form=$("#registerHostId");
+			var data = getFormData($form);
+			var s = JSON.stringify(data);
+			$.ajax({
+				url: "/Host",
+				type:"POST",
+				data: s,
+				contentType:"application/json",
+				dataType:"json",
+				complete: function(data) {
+					$( "#result" ).html( data.responseText );
+				}
+			});
+			
+			
+			
+			
+		}
+	</script>
+
+</head>
+<body>
+	<a href="rest/demo/test">Test</a>
+	<br />
+	<form id="registerHostId">
+		<fieldset>
+			<legend>Test forme i JSON</legend>
+			<input type="text" name="userName" /><br /> <input type="text"
+				name="password" /><br /> <input type="text" name="name"
+				value="Pera" /> <input type="text" name="surname" value="Peric" /> <input
+				type="text" name="gender" value="Musko" /> <input type="button"
+				value="submit" onclick="registerHost()" /> <br />
+			<fieldset>
+				<div id="result">Rezultat poziva</div>
+			</fieldset>
+		</fieldset>
+	</form>
+	<br />
+</body>
+
+</html>
