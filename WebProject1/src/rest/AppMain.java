@@ -61,19 +61,9 @@ public class AppMain {
 		port(8080);
 		System.out.println(new File("./static").getCanonicalPath());
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
-		//staticFiles.externalLocation(new File("./static").getCanonicalPath());
-		
-		
-		
-		
-		get("/rest/demo/test", (req, res) -> {
-			return "Works";
-		});
 		
 		CrudHost.activeCrud(s, g);
-		
-		
-		
+
 	}
 
 }

@@ -3,6 +3,7 @@ import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
 import static spark.Spark.put;
+import static spark.Spark.delete;
 
 import java.io.PrintWriter;
 
@@ -35,7 +36,6 @@ public class CrudHost {
 				res.status(404);
 				return null;
 			}
-			res.status(200);
 			return g.toJson(host);
 		});
 		
@@ -65,6 +65,16 @@ public class CrudHost {
 				s.getHosts().get(h1.getUserName()).setUserName(h1.getUserName());
 				
 				return g.toJson(s.getHosts().get(h1.getUserName()));
+			}
+			res.status(404);
+			return g.toJson(null);
+		});
+		delete("/Host",(req,res)->{
+			String userName = req.queryParams("userName");
+			Host ret=s.getHosts().get(userName);
+			if(ret!=null) {
+				s.getHosts().remove(userName);
+				return g.toJson(ret);
 			}
 			res.status(404);
 			return g.toJson(null);
