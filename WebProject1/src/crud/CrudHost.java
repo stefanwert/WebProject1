@@ -20,6 +20,7 @@ public class CrudHost implements CrudInterface{
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public void activeCrud(DateBase s,Gson g) {
 		
 		after("/Host", (req, res) -> {
@@ -46,12 +47,9 @@ public class CrudHost implements CrudInterface{
 				res.status(403);
 				return g.toJson(null);
 			}
-//			Host host=new Host(userName, password, name, surname, gender);
-//			System.out.println(host);
 			System.out.println(h1);
 			s.getHosts().put(h1.getUserName(), h1);
-			PrintWriter printWriter=new PrintWriter(AppMain.fileName);
-			AppMain.writeToFile();
+			//PrintWriter printWriter=new PrintWriter(AppMain.fileName);
 			return g.toJson(h1);
 		});
 		put("/Host", (req, res) ->{

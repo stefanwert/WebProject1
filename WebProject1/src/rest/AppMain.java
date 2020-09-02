@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 
 import beans.Gest;
 import beans.Host;
+import crud.CrudAdministrator;
+import crud.CrudGest;
 import crud.CrudHost;
 import rest.DateBase;
 
@@ -59,10 +61,12 @@ public class AppMain {
 		readFromFile();
         
 		port(8080);
-		System.out.println(new File("./static").getCanonicalPath());
+		//System.out.println(new File("./static").getCanonicalPath());
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		
 		(new CrudHost()).activeCrud(s, g);
+		(new CrudGest()).activeCrud(s, g);
+		(new CrudAdministrator()).activeCrud(s, g);
 		
 
 	}
