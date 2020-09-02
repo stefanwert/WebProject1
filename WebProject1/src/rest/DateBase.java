@@ -9,8 +9,8 @@ import beans.Gest;
 import beans.Host;
 import beans.Appartmant;
 
-public class SingletonDateBase {
-	private static SingletonDateBase singletonDateBase=null;
+public class DateBase {
+	private static DateBase singletonDateBase=null;
 	
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
 	private HashMap<String, Gest> gests = new HashMap<String, Gest>();
@@ -26,16 +26,16 @@ public class SingletonDateBase {
 		this.appartmants = appartmants;
 	}
 
-	public SingletonDateBase() {
+	public DateBase() {
 		
 	}
 
-	public static SingletonDateBase getSingletonDateBase() {
+	public static DateBase getSingletonDateBase() {
 		return singletonDateBase;
 	}
 
-	public static void setSingletonDateBase(SingletonDateBase singletonDateBase) {
-		SingletonDateBase.singletonDateBase = singletonDateBase;
+	public static void setSingletonDateBase(DateBase singletonDateBase) {
+		DateBase.singletonDateBase = singletonDateBase;
 	}
 
 	public HashMap<String, Host> getHosts() {

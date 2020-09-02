@@ -11,16 +11,16 @@ import com.google.gson.Gson;
 
 import beans.Host;
 import rest.AppMain;
-import rest.SingletonDateBase;
+import rest.DateBase;
 
 import static spark.Spark.after;
 
-public class CrudHost {
+public class CrudHost implements CrudInterface{
 	public CrudHost() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static void activeCrud(SingletonDateBase s,Gson g) {
+	public void activeCrud(DateBase s,Gson g) {
 		
 		after("/Host", (req, res) -> {
 			AppMain.writeToFile();

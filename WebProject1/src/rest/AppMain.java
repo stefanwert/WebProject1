@@ -24,13 +24,13 @@ import com.google.gson.Gson;
 import beans.Gest;
 import beans.Host;
 import crud.CrudHost;
-import rest.SingletonDateBase;
+import rest.DateBase;
 
 public class AppMain {
 
 	private static Gson g = new Gson();
 	
-	public static SingletonDateBase s=new SingletonDateBase();
+	public static DateBase s=new DateBase();
 	
 	public static String fileName="date.txt";
 	
@@ -43,7 +43,7 @@ public class AppMain {
         	stringBuilder.append((char)i);
         }  
         
-        s=g.fromJson(stringBuilder.toString(),SingletonDateBase.class);
+        s=g.fromJson(stringBuilder.toString(),DateBase.class);
         br.close();  
 	}
 	
@@ -62,7 +62,8 @@ public class AppMain {
 		System.out.println(new File("./static").getCanonicalPath());
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		
-		CrudHost.activeCrud(s, g);
+		(new CrudHost()).activeCrud(s, g);
+		
 
 	}
 
