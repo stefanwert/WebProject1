@@ -7,6 +7,7 @@ import java.util.List;
 import beans.Administrator;
 import beans.Gest;
 import beans.Host;
+import beans.Appartmant;
 
 public class SingletonDateBase {
 	private static SingletonDateBase singletonDateBase=null;
@@ -14,8 +15,17 @@ public class SingletonDateBase {
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
 	private HashMap<String, Gest> gests = new HashMap<String, Gest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
+	private HashMap<Integer,Appartmant> appartmants=new HashMap<Integer,Appartmant>();
 	
 	
+	public HashMap<Integer, Appartmant> getAppartmants() {
+		return appartmants;
+	}
+
+	public void setAppartmants(HashMap<Integer, Appartmant> appartmants) {
+		this.appartmants = appartmants;
+	}
+
 	public SingletonDateBase() {
 		
 	}
