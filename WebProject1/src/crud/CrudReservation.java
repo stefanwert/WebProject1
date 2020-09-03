@@ -7,6 +7,7 @@ import static spark.Spark.post;
 import static spark.Spark.put;
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -14,9 +15,11 @@ import beans.Appartement;
 import beans.Gest;
 import beans.Host;
 import beans.Reservation;
+import beans.User;
 //import beans.ReservationStatus;
 import rest.AppMain;
 import rest.DateBase;
+import spark.Session;
 
 public class CrudReservation implements CrudInterface{
 	
@@ -34,15 +37,22 @@ public class CrudReservation implements CrudInterface{
 			res.type("application/json");
 			String id = req.queryParams("id");
 			
-			Reservation reservation=s.getReservations().get(id);
-			if(reservation==null || (!reservation.getId().equals(id))) {
-				res.status(404);
-				return null;
+			Session session=req.session();
+			User user = session.attribute("LogedUser");
+			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+			
+			for (Reservation reservation : reservations) {
+				if(reservation.getId().equals(id)) {
+					return g.toJson(reservations);
+				}
 			}
-			return g.toJson(reservation);
+			res.status(404);
+			return null;
+			
+			
 		});
 		
-		post("/Reservation",(req,res)->{
+		/*post("/Reservation",(req,res)->{
 			res.type("application/json");
 			Reservation reserv = g.fromJson(req.body(), Reservation.class);
 			if(s.getReservations().containsKey(reserv.getId())) {
@@ -82,7 +92,7 @@ public class CrudReservation implements CrudInterface{
 			}
 			res.status(404);
 			return g.toJson(null);
-		});
+		});*/
 	}
 
 }

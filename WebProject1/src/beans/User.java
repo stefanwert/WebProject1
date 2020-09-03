@@ -7,7 +7,16 @@ public class User {
 	private String name;
 	private String surname;
 	private String gender;
+	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	
+	public DeletedStatus getDeletedStatus() {
+		return deletedStatus;
+	}
+
+	public void setDeletedStatus(DeletedStatus deletedStatus) {
+		this.deletedStatus = deletedStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", password=" + password + ", name=" + name + ", surname=" + surname

@@ -4,6 +4,7 @@ public class Amenities {
 
 	private String id;
 	private String name;
+	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	
 	@Override
 	public String toString() {

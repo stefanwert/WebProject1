@@ -20,6 +20,7 @@ public class Appartement {
 	private int numOfRooms;
 	private int numOfGuests;
 	private Location location;
+	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	
 	private Host host;	//neka ima i ciji je stan radi brze pretrage
 	private List<CommentForAppartmant> comments =new ArrayList<>();

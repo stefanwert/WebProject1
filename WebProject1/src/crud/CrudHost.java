@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 import com.google.gson.Gson;
 
+import beans.DeletedStatus;
 import beans.Host;
 import rest.AppMain;
 import rest.DateBase;
@@ -71,7 +72,7 @@ public class CrudHost implements CrudInterface{
 			String userName = req.queryParams("userName");
 			Host ret=s.getHosts().get(userName);
 			if(ret!=null) {
-				s.getHosts().remove(userName);
+				s.getHosts().get(userName).setDeletedStatus(DeletedStatus.DELETED);
 				return g.toJson(ret);
 			}
 			res.status(404);

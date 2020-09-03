@@ -20,6 +20,7 @@ public class Reservation {
 	private String message;
 	private Host host;
 	private ReservationStatus reservStatus;
+	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", appartement=" + appartement + ", startDate=" + startDate + ", numOfNights="

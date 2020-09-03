@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 
 import com.google.gson.Gson;
 
+import beans.DeletedStatus;
 import beans.Gest;
 import beans.Host;
 import rest.AppMain;
@@ -67,7 +68,7 @@ public class CrudGest implements CrudInterface{
 			String userName = req.queryParams("userName");
 			Gest ret=s.getGests().get(userName);
 			if(ret!=null) {
-				s.getGests().remove(userName);
+				s.getGests().get(userName).setDeletedStatus(DeletedStatus.DELETED);
 				return g.toJson(ret);
 			}
 			res.status(404);

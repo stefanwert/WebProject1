@@ -17,7 +17,6 @@ public class DateBase {
 	private HashMap<String, Gest> gests = new HashMap<String, Gest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	private HashMap<String,Appartement> appartmants=new HashMap<String,Appartement>();
-	private HashMap<String,Reservation> reservations=new HashMap<String,Reservation>();
 	
 	public HashMap<String, Appartement> getAppartmants() {
 		return appartmants;
@@ -26,15 +25,6 @@ public class DateBase {
 	public void setAppartmants(HashMap<String, Appartement> appartmants) {
 		this.appartmants = appartmants;
 	}
-	
-	public HashMap<String, Reservation> getReservations() {
-		return reservations;
-	}
-
-	public void setReservations(HashMap<String, Reservation> reservations) {
-		this.reservations = reservations;
-	}
-	
 
 	public DateBase() {
 		

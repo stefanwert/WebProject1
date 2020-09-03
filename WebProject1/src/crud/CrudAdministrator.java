@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import com.google.gson.Gson;
 
 import beans.Administrator;
+import beans.DeletedStatus;
 import beans.Gest;
 import rest.AppMain;
 import rest.DateBase;
@@ -67,7 +68,7 @@ public class CrudAdministrator implements CrudInterface {
 			String userName = req.queryParams("userName");
 			Administrator admin=s.getAdministrators().get(userName);
 			if(admin!=null) {
-				s.getAdministrators().remove(userName);
+				s.getAdministrators().get(userName).setDeletedStatus(DeletedStatus.DELETED);
 				return g.toJson(admin);
 			}
 			res.status(404);
