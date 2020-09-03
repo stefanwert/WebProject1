@@ -6,6 +6,8 @@ import static spark.Spark.put;
 import static spark.Spark.delete;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -39,6 +41,18 @@ public class CrudHost implements CrudInterface{
 				return null;
 			}
 			return g.toJson(host);
+		});
+		
+		get("/AllHost",(req,res)->{
+			res.type("application/json");
+			List<Host> hosts = new ArrayList<Host>();
+			for (String hostUsername : s.getHosts().keySet()) {
+				if(s.getHosts().get(hostUsername).getDeletedStatus()==DeletedStatus.ACTIVE) {
+					hosts.add(s.getHosts().get(hostUsername));
+				}
+			}
+			
+			return g.toJson(hosts);
 		});
 		
 		post("/Host",(req,res)->{
