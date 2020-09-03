@@ -2,7 +2,7 @@ Vue.component("host", {
 	data: function () {
 		    return {
 		      sc: null,
-		      selectedStudent: {}
+		      selectedHost: {}
 		    }
 	},
 	template: ` 
@@ -11,7 +11,7 @@ Vue.component("host", {
 		<table border="1">
 		<tr bgcolor="lightgrey">
 			<th>UserName</th><th>Password</th><th>Name</th><th>Surname</th><th>Gender</th></tr>
-			<tr v-for="i in sc" v-on:click="selectHost(s)">
+			<tr v-for="i in sc" v-on:click="selectHost(i)">
 			<td> {{i.userName}}</td>
 			<td> {{i.password}}</td>
 			<td> {{i.name}} </td>
@@ -20,7 +20,7 @@ Vue.component("host", {
 			</tr>
 		</table>
 		<br /> 
-		<button v-on:click="clearSc" >Obriši korpu</button>
+		<button v-on:click="deleteHost" >Obriši korpu</button>
 		
 	<p>
 		<a href="#/">Proizvodi</a>
@@ -33,14 +33,21 @@ Vue.component("host", {
 		init : function() {
 			this.sc = {};
 		}, 
-		selectHost: function(student) {
-			this.selectedStudent = student;
+		selectHost: function(host) {
+			this.selectedHost = host;
+			
     	},
 		deleteHost : function () {
 			if (confirm('Da li ste sigurni?') == true) {
 				axios
-		          .delete('/Host')
-		          .then(response => (this.init()))
+		          .delete('/Host',{data:this.selectedHost})
+		          .then(
+		        	response=>{
+		        		this.sc = this.sc.filter((item) => {
+		        			return item.userName !=this.selectedHost.userName; });
+		        		this.selectedHost= {};
+		        	}
+		          )
 			}
 		} 
 	},

@@ -83,11 +83,11 @@ public class CrudHost implements CrudInterface{
 			return g.toJson(null);
 		});
 		delete("/Host",(req,res)->{
-			String userName = req.queryParams("userName");
-			Host ret=s.getHosts().get(userName);
-			if(ret!=null) {
-				s.getHosts().get(userName).setDeletedStatus(DeletedStatus.DELETED);
-				return g.toJson(ret);
+			res.type("application/json");
+			Host h1 = g.fromJson(req.body(), Host.class);
+			if(h1!=null) {
+				s.getHosts().get(h1.getUserName()).setDeletedStatus(DeletedStatus.DELETED);	//provera da li je user name u bazi
+				return g.toJson(s.getHosts().get(h1.getUserName()));
 			}
 			res.status(404);
 			return g.toJson(null);
