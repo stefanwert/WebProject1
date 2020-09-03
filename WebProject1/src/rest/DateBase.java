@@ -7,7 +7,8 @@ import java.util.List;
 import beans.Administrator;
 import beans.Gest;
 import beans.Host;
-import beans.Appartmant;
+import beans.Reservation;
+import beans.Appartement;
 
 public class DateBase {
 	private static DateBase singletonDateBase=null;
@@ -15,16 +16,25 @@ public class DateBase {
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
 	private HashMap<String, Gest> gests = new HashMap<String, Gest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
-	private HashMap<Integer,Appartmant> appartmants=new HashMap<Integer,Appartmant>();
+	private HashMap<String,Appartement> appartmants=new HashMap<String,Appartement>();
+	private HashMap<String,Reservation> reservations=new HashMap<String,Reservation>();
 	
-	
-	public HashMap<Integer, Appartmant> getAppartmants() {
+	public HashMap<String, Appartement> getAppartmants() {
 		return appartmants;
 	}
 
-	public void setAppartmants(HashMap<Integer, Appartmant> appartmants) {
+	public void setAppartmants(HashMap<String, Appartement> appartmants) {
 		this.appartmants = appartmants;
 	}
+	
+	public HashMap<String, Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(HashMap<String, Reservation> reservations) {
+		this.reservations = reservations;
+	}
+	
 
 	public DateBase() {
 		

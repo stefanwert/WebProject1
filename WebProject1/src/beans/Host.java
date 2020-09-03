@@ -3,17 +3,17 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Appartmant;
+import beans.Appartement;
 
 public class Host extends User{
-	private List<Appartmant> appartmants = new ArrayList<>();
+	private List<Appartement> appartmants = new ArrayList<>();
 	
 	
-	public List<Appartmant> getAppartmants() {
+	public List<Appartement> getAppartmants() {
 		return appartmants;
 	}
 
-	public void setAppartmants(List<Appartmant> appartmants) {
+	public void setAppartmants(List<Appartement> appartmants) {
 		this.appartmants = appartmants;
 	}
 

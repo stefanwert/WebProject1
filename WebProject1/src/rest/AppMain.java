@@ -26,6 +26,7 @@ import beans.Host;
 import crud.CrudAdministrator;
 import crud.CrudGest;
 import crud.CrudHost;
+import crud.CrudReservation;
 import rest.DateBase;
 
 public class AppMain {
@@ -67,7 +68,7 @@ public class AppMain {
 		(new CrudHost()).activeCrud(s, g);
 		(new CrudGest()).activeCrud(s, g);
 		(new CrudAdministrator()).activeCrud(s, g);
-		
+		(new CrudReservation()).activeCrud(s, g);
 
 	}
 
