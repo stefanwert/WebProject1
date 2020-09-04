@@ -1,16 +1,16 @@
 const Host = { template: '<host></host>' }
-const ShoppingCart = { template: '<shopping-cart></shopping-cart>' }
+const HostAdd = { template: '<hostAdd></hostAdd>' }
 
 const router = new VueRouter({
 	  mode: 'hash',
 	  routes: [
 	    { path: '/host', component: Host},
-	    { path: '/sc', component: ShoppingCart }
+	    { path: '/hostAdd', component: HostAdd }
 	  ]
 });
 
 var app = new Vue({
 	router,
-	el: '#webShop'
+	el: '#host'
 });
 

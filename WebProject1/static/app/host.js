@@ -35,7 +35,7 @@ Vue.component("host", {
 		deleteHost : function () {
 			if (confirm('Da li ste sigurni?') == true) {
 				axios
-		          .delete('/Host',{data:this.selectedHost})
+		          .delete('/Host',this.selectedHost)
 		          .then(
 		        	response=>{
 		        		this.sc = this.sc.filter((item) => {
