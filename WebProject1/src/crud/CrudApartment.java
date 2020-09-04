@@ -14,7 +14,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import beans.Amenities;
-import beans.Appartement;
+import beans.Apartment;
 import beans.CommentForAppartmant;
 import beans.DeletedStatus;
 import beans.Gest;
@@ -24,9 +24,9 @@ import beans.Reservation;
 import rest.AppMain;
 import rest.DateBase;
 
-public class CrudAppartement implements CrudInterface{
+public class CrudApartment implements CrudInterface{
 
-	public CrudAppartement(){
+	public CrudApartment(){
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,7 +41,7 @@ public class CrudAppartement implements CrudInterface{
 			res.type("application/json");
 			String id = req.queryParams("id");
 			
-			Appartement appartement=s.getAppartements().get(id);
+			Apartment appartement=s.getAppartements().get(id);
 			if(appartement==null || (!appartement.getId().equals(id))) {
 				res.status(404);
 				return null;
@@ -51,18 +51,19 @@ public class CrudAppartement implements CrudInterface{
 		
 		post("/Appartements",(req,res)->{
 			res.type("application/json");
-			Appartement appartement = g.fromJson(req.body(), Appartement.class);
+			Apartment appartement = g.fromJson(req.body(), Apartment.class);
 			if(s.getAppartements().containsKey(appartement.getId())) {
 				res.status(403);
 				return g.toJson(null); 
 			}
 			s.getAppartements().put(appartement.getId(), appartement);
+			s.getHosts().get(appartement.getHost()).getAppartements().put(appartement.getId(), appartement);	//treba i ovo (dodavanje unutar host-a)
 			return g.toJson(appartement);
 		});
 		
 		put("/Appartements", (req, res) ->{
 			res.type("application/json");
-			Appartement appartement = g.fromJson(req.body(), Appartement.class);
+			Apartment appartement = g.fromJson(req.body(), Apartment.class);
 			if(s.getGests().containsKey(appartement.getId())) {
 				s.getAppartements().get(appartement.getId()).setId(appartement.getId());
 				s.getAppartements().get(appartement.getId()).setType(appartement.getType());
@@ -80,6 +81,9 @@ public class CrudAppartement implements CrudInterface{
 				s.getAppartements().get(appartement.getId()).setAmenities(appartement.getAmenities());
 				s.getAppartements().get(appartement.getId()).setReservations(appartement.getReservations());
 				
+				s.getHosts().get(appartement.getHost()).getAppartements().remove(appartement.getId());
+				s.getHosts().get(appartement.getHost()).getAppartements().put(appartement.getId(),appartement);	//ove dve linije edituju i unutar hosta taj apartman(tako sto ga obrisem pa upisem)
+				
 				return g.toJson(s.getAppartements().get(appartement.getId()));
 			}
 			res.status(404);
@@ -88,10 +92,11 @@ public class CrudAppartement implements CrudInterface{
 		
 		delete("/Appartements",(req,res)->{
 			String id = req.queryParams("id");
-			Appartement ret=s.getAppartements().get(id);
-			if(ret!=null) {
+			Apartment appartmant=s.getAppartements().get(id);
+			if(appartmant!=null) {
 				s.getAppartements().get(id).setDeletedStatus(DeletedStatus.DELETED);
-				return g.toJson(ret);
+				s.getHosts().get(appartmant.getHost()).getAppartements().get(appartmant.getId()).setDeletedStatus(DeletedStatus.DELETED);	//setujem da je obrisano i unutar host-a
+				return g.toJson(appartmant);
 			}
 			res.status(404);
 			return g.toJson(null);

@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 import beans.Gest;
 import beans.Host;
 import crud.CrudAdministrator;
-import crud.CrudAppartement;
+import crud.CrudApartment;
 import crud.CrudGest;
 import crud.CrudHost;
 import crud.CrudReservation;
@@ -69,7 +69,7 @@ public class AppMain {
 		(new CrudHost()).activeCrud(s, g);
 		(new CrudGest()).activeCrud(s, g);
 		(new CrudAdministrator()).activeCrud(s, g);
-		(new CrudAppartement()).activeCrud(s, g);
+		(new CrudApartment()).activeCrud(s, g);
 		(new CrudReservation()).activeCrud(s, g);
 
 	}

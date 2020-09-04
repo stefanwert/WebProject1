@@ -13,7 +13,7 @@ enum ReservationStatus {
 public class Reservation {
 
 	private String id;
-	private Appartement appartement;
+	private Apartment appartement;
 	private Date startDate;
 	private int numOfNights=1;
 	private double totalPrice;
@@ -31,7 +31,7 @@ public class Reservation {
 	
 	public Reservation() {}
 	
-	public Reservation(String id, Appartement appartement, Date startDate, int numOfNights, double totalPrice,
+	public Reservation(String id, Apartment appartement, Date startDate, int numOfNights, double totalPrice,
 			String message, Host host, ReservationStatus reservStatus) {
 		super();
 		this.id = id;
@@ -52,11 +52,11 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public Appartement getAppartement() {
+	public Apartment getAppartement() {
 		return appartement;
 	}
 
-	public void setAppartement(Appartement appartement) {
+	public void setAppartement(Apartment appartement) {
 		this.appartement = appartement;
 	}
 

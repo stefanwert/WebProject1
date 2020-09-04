@@ -3,13 +3,13 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Appartement;
+import beans.Apartment;
 import beans.Reservation;
 import beans.User;
 
 public class Gest extends User{
 	
-	private List<Appartement> rentedApartments =new ArrayList<>();
+	private List<Apartment> rentedApartments =new ArrayList<>();
 	private List<Reservation> reservations=new ArrayList<Reservation>();
 	
 	public Gest() {}
@@ -18,10 +18,10 @@ public class Gest extends User{
 		super(userName, password, name, surname, gender);
 	}
 	
-	public List<Appartement> getRentedApartments() {
+	public List<Apartment> getRentedApartments() {
 		return rentedApartments;
 	}
-	public void setRentedApartments(List<Appartement> rentedApartments) {
+	public void setRentedApartments(List<Apartment> rentedApartments) {
 		this.rentedApartments = rentedApartments;
 	}
 	public List<Reservation> getReservations() {

@@ -14,7 +14,7 @@ enum Status {
     INACTIVE
   }
 
-public class Appartement {
+public class Apartment {
 	
 	private String id;	
 	private Type type; 
@@ -42,9 +42,9 @@ public class Appartement {
 				+ "]";
 	}
 	
-	public Appartement() {}
+	public Apartment() {}
 	
-	public Appartement(String id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
+	public Apartment(String id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
 			List<Date> availableDates, Host host, List<CommentForAppartmant> comments, double pricePerNight,
 			Time checkInTime, Time checkOutTime, Status status, List<Amenities> amenities,
 			List<Reservation> reservations, DeletedStatus deletedStatus) {

@@ -1,20 +1,21 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import beans.Appartement;
+import beans.Apartment;
 
 public class Host extends User{
-	private List<Appartement> appartmants = new ArrayList<>();
 	
-	
-	public List<Appartement> getAppartmants() {
-		return appartmants;
+	private HashMap<String,Apartment> appartements=new HashMap<String,Apartment>();
+
+	public HashMap<String, Apartment> getAppartements() {
+		return appartements;
 	}
 
-	public void setAppartmants(List<Appartement> appartmants) {
-		this.appartmants = appartmants;
+	public void setAppartements(HashMap<String, Apartment> appartements) {
+		this.appartements = appartements;
 	}
 
 	public Host() {}

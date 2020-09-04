@@ -21,11 +21,6 @@ Vue.component("host", {
 		</table>
 		<br /> 
 		<button v-on:click="deleteHost" >Obriši korpu</button>
-		
-	<p>
-		<a href="#/">Proizvodi</a>
-	</p>
-	
 </div>		  
 `
 	, 

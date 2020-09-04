@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import beans.Appartement;
+import beans.Apartment;
 import beans.DeletedStatus;
 import beans.Gest;
 import beans.Host;

@@ -8,7 +8,7 @@ import beans.Administrator;
 import beans.Gest;
 import beans.Host;
 import beans.Reservation;
-import beans.Appartement;
+import beans.Apartment;
 
 public class DateBase {
 	private static DateBase singletonDateBase=null;
@@ -16,13 +16,13 @@ public class DateBase {
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
 	private HashMap<String, Gest> gests = new HashMap<String, Gest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
-	private HashMap<String,Appartement> appartements=new HashMap<String,Appartement>();
+	private HashMap<String,Apartment> appartements=new HashMap<String,Apartment>();
 
-	public HashMap<String, Appartement> getAppartements() {
+	public HashMap<String, Apartment> getAppartements() {
 		return appartements;
 	}
 
-	public void setAppartements(HashMap<String, Appartement> appartements) {
+	public void setAppartements(HashMap<String, Apartment> appartements) {
 		this.appartements = appartements;
 	}
 

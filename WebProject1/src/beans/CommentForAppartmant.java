@@ -1,18 +1,18 @@
 package beans;
 
-import beans.Appartement;
+import beans.Apartment;
 import beans.Gest;
 
 public class CommentForAppartmant {
 	private Gest gest;
-	private Appartement appartmant;
+	private Apartment appartmant;
 	private String commentText;
 	private int rating;
 	
 	public CommentForAppartmant() {
 	}
 	
-	public CommentForAppartmant(Gest gest, Appartement appartmant, String commentText, int rating) {
+	public CommentForAppartmant(Gest gest, Apartment appartmant, String commentText, int rating) {
 		super();
 		this.gest = gest;
 		this.appartmant = appartmant;
@@ -25,10 +25,10 @@ public class CommentForAppartmant {
 	public void setGest(Gest gest) {
 		this.gest = gest;
 	}
-	public Appartement getAppartmant() {
+	public Apartment getAppartmant() {
 		return appartmant;
 	}
-	public void setAppartmant(Appartement appartmant) {
+	public void setAppartmant(Apartment appartmant) {
 		this.appartmant = appartmant;
 	}
 	public String getCommentText() {
