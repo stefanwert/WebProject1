@@ -12,6 +12,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import beans.Appartement;
+import beans.DeletedStatus;
 import beans.Gest;
 import beans.Host;
 import beans.Reservation;
@@ -49,50 +50,71 @@ public class CrudReservation implements CrudInterface{
 			res.status(404);
 			return null;
 			
-			
 		});
 		
-		/*post("/Reservation",(req,res)->{
+		post("/Reservation",(req,res)->{
 			res.type("application/json");
-			Reservation reserv = g.fromJson(req.body(), Reservation.class);
-			if(s.getReservations().containsKey(reserv.getId())) {
-				res.status(403);
-				return g.toJson(null);
+			
+			Session session=req.session();
+			User user = session.attribute("LogedUser");
+			Reservation reservation = g.fromJson(req.body(), Reservation.class);
+			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+			
+			for (Reservation reserv : reservations) {
+				if(reserv.getId().equals(reservation.getId())) {
+					res.status(403);
+					return g.toJson(null);
+				}
 			}
-			s.getReservations().put(reserv.getId(), reserv);
-			return g.toJson(reserv);
+			s.getGests().get(user.getUserName()).getReservations().add(reservation);
+			return g.toJson(reservation);
 		});
+		
 		put("/Reservation", (req, res) ->{
 			res.type("application/json");
-			Reservation r = g.fromJson(req.body(), Reservation.class);
 			
-			if(s.getReservations().containsKey(r.getId())) {
-				s.getReservations().get(r.getId()).setId(r.getId());
-				s.getReservations().get(r.getId()).setAppartement(r.getAppartement());
-				s.getReservations().get(r.getId()).setStartDate(r.getStartDate());
-				s.getReservations().get(r.getId()).setNumOfNights(r.getNumOfNights());
-				s.getReservations().get(r.getId()).setTotalPrice(r.getTotalPrice());
-				s.getReservations().get(r.getId()).setStartDate(r.getStartDate());
-				s.getReservations().get(r.getId()).setMessage(r.getMessage());
-				s.getReservations().get(r.getId()).setHost(r.getHost());
-				s.getReservations().get(r.getId()).setReservStatus(r.getReservStatus());
-				
-				return g.toJson(s.getReservations().get(r.getId()));
+			Session session=req.session();
+			User user = session.attribute("LogedUser");
+			Reservation r = g.fromJson(req.body(), Reservation.class);
+			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+
+			for (Reservation reservation : reservations) {
+				if(reservation.getId().equals(r.getId())) {
+					
+					reservation.setId(r.getId());
+					reservation.setAppartement(r.getAppartement());
+					reservation.setStartDate(r.getStartDate());
+					reservation.setNumOfNights(r.getNumOfNights());
+					reservation.setTotalPrice(r.getTotalPrice());
+					reservation.setStartDate(r.getStartDate());
+					reservation.setMessage(r.getMessage());
+					reservation.setHost(r.getHost());
+					reservation.setReservStatus(r.getReservStatus());
+					
+					return g.toJson(reservation);
+				}
 			}
-	
+			
 			res.status(404);
 			return g.toJson(null);
 		});
 		delete("/Reservation",(req,res)->{
 			String id = req.queryParams("id");
-			Reservation ret=s.getReservations().get(id);
-			if(ret!=null) {
-				s.getReservations().remove(id);
-				return g.toJson(ret);
+			
+			Session session=req.session();
+			User user = session.attribute("LogedUser");
+			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+			
+			for (Reservation reservation : reservations) {
+				if(reservation.getId().equals(id)) {
+					
+					reservation.setDeletedStatus(DeletedStatus.DELETED);
+					return g.toJson(reservations);
+				}
 			}
 			res.status(404);
 			return g.toJson(null);
-		});*/
+		});
 	}
 
 }

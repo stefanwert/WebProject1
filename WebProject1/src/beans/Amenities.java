@@ -34,6 +34,13 @@ public class Amenities {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public DeletedStatus getDeletedStatus() {
+		return deletedStatus;
+	}
+
+	public void setDeletedStatus(DeletedStatus deletedStatus) {
+		this.deletedStatus = deletedStatus;
+	}
 	
 }

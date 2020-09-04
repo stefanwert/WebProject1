@@ -21,6 +21,7 @@ public class Reservation {
 	private Host host;
 	private ReservationStatus reservStatus;
 	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
+	
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", appartement=" + appartement + ", startDate=" + startDate + ", numOfNights="
@@ -105,6 +106,15 @@ public class Reservation {
 
 	public void setReservStatus(ReservationStatus reservStatus) {
 		this.reservStatus = reservStatus;
+	}
+
+	public DeletedStatus getDeletedStatus() {
+		return deletedStatus;
+	}
+
+	public void setDeletedStatus(DeletedStatus deletedStatus) {
+		this.deletedStatus = deletedStatus;
 	}	
 
+	
 }

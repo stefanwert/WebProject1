@@ -16,14 +16,14 @@ public class DateBase {
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
 	private HashMap<String, Gest> gests = new HashMap<String, Gest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
-	private HashMap<String,Appartement> appartmants=new HashMap<String,Appartement>();
-	
-	public HashMap<String, Appartement> getAppartmants() {
-		return appartmants;
+	private HashMap<String,Appartement> appartements=new HashMap<String,Appartement>();
+
+	public HashMap<String, Appartement> getAppartements() {
+		return appartements;
 	}
 
-	public void setAppartmants(HashMap<String, Appartement> appartmants) {
-		this.appartmants = appartmants;
+	public void setAppartements(HashMap<String, Appartement> appartements) {
+		this.appartements = appartements;
 	}
 
 	public DateBase() {
@@ -61,8 +61,5 @@ public class DateBase {
 	public void setAdministrators(HashMap<String, Administrator> administrators) {
 		this.administrators = administrators;
 	}
-		
-	
-	
 
 }
