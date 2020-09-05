@@ -7,6 +7,8 @@ import static spark.Spark.post;
 import static spark.Spark.put;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -23,6 +25,18 @@ public class CrudGest implements CrudInterface{
 	public void activeCrud(DateBase s, Gson g) {
 		after("/Gest", (req, res) -> {
 			AppMain.writeToFile();
+		});
+		
+		get("/AllGest",(req,res)->{
+			res.type("application/json");
+			List<Gest> gests = new ArrayList<Gest>();
+			for (Gest gest : s.getGests().values()) {
+				if(gest.getDeletedStatus()==DeletedStatus.ACTIVE) {
+					gests.add(gest);
+				}
+			}
+			
+			return g.toJson(gests);
 		});
 		
 		get("/Gest",(req,res)->{
@@ -65,11 +79,10 @@ public class CrudGest implements CrudInterface{
 			return g.toJson(null);
 		});
 		delete("/Gest",(req,res)->{
-			String userName = req.queryParams("userName");
-			Gest ret=s.getGests().get(userName);
-			if(ret!=null) {
-				s.getGests().get(userName).setDeletedStatus(DeletedStatus.DELETED);
-				return g.toJson(ret);
+			Gest g1 = g.fromJson(req.body(), Gest.class);
+			if(g1!=null) {
+				s.getGests().get(g1.getUserName()).setDeletedStatus(DeletedStatus.DELETED);
+				return g.toJson(s.getGests().get(g1.getName()));
 			}
 			res.status(404);
 			return g.toJson(null);
