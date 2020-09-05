@@ -13,7 +13,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import beans.DeletedStatus;
-import beans.Gest;
+import beans.Guest;
 import beans.Host;
 import rest.AppMain;
 import rest.DateBase;
@@ -29,8 +29,8 @@ public class CrudGest implements CrudInterface{
 		
 		get("/AllGest",(req,res)->{
 			res.type("application/json");
-			List<Gest> gests = new ArrayList<Gest>();
-			for (Gest gest : s.getGests().values()) {
+			List<Guest> gests = new ArrayList<Guest>();
+			for (Guest gest : s.getGests().values()) {
 				if(gest.getDeletedStatus()==DeletedStatus.ACTIVE) {
 					gests.add(gest);
 				}
@@ -44,7 +44,7 @@ public class CrudGest implements CrudInterface{
 			String userName = req.queryParams("userName");
 			String password = req.queryParams("password");
 			
-			Gest gest=s.getGests().get(userName);
+			Guest gest=s.getGests().get(userName);
 			if(gest==null || (!gest.getPassword().equals(password))) {
 				res.status(404);
 				return null;
@@ -54,7 +54,7 @@ public class CrudGest implements CrudInterface{
 		
 		post("/Gest",(req,res)->{
 			res.type("application/json");
-			Gest g1 = g.fromJson(req.body(), Gest.class);
+			Guest g1 = g.fromJson(req.body(), Guest.class);
 			if(s.getGests().containsKey(g1.getUserName())) {
 				res.status(403);
 				return g.toJson(null);
@@ -65,7 +65,7 @@ public class CrudGest implements CrudInterface{
 		});
 		put("/Gest", (req, res) ->{
 			res.type("application/json");
-			Gest h1 = g.fromJson(req.body(), Gest.class);
+			Guest h1 = g.fromJson(req.body(), Guest.class);
 			if(s.getGests().containsKey(h1.getUserName())) {
 				s.getGests().get(h1.getUserName()).setGender(h1.getGender());
 				s.getGests().get(h1.getUserName()).setName(h1.getName());
@@ -79,7 +79,7 @@ public class CrudGest implements CrudInterface{
 			return g.toJson(null);
 		});
 		delete("/Gest",(req,res)->{
-			Gest g1 = g.fromJson(req.body(), Gest.class);
+			Guest g1 = g.fromJson(req.body(), Guest.class);
 			if(g1!=null) {
 				s.getGests().get(g1.getUserName()).setDeletedStatus(DeletedStatus.DELETED);
 				return g.toJson(s.getGests().get(g1.getName()));

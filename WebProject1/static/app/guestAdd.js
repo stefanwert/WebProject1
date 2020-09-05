@@ -1,4 +1,4 @@
-Vue.component("gestAdd", {
+Vue.component("guestAdd", {
 	data: function () {
 		    return {
 		    	userName:'',

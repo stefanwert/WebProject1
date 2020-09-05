@@ -1,10 +1,10 @@
 package beans;
 
 import beans.Apartment;
-import beans.Gest;
+import beans.Guest;
 
 public class CommentForAppartmant {
-	private Gest gest;
+	private Guest gest;
 	private Apartment appartmant;
 	private String commentText;
 	private int rating;
@@ -12,17 +12,17 @@ public class CommentForAppartmant {
 	public CommentForAppartmant() {
 	}
 	
-	public CommentForAppartmant(Gest gest, Apartment appartmant, String commentText, int rating) {
+	public CommentForAppartmant(Guest gest, Apartment appartmant, String commentText, int rating) {
 		super();
 		this.gest = gest;
 		this.appartmant = appartmant;
 		this.commentText = commentText;
 		this.rating = rating;
 	}
-	public Gest getGest() {
+	public Guest getGest() {
 		return gest;
 	}
-	public void setGest(Gest gest) {
+	public void setGest(Guest gest) {
 		this.gest = gest;
 	}
 	public Apartment getAppartmant() {

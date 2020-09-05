@@ -1,4 +1,4 @@
-Vue.component("gest", {
+Vue.component("guest", {
 	data: function () {
 		    return {
 		      sc: null,

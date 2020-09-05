@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import beans.Administrator;
-import beans.Gest;
+import beans.Guest;
 import beans.Host;
 import beans.Reservation;
 import beans.Apartment;
@@ -14,7 +14,7 @@ public class DateBase {
 	private static DateBase singletonDateBase=null;
 	
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
-	private HashMap<String, Gest> gests = new HashMap<String, Gest>();
+	private HashMap<String, Guest> gests = new HashMap<String, Guest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	private HashMap<String,Apartment> appartements=new HashMap<String,Apartment>();
 
@@ -46,11 +46,11 @@ public class DateBase {
 		this.hosts = hosts;
 	}
 
-	public HashMap<String, Gest> getGests() {
+	public HashMap<String, Guest> getGests() {
 		return gests;
 	}
 
-	public void setGests(HashMap<String, Gest> gests) {
+	public void setGests(HashMap<String, Guest> gests) {
 		this.gests = gests;
 	}
 

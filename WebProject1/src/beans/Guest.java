@@ -7,14 +7,14 @@ import beans.Apartment;
 import beans.Reservation;
 import beans.User;
 
-public class Gest extends User{
+public class Guest extends User{
 	
 	private List<Apartment> rentedApartments =new ArrayList<>();
 	private List<Reservation> reservations=new ArrayList<Reservation>();
 	
-	public Gest() {}
+	public Guest() {}
 	
-	public Gest(String userName, String password, String name, String surname, String gender) {
+	public Guest(String userName, String password, String name, String surname, String gender) {
 		super(userName, password, name, surname, gender);
 	}
 	

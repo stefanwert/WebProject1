@@ -17,7 +17,7 @@ import beans.Amenities;
 import beans.Apartment;
 import beans.CommentForAppartmant;
 import beans.DeletedStatus;
-import beans.Gest;
+import beans.Guest;
 import beans.Host;
 import beans.Location;
 import beans.Reservation;

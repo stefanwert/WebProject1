@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import beans.Apartment;
 import beans.DeletedStatus;
-import beans.Gest;
+import beans.Guest;
 import beans.Host;
 import beans.Reservation;
 import beans.User;

@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 
 import com.google.gson.Gson;
 
-import beans.Gest;
+import beans.Guest;
 import beans.Host;
 import crud.CrudAdministrator;
 import crud.CrudApartment;

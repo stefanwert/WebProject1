@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 
 import beans.Administrator;
 import beans.DeletedStatus;
-import beans.Gest;
+import beans.Guest;
 import rest.AppMain;
 import rest.DateBase;
 
