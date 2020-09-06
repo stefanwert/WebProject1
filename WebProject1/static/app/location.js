@@ -8,7 +8,7 @@ Vue.component("location", {
 	template: ` 
 		<div>
 			<h2>My map</h2>
-			<div id="map" class="map"></div>
+			<div onclick="setPinOnMap()" id="map" class="map"></div>
 		</div>
 `
 	, 

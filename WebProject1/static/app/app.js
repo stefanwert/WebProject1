@@ -1,5 +1,5 @@
-const Apartment = { template: '<Apartment></Apartment>' }
-const AddApartment = { template: '<addApartment></addApartment>' }
+const Apartment = { template: '<apartment></apartment>' }
+const AddApartment = { template: '<add-apartment></add-apartment>' }
 const Host = { template: '<host></host>' }
 const HostAdd = { template: '<hostAdd></hostAdd>' }
 const GuestAdd={template: '<guestAdd></guestAdd>'}

@@ -1,4 +1,4 @@
-Vue.component("addApartment", {
+Vue.component("add-apartment", {
 	data: function () {
 		    return {
 		    	type:'',
@@ -33,6 +33,9 @@ Vue.component("addApartment", {
 		
 		<label>Status:</label>
 		<input type="text" v-model="status"  /> <br />
+		
+		<label>Slike:</label>
+		<input type="file" ref="img" name="img" accept="image/*" multiple> <br />
 	
 		<button v-on:click="add()">Dodaj apartman</button>
 </div>		  
