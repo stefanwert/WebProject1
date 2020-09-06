@@ -2,12 +2,9 @@ Vue.component("add-apartment", {
 	data: function () {
 		    return {
 		    	type:'',
-		    	numOfRooms:'',
-		    	numOfGuests:'',
-		    	host:{
-		    		userName:''
-		    		},
-		    	pricePerNight:'',
+		    	numOfRooms:0,
+		    	numOfGuest:0,
+		    	pricePerNight:0,
 		    	status:''
 		    }
 	},
@@ -19,23 +16,24 @@ Vue.component("add-apartment", {
 		<label>Tip:</label>
 		<input type="text" v-model="type" /> <br />
 		
+		
 		<label>Broj soba:</label>
-		<input type="text" v-model="numOfRooms"  /> <br />
+		<input type="number" v-model="numOfRooms"  /> <br />
 		
 		<label>Broj gostiju:</label>
-		<input type="text" v-model="numOfGuests"  /> <br />
-		
-		<label>Domaćin:</label>
-		<input type="text" v-model="host.userName"  /> <br />
+		<input type="number" v-model="numOfGuests"  /> <br />
 		
 		<label>Cena po noćenju:</label>
-		<input type="text" v-model="pricePerNight"  /> <br />
+		<input type="number" v-model="pricePerNight"  /> <br />
 		
 		<label>Status:</label>
 		<input type="text" v-model="status"  /> <br />
 		
+		<input type="time">	<br />
+		
 		<label>Slike:</label>
 		<input type="file" ref="img" name="img" accept="image/*" multiple> <br />
+		
 	
 		<button v-on:click="add()">Dodaj apartman</button>
 </div>		  
@@ -47,11 +45,10 @@ Vue.component("add-apartment", {
 			ret.type=this.type;
 			ret.numOfRooms=this.numOfRooms;
 			ret.numOfGuests=this.numOfGuests;
-			ret.host.userName=this.host.userName;
 			ret.pricePerNight=this.pricePerNight;
 			ret.status=this.status;
 			axios
-			.post('/Apartment',ret);
+			.post('/Appartements',ret);
 		}
 	}
 	

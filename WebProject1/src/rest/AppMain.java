@@ -60,8 +60,8 @@ public class AppMain {
 	
 	public static void main(String[] args) throws IOException {
 		
+		//writeToFile();
 		readFromFile();
-        
 		port(8080);
 		//System.out.println(new File("./static").getCanonicalPath());
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());

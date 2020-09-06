@@ -8,14 +8,14 @@ import beans.Apartment;
 
 public class Host extends User{
 	
-	private HashMap<String,Apartment> appartements=new HashMap<String,Apartment>();
+	private HashMap<Integer,Apartment> apartments=new HashMap<Integer,Apartment>();
 
-	public HashMap<String, Apartment> getAppartements() {
-		return appartements;
+	public HashMap<Integer, Apartment> getApartments() {
+		return apartments;
 	}
 
-	public void setAppartements(HashMap<String, Apartment> appartements) {
-		this.appartements = appartements;
+	public void setApartments(HashMap<Integer, Apartment> appartements) {
+		this.apartments = appartements;
 	}
 
 	public Host() {}

@@ -13,17 +13,28 @@ import beans.Apartment;
 public class DateBase {
 	private static DateBase singletonDateBase=null;
 	
+	private int apartmentNextId=0;
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
 	private HashMap<String, Guest> gests = new HashMap<String, Guest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
-	private HashMap<String,Apartment> appartements=new HashMap<String,Apartment>();
+	private HashMap<Integer,Apartment> apartments=new HashMap<Integer,Apartment>();
 
-	public HashMap<String, Apartment> getApartments() {
-		return appartements;
+	
+	
+	public int getApartmentNextId() {
+		return apartmentNextId;
 	}
 
-	public void setApartments(HashMap<String, Apartment> appartements) {
-		this.appartements = appartements;
+	public void setApartmentNextId(int apartmentNextId) {
+		this.apartmentNextId = apartmentNextId;
+	}
+
+	public HashMap<Integer, Apartment> getApartments() {
+		return apartments;
+	}
+
+	public void setApartments(HashMap<Integer, Apartment> apartments) {
+		this.apartments = apartments;
 	}
 
 	public DateBase() {

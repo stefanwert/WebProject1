@@ -1,6 +1,7 @@
 package beans;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,18 +17,18 @@ enum Status {
 
 public class Apartment {
 	
-	private String id;	
+	private int id;	
 	private Type type; 
 	private int numOfRooms;
 	private int numOfGuests;
 	private Location location;
 	private List<Date> rentingDays =new ArrayList<>();
 	private List<Date> availableDates =new ArrayList<>();
-	private Host host;
+	private String host;
 	private List<CommentForApartment> comments =new ArrayList<>();
 	private double pricePerNight;
-	private Time checkInTime;
-	private Time checkOutTime;
+	private LocalTime checkInTime;
+	private LocalTime checkOutTime;
 	private Status status;
 	private List<Amenities> amenities =new ArrayList<>();
 	private List<Reservation> reservations =new ArrayList<>();
@@ -44,9 +45,9 @@ public class Apartment {
 
 	public Apartment() {}
 	
-	public Apartment(String id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
-			List<Date> availableDates, Host host, List<CommentForApartment> comments, double pricePerNight,
-			Time checkInTime, Time checkOutTime, Status status, List<Amenities> amenities,
+	public Apartment(int id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
+			List<Date> availableDates, String host, List<CommentForApartment> comments, double pricePerNight,
+			LocalTime checkInTime, LocalTime checkOutTime, Status status, List<Amenities> amenities,
 			List<Reservation> reservations, DeletedStatus deletedStatus) {
 		super();
 		this.id = id;
@@ -67,11 +68,11 @@ public class Apartment {
 		this.deletedStatus = deletedStatus;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -123,11 +124,11 @@ public class Apartment {
 		this.availableDates = availableDates;
 	}
 
-	public Host getHost() {
+	public String getHost() {
 		return host;
 	}
 
-	public void setHost(Host host) {
+	public void setHost(String host) {
 		this.host = host;
 	}
 
@@ -147,19 +148,19 @@ public class Apartment {
 		this.pricePerNight = pricePerNight;
 	}
 
-	public Time getCheckInTime() {
+	public LocalTime getCheckInTime() {
 		return checkInTime;
 	}
 
-	public void setCheckInTime(Time checkInTime) {
+	public void setCheckInTime(LocalTime checkInTime) {
 		this.checkInTime = checkInTime;
 	}
 
-	public Time getCheckOutTime() {
+	public LocalTime getCheckOutTime() {
 		return checkOutTime;
 	}
 
-	public void setCheckOutTime(Time checkOutTime) {
+	public void setCheckOutTime(LocalTime checkOutTime) {
 		this.checkOutTime = checkOutTime;
 	}
 
