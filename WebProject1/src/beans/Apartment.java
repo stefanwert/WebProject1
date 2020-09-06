@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 enum Type {
-    APPARTEMENT,
+    APARTMENT,
     ROOM
   }
 enum Status {
@@ -24,7 +24,7 @@ public class Apartment {
 	private List<Date> rentingDays =new ArrayList<>();
 	private List<Date> availableDates =new ArrayList<>();
 	private Host host;
-	private List<CommentForAppartmant> comments =new ArrayList<>();
+	private List<CommentForApartment> comments =new ArrayList<>();
 	private double pricePerNight;
 	private Time checkInTime;
 	private Time checkOutTime;
@@ -45,7 +45,7 @@ public class Apartment {
 	public Apartment() {}
 	
 	public Apartment(String id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
-			List<Date> availableDates, Host host, List<CommentForAppartmant> comments, double pricePerNight,
+			List<Date> availableDates, Host host, List<CommentForApartment> comments, double pricePerNight,
 			Time checkInTime, Time checkOutTime, Status status, List<Amenities> amenities,
 			List<Reservation> reservations, DeletedStatus deletedStatus) {
 		super();
@@ -131,11 +131,11 @@ public class Apartment {
 		this.host = host;
 	}
 
-	public List<CommentForAppartmant> getComments() {
+	public List<CommentForApartment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<CommentForAppartmant> comments) {
+	public void setComments(List<CommentForApartment> comments) {
 		this.comments = comments;
 	}
 
