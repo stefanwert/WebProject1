@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 
 import beans.Amenities;
 import beans.Apartment;
-import beans.CommentForAppartmant;
+import beans.CommentForApartment;
 import beans.DeletedStatus;
 import beans.Guest;
 import beans.Host;
@@ -41,7 +41,7 @@ public class CrudApartment implements CrudInterface{
 			res.type("application/json");
 			String id = req.queryParams("id");
 			
-			Apartment appartement=s.getAppartements().get(id);
+			Apartment appartement=s.getApartments().get(id);
 			if(appartement==null || (!appartement.getId().equals(id))) {
 				res.status(404);
 				return null;
@@ -49,14 +49,26 @@ public class CrudApartment implements CrudInterface{
 			return g.toJson(appartement);
 		});
 		
+		get("/AllApartments",(req,res)->{
+			res.type("application/json");
+			List<Apartment> apartments = new ArrayList<Apartment>();
+			for (String apartmentId : s.getApartments().keySet()) {
+				if(s.getApartments().get(apartmentId).getDeletedStatus()==DeletedStatus.ACTIVE) {
+					apartments.add(s.getApartments().get(apartmentId));
+				}
+			}
+			
+			return g.toJson(apartments);
+		});
+		
 		post("/Appartements",(req,res)->{
 			res.type("application/json");
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
-			if(s.getAppartements().containsKey(appartement.getId())) {
+			if(s.getApartments().containsKey(appartement.getId())) {
 				res.status(403);
 				return g.toJson(null); 
 			}
-			s.getAppartements().put(appartement.getId(), appartement);
+			s.getApartments().put(appartement.getId(), appartement);
 			s.getHosts().get(appartement.getHost()).getAppartements().put(appartement.getId(), appartement);	//treba i ovo (dodavanje unutar host-a)
 			return g.toJson(appartement);
 		});
@@ -65,26 +77,26 @@ public class CrudApartment implements CrudInterface{
 			res.type("application/json");
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
 			if(s.getGests().containsKey(appartement.getId())) {
-				s.getAppartements().get(appartement.getId()).setId(appartement.getId());
-				s.getAppartements().get(appartement.getId()).setType(appartement.getType());
-				s.getAppartements().get(appartement.getId()).setNumOfRooms(appartement.getNumOfRooms());
-				s.getAppartements().get(appartement.getId()).setNumOfGuests(appartement.getNumOfGuests());
-				s.getAppartements().get(appartement.getId()).setLocation(appartement.getLocation());
-				s.getAppartements().get(appartement.getId()).setRentingDays(appartement.getRentingDays());
-				s.getAppartements().get(appartement.getId()).setAvailableDates(appartement.getAvailableDates());
-				s.getAppartements().get(appartement.getId()).setHost(appartement.getHost());
-				s.getAppartements().get(appartement.getId()).setComments(appartement.getComments());
-				s.getAppartements().get(appartement.getId()).setPricePerNight(appartement.getPricePerNight());
-				s.getAppartements().get(appartement.getId()).setCheckInTime(appartement.getCheckInTime());
-				s.getAppartements().get(appartement.getId()).setCheckOutTime(appartement.getCheckOutTime());
-				s.getAppartements().get(appartement.getId()).setStatus(appartement.getStatus());
-				s.getAppartements().get(appartement.getId()).setAmenities(appartement.getAmenities());
-				s.getAppartements().get(appartement.getId()).setReservations(appartement.getReservations());
+				s.getApartments().get(appartement.getId()).setId(appartement.getId());
+				s.getApartments().get(appartement.getId()).setType(appartement.getType());
+				s.getApartments().get(appartement.getId()).setNumOfRooms(appartement.getNumOfRooms());
+				s.getApartments().get(appartement.getId()).setNumOfGuests(appartement.getNumOfGuests());
+				s.getApartments().get(appartement.getId()).setLocation(appartement.getLocation());
+				s.getApartments().get(appartement.getId()).setRentingDays(appartement.getRentingDays());
+				s.getApartments().get(appartement.getId()).setAvailableDates(appartement.getAvailableDates());
+				s.getApartments().get(appartement.getId()).setHost(appartement.getHost());
+				s.getApartments().get(appartement.getId()).setComments(appartement.getComments());
+				s.getApartments().get(appartement.getId()).setPricePerNight(appartement.getPricePerNight());
+				s.getApartments().get(appartement.getId()).setCheckInTime(appartement.getCheckInTime());
+				s.getApartments().get(appartement.getId()).setCheckOutTime(appartement.getCheckOutTime());
+				s.getApartments().get(appartement.getId()).setStatus(appartement.getStatus());
+				s.getApartments().get(appartement.getId()).setAmenities(appartement.getAmenities());
+				s.getApartments().get(appartement.getId()).setReservations(appartement.getReservations());
 				
 				s.getHosts().get(appartement.getHost()).getAppartements().remove(appartement.getId());
 				s.getHosts().get(appartement.getHost()).getAppartements().put(appartement.getId(),appartement);	//ove dve linije edituju i unutar hosta taj apartman(tako sto ga obrisem pa upisem)
 				
-				return g.toJson(s.getAppartements().get(appartement.getId()));
+				return g.toJson(s.getApartments().get(appartement.getId()));
 			}
 			res.status(404);
 			return g.toJson(null);
@@ -92,9 +104,9 @@ public class CrudApartment implements CrudInterface{
 		
 		delete("/Appartements",(req,res)->{
 			String id = req.queryParams("id");
-			Apartment appartmant=s.getAppartements().get(id);
+			Apartment appartmant=s.getApartments().get(id);
 			if(appartmant!=null) {
-				s.getAppartements().get(id).setDeletedStatus(DeletedStatus.DELETED);
+				s.getApartments().get(id).setDeletedStatus(DeletedStatus.DELETED);
 				s.getHosts().get(appartmant.getHost()).getAppartements().get(appartmant.getId()).setDeletedStatus(DeletedStatus.DELETED);	//setujem da je obrisano i unutar host-a
 				return g.toJson(appartmant);
 			}

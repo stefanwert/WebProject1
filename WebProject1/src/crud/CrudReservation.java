@@ -82,7 +82,7 @@ public class CrudReservation implements CrudInterface{
 				if(reservation.getId().equals(r.getId())) {
 					
 					reservation.setId(r.getId());
-					reservation.setAppartement(r.getAppartement());
+					reservation.setApartment(r.getApartment());
 					reservation.setStartDate(r.getStartDate());
 					reservation.setNumOfNights(r.getNumOfNights());
 					reservation.setTotalPrice(r.getTotalPrice());

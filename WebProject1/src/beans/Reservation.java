@@ -13,7 +13,7 @@ enum ReservationStatus {
 public class Reservation {
 
 	private String id;
-	private Apartment appartement;
+	private Apartment apartment;
 	private Date startDate;
 	private int numOfNights=1;
 	private double totalPrice;
@@ -24,24 +24,25 @@ public class Reservation {
 	
 	@Override
 	public String toString() {
-		return "Reservation [id=" + id + ", appartement=" + appartement + ", startDate=" + startDate + ", numOfNights="
+		return "Reservation [id=" + id + ", apartment=" + apartment + ", startDate=" + startDate + ", numOfNights="
 				+ numOfNights + ", totalPrice=" + totalPrice + ", message=" + message + ", host=" + host
-				+ ", reservStatus=" + reservStatus + "]";
+				+ ", reservStatus=" + reservStatus + ", deletedStatus=" + deletedStatus + "]";
 	}
-	
+
 	public Reservation() {}
 	
-	public Reservation(String id, Apartment appartement, Date startDate, int numOfNights, double totalPrice,
-			String message, Host host, ReservationStatus reservStatus) {
+	public Reservation(String id, Apartment apartment, Date startDate, int numOfNights, double totalPrice,
+			String message, Host host, ReservationStatus reservStatus, DeletedStatus deletedStatus) {
 		super();
 		this.id = id;
-		this.appartement = appartement;
+		this.apartment = apartment;
 		this.startDate = startDate;
 		this.numOfNights = numOfNights;
 		this.totalPrice = totalPrice;
 		this.message = message;
 		this.host = host;
 		this.reservStatus = reservStatus;
+		this.deletedStatus = deletedStatus;
 	}
 
 	public String getId() {
@@ -52,12 +53,12 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public Apartment getAppartement() {
-		return appartement;
+	public Apartment getApartment() {
+		return apartment;
 	}
 
-	public void setAppartement(Apartment appartement) {
-		this.appartement = appartement;
+	public void setApartment(Apartment apartment) {
+		this.apartment = apartment;
 	}
 
 	public Date getStartDate() {
@@ -114,7 +115,6 @@ public class Reservation {
 
 	public void setDeletedStatus(DeletedStatus deletedStatus) {
 		this.deletedStatus = deletedStatus;
-	}	
-
+	}
 	
 }

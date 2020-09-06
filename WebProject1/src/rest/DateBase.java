@@ -18,11 +18,11 @@ public class DateBase {
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	private HashMap<String,Apartment> appartements=new HashMap<String,Apartment>();
 
-	public HashMap<String, Apartment> getAppartements() {
+	public HashMap<String, Apartment> getApartments() {
 		return appartements;
 	}
 
-	public void setAppartements(HashMap<String, Apartment> appartements) {
+	public void setApartments(HashMap<String, Apartment> appartements) {
 		this.appartements = appartements;
 	}
 

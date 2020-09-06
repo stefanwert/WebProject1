@@ -32,16 +32,16 @@ public class Apartment {
 	private List<Amenities> amenities =new ArrayList<>();
 	private List<Reservation> reservations =new ArrayList<>();
 	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
+	
 	@Override
 	public String toString() {
-		return "Appartement [id=" + id + ", type=" + type + ", numOfRooms=" + numOfRooms + ", numOfGuests="
-				+ numOfGuests + ", location=" + location + ", rentingDays=" + rentingDays + ", availableDates="
-				+ availableDates + ", host=" + host + ", comments=" + comments + ", pricePerNight=" + pricePerNight
-				+ ", checkInTime=" + checkInTime + ", checkOutTime=" + checkOutTime + ", status=" + status
-				+ ", amenities=" + amenities + ", reservations=" + reservations + ", deletedStatus=" + deletedStatus
-				+ "]";
+		return "Apartment [id=" + id + ", type=" + type + ", numOfRooms=" + numOfRooms + ", numOfGuests=" + numOfGuests
+				+ ", location=" + location + ", rentingDays=" + rentingDays + ", availableDates=" + availableDates
+				+ ", host=" + host + ", comments=" + comments + ", pricePerNight=" + pricePerNight + ", checkInTime="
+				+ checkInTime + ", checkOutTime=" + checkOutTime + ", status=" + status + ", amenities=" + amenities
+				+ ", reservations=" + reservations + ", deletedStatus=" + deletedStatus + "]";
 	}
-	
+
 	public Apartment() {}
 	
 	public Apartment(String id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
