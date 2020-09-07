@@ -1,6 +1,7 @@
 <html>
 <head>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
       .map {
         height: 400px;
@@ -8,10 +9,9 @@
       }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="jquery.min.js"></script>
-<script src="app/map.js"></script>
-<script type="text/javascript">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="app/map.js"></script>
+	<script type="text/javascript">
 		function getFormData($form){
 		    var unindexed_array = $form.serializeArray();
 		    var indexed_array = {};
@@ -36,37 +36,44 @@
 					$( "#result" ).html( data.responseText );
 				}
 			});
-			
-			
-			
-			
 		}
 </script>
-
 </head>
 
 <body>
-	<div id="host">
-	<h3>Header</h3>
+	<div id="menu">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="index.html#/">Homepage</a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="navbar-collapse collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#/registration" >Register</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+    </div>
+	<div id="index">
 	  <router-view></router-view>
 	</div>
+	
+	<script src="js/vue.js"></script>
+	<script src="js/vue-router.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/toast.js"></script>
+	<script src="app/login.js"></script>
+	<script src="app/registration.js"></script>
+	<script src="app/guestAdd.js"></script>
+	<script src="app/location.js"></script>
+	<script src="app/picture.js"></script>
+	<script src="app/app.js"></script>
 </body>
-
-<script src="js/vue.js"></script>
-<script src="js/vue-router.js"></script>
-<script src="js/axios.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/toast.js"></script>
-
-<script src="app/addApartment.js"></script>
-<script src="app/apartment.js"></script>
-<script src="app/host.js"></script>
-<script src="app/guest.js"></script>
-<script src="app/hostAdd.js"></script>
-<script src="app/guestAdd.js"></script>
-<script src="app/location.js"></script>
-<script src="app/picture.js"></script>
-
-
-<script src="app/app.js"></script>
 </html>

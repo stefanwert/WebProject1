@@ -21,7 +21,13 @@
                 <div class="navbar-collapse collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" v-on:click.prevent="logout" v-if="loggedin">Logout</a>
+                        <a class="nav-link" href="#/addApartment" >Add Apartment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#/apartment" >Apartments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-on:click.prevent="logout">Logout</a>
                     </li>
                     </ul>
                 </div>
@@ -39,7 +45,9 @@
         <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
         <script type = "text/javascript" src="js/axios.min.js"></script>
         <script type = "text/javascript" src="js/bootstrap.min.js"></script>
-		<script type = "text/javascript" src="app/host.js"></script>
+        <script src="app/addApartment.js"></script>
+		<script src="app/apartment.js"></script>
+		<script type = "text/javascript" src="app/hostHomepage.js"></script>
        
     </body>
 </html>
