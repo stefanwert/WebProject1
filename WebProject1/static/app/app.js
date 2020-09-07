@@ -5,6 +5,7 @@ const HostAdd = { template: '<hostAdd></hostAdd>' }
 const GuestAdd={template: '<guestAdd></guestAdd>'}
 const Guest={template: '<guest></guest>'}
 const Location={template: '<location></location>'}
+const Picture={template: '<pictureSave></pictureSave>'}
 
 const router = new VueRouter({
 	  mode: 'hash',
@@ -15,7 +16,8 @@ const router = new VueRouter({
 	    { path: '/hostAdd', component: HostAdd },
 	    { path: '/guestAdd',component: GuestAdd},
 	    { path: '/guest',component:Guest},
-	    { path: '/location',component:Location}
+	    { path: '/location',component:Location},
+	    { path: '/pictureSave',component:Picture}
 	  ]
 });
 
