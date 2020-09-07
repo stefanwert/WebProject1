@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 import beans.Administrator;
 import beans.DeletedStatus;
 import beans.Guest;
+import beans.User;
+import javassist.expr.Instanceof;
 import rest.AppMain;
 import rest.DateBase;
 
@@ -25,6 +27,12 @@ public class CrudAdministrator implements CrudInterface {
 		after("/Administrator", (req, res) -> {
 			AppMain.writeToFile();
 		});
+		
+		//User user = new User();
+		
+		//if(user instanceof Administrator) {
+			//return "ADMIN";
+		//}
 		
 		get("/Administrator",(req,res)->{
 			res.type("application/json");
