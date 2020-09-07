@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <title>Rent</title>
+        
+    </head>
+    <body>
+        
+        <div id="menuHost">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="host.html#/">Homepage</a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="navbar-collapse collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" v-on:click.prevent="logout" v-if="loggedin">Logout</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div id="routerHost">
+            <router-view></router-view>
+        </div>
+        
+        <script type = "text/javascript" src="js/popper.min.js"></script>
+        <script type = "text/javascript" src="js/jquery-3.3.1.min.js"></script>
+        <script type = "text/javascript" src="js/vue.js"></script>
+        <script type = "text/javascript" src="js/vue-router.js"></script>
+        <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+        <script type = "text/javascript" src="js/axios.min.js"></script>
+        <script type = "text/javascript" src="js/bootstrap.min.js"></script>
+		<script type = "text/javascript" src="app/host.js"></script>
+       
+    </body>
+</html>

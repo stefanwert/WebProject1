@@ -10,13 +10,15 @@ Vue.component("apartment", {
 		Tabela apartmana
 		<table border="1">
 		<tr bgcolor="lightgrey">
-			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Status</th></tr>
+			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Vreme za prijavu</th><th>Vreme za odjavu</th><th>Status</th></tr>
 			<tr v-for="i in ap" v-on:click="selectHost(i)">
 			<td> {{i.type}}</td>
 			<td> {{i.numOfRooms}}</td>
 			<td> {{i.numOfGuests}}</td>
 			<td> {{i.host}} </td>
 			<td> {{i.pricePerNight}} </td>
+			<td> {{i.checkInTime}} </td>
+			<td> {{i.checkOutTime}} </td>
 			<td> {{i.status}} </td>
 			</tr>
 		</table>

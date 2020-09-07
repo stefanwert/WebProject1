@@ -14,7 +14,10 @@ Vue.component("add-apartment", {
 		<br>
 		
 		<label>Tip:</label>
-		<input type="text" v-model="type" /> <br />
+		<select v-model="type">
+		<option value="APARTMAN">APARTMAN</option>
+		<option value="ROOM">ROOM</option>
+		</select> <br />
 		
 		
 		<label>Broj soba:</label>
@@ -27,12 +30,17 @@ Vue.component("add-apartment", {
 		<input type="number" v-model="pricePerNight"  /> <br />
 		
 		<label>Status:</label>
-		<input type="text" v-model="status"  /> <br />
-		
-		<input type="time">	<br />
+		<select v-model="status">
+		<option value="ACTIVE">ACTIVE</option>
+		<option value="INACTIVE">INACTIVE</option>
+		</select> <br />
+		<label>Vreme za prijavu:</label>
+		<input type="time" v-model="checkInTime">	<br />
+		<label>Vreme za odjavu:</label>
+		<input type="time" v-model="checkOutTime">	<br />
 		
 		<label>Slike:</label>
-		<input type="file" ref="img" name="img" accept="image/*" multiple> <br />
+		<input type="file" ref="img" name="img" accept="image/*" multiple> <br /> <br />
 		
 	
 		<button v-on:click="add()">Dodaj apartman</button>
