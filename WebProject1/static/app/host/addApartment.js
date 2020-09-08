@@ -56,7 +56,7 @@ Vue.component("add-apartment", {
 			ret.pricePerNight=this.pricePerNight;
 			ret.status=this.status;
 			axios
-			.post('/Appartements',ret);
+			.post('/Apartments',ret);
 		}
 	}
 	

@@ -35,11 +35,11 @@ public class CrudApartment implements CrudInterface{
 	@Override
 	public void activeCrud(DateBase s, Gson g) {
 		
-		after("/Appartements", (req, res) -> {
+		after("/Apartments", (req, res) -> {
 			AppMain.writeToFile();
 		});
 		
-		get("/Appartements",(req,res)->{
+		get("/Apartments",(req,res)->{
 			res.type("application/json");
 			String idS = req.queryParams("id");
 			int id= Integer.parseInt(idS);
@@ -64,7 +64,7 @@ public class CrudApartment implements CrudInterface{
 			return g.toJson(apartments);
 		});
 		
-		post("/Appartements",(req,res)->{
+		post("/Apartments",(req,res)->{
 			res.type("application/json");
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
 			
@@ -86,7 +86,7 @@ public class CrudApartment implements CrudInterface{
 			return g.toJson(appartement);
 		});
 		
-		put("/Appartements", (req, res) ->{
+		put("/Apartments", (req, res) ->{
 			res.type("application/json");
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
 			if(s.getGests().containsKey(appartement.getId())) {
@@ -115,7 +115,7 @@ public class CrudApartment implements CrudInterface{
 			return g.toJson(null);
 		});
 		
-		delete("/Appartements",(req,res)->{
+		delete("/Apartments",(req,res)->{
 			String id = req.queryParams("id");
 			Apartment appartmant=s.getApartments().get(id);
 			if(appartmant!=null) {

@@ -27,6 +27,7 @@ import crud.CrudAdministrator;
 import crud.CrudApartment;
 import crud.CrudGest;
 import crud.CrudHost;
+import crud.CrudPicture;
 import crud.CrudReservation;
 import rest.DateBase;
 
@@ -71,6 +72,7 @@ public class AppMain {
 		(new CrudAdministrator()).activeCrud(s, g);
 		(new CrudApartment()).activeCrud(s, g);
 		(new CrudReservation()).activeCrud(s, g);
+		(new CrudPicture()).activeCrud(s, g);
 
 	}
 
