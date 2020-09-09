@@ -85,23 +85,26 @@ public class CrudUsers implements CrudInterface{
 	
 	private static void logedIn(Request req,Response res,DateBase s) {
 		if(!s.getHosts().containsKey(req.cookie("userID")) && !s.getGuests().containsKey(req.cookie("userID")) && !s.getAdministrators().containsKey(req.cookie("userID"))) {
-			res.redirect("index.html");
+			//res.redirect("index.html");
 		}else {
 			if(req.session().attribute("user")==null) {
 				//admin
 				if(s.getAdministrators().containsKey(req.cookie("userID"))) {
 					Administrator administrator=s.getAdministrators().get(req.cookie("userID"));
 					req.session().attribute("user",administrator);
+					res.redirect("admin.html");
 				}
 				//host
 				else if(s.getHosts().containsKey(req.cookie("userID"))) {
 					Host host=s.getHosts().get(req.cookie("userID"));
 					req.session().attribute("user",host);
+					res.redirect("host.html");
 				}
 				//guest
 				else if(s.getGuests().containsKey(req.cookie("userID"))) {
 					Guest guest=s.getGuests().get(req.cookie("userID"));
 					req.session().attribute("user",guest);
+					res.redirect("guest.html");
 				}
 			}
 		}
