@@ -18,8 +18,8 @@ import beans.Host;
 import rest.AppMain;
 import rest.DateBase;
 
-public class CrudGest implements CrudInterface{
-	public CrudGest() {}
+public class CrudGuest implements CrudInterface{
+	public CrudGuest() {}
 
 	@Override
 	public void activeCrud(DateBase s, Gson g) {
@@ -30,7 +30,7 @@ public class CrudGest implements CrudInterface{
 		get("/AllGest",(req,res)->{
 			res.type("application/json");
 			List<Guest> gests = new ArrayList<Guest>();
-			for (Guest gest : s.getGests().values()) {
+			for (Guest gest : s.getGuests().values()) {
 				if(gest.getDeletedStatus()==DeletedStatus.ACTIVE) {
 					gests.add(gest);
 				}
@@ -44,7 +44,7 @@ public class CrudGest implements CrudInterface{
 			String userName = req.queryParams("userName");
 			String password = req.queryParams("password");
 			
-			Guest gest=s.getGests().get(userName);
+			Guest gest=s.getGuests().get(userName);
 			if(gest==null || (!gest.getPassword().equals(password))) {
 				res.status(404);
 				return null;
@@ -55,25 +55,25 @@ public class CrudGest implements CrudInterface{
 		post("/Gest",(req,res)->{
 			res.type("application/json");
 			Guest g1 = g.fromJson(req.body(), Guest.class);
-			if(s.getGests().containsKey(g1.getUserName())) {
+			if(s.getGuests().containsKey(g1.getUserName())) {
 				res.status(403);
 				return g.toJson(null);
 			}
-			s.getGests().put(g1.getUserName(), g1);
+			s.getGuests().put(g1.getUserName(), g1);
 			//PrintWriter printWriter=new PrintWriter(AppMain.fileName);
 			return g.toJson(g1);
 		});
 		put("/Gest", (req, res) ->{
 			res.type("application/json");
 			Guest h1 = g.fromJson(req.body(), Guest.class);
-			if(s.getGests().containsKey(h1.getUserName())) {
-				s.getGests().get(h1.getUserName()).setGender(h1.getGender());
-				s.getGests().get(h1.getUserName()).setName(h1.getName());
-				s.getGests().get(h1.getUserName()).setPassword(h1.getPassword());
-				s.getGests().get(h1.getUserName()).setSurname(h1.getSurname());
-				s.getGests().get(h1.getUserName()).setUserName(h1.getUserName());
+			if(s.getGuests().containsKey(h1.getUserName())) {
+				s.getGuests().get(h1.getUserName()).setGender(h1.getGender());
+				s.getGuests().get(h1.getUserName()).setName(h1.getName());
+				s.getGuests().get(h1.getUserName()).setPassword(h1.getPassword());
+				s.getGuests().get(h1.getUserName()).setSurname(h1.getSurname());
+				s.getGuests().get(h1.getUserName()).setUserName(h1.getUserName());
 				
-				return g.toJson(s.getGests().get(h1.getUserName()));
+				return g.toJson(s.getGuests().get(h1.getUserName()));
 			}
 			res.status(404);
 			return g.toJson(null);
@@ -81,8 +81,8 @@ public class CrudGest implements CrudInterface{
 		delete("/Gest",(req,res)->{
 			Guest g1 = g.fromJson(req.body(), Guest.class);
 			if(g1!=null) {
-				s.getGests().get(g1.getUserName()).setDeletedStatus(DeletedStatus.DELETED);
-				return g.toJson(s.getGests().get(g1.getName()));
+				s.getGuests().get(g1.getUserName()).setDeletedStatus(DeletedStatus.DELETED);
+				return g.toJson(s.getGuests().get(g1.getName()));
 			}
 			res.status(404);
 			return g.toJson(null);

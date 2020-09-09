@@ -15,7 +15,7 @@ public class DateBase {
 	
 	private int apartmentNextId=0;
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
-	private HashMap<String, Guest> gests = new HashMap<String, Guest>();
+	private HashMap<String, Guest> guests = new HashMap<String, Guest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	private HashMap<Integer,Apartment> apartments=new HashMap<Integer,Apartment>();
 
@@ -57,12 +57,12 @@ public class DateBase {
 		this.hosts = hosts;
 	}
 
-	public HashMap<String, Guest> getGests() {
-		return gests;
+	public HashMap<String, Guest> getGuests() {
+		return guests;
 	}
 
-	public void setGests(HashMap<String, Guest> gests) {
-		this.gests = gests;
+	public void setGuests(HashMap<String, Guest> gests) {
+		this.guests = gests;
 	}
 
 	public HashMap<String, Administrator> getAdministrators() {

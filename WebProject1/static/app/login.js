@@ -3,6 +3,7 @@ Vue.component("login", {
 		return {
 				username: '',
 				password: '',
+				v:{}
 		}
 	},
 	template: ` 
@@ -13,7 +14,7 @@ Vue.component("login", {
 			    <legend>Prijavite se</legend>
 			    <div class="form-group">
 			      <label>Korisničko ime</label>
-			      <input type="date" class="form-control" v-model="username" id="username" required  placeholder="Unesite korisničko ime" >
+			      <input type="text" class="form-control" v-model="username" id="username" required  placeholder="Unesite korisničko ime" >
 			    </div>
 			    <div class="form-group">
 			      <label for="exampleInputPassword1">Šifra</label>
@@ -27,8 +28,23 @@ Vue.component("login", {
 	`	,
 	methods: {
 		login: function (){
+			this.v.userName=this.username;
+			this.v.password=this.password;
 			alert("Login");
-			window.location.href="admin.html";
+			axios
+	          .post('/Login',this.v)
+	          .then(
+	        	response=>{
+	        		//var data = JSON.parse(response.data); 
+	    			if(response.data.uslov == "TRUE"){
+	    				window.location.href = response.data.path;
+	    			}
+	    			else{
+	    				$("#login").before("<p style=\"color:red\">Uneto korisničko ime ili lozinka je pogresna<p>");
+	    			}
+	        	}
+	          )
+			
 		}
 		
 	}

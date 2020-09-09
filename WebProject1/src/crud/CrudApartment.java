@@ -89,7 +89,7 @@ public class CrudApartment implements CrudInterface{
 		put("/Apartments", (req, res) ->{
 			res.type("application/json");
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
-			if(s.getGests().containsKey(appartement.getId())) {
+			if(s.getGuests().containsKey(appartement.getId())) {
 				s.getApartments().get(appartement.getId()).setId(appartement.getId());
 				s.getApartments().get(appartement.getId()).setType(appartement.getType());
 				s.getApartments().get(appartement.getId()).setNumOfRooms(appartement.getNumOfRooms());

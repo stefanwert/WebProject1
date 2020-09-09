@@ -25,10 +25,11 @@ import beans.Guest;
 import beans.Host;
 import crud.CrudAdministrator;
 import crud.CrudApartment;
-import crud.CrudGest;
+import crud.CrudGuest;
 import crud.CrudHost;
 import crud.CrudPicture;
 import crud.CrudReservation;
+import crud.CrudUsers;
 import rest.DateBase;
 
 public class AppMain {
@@ -68,11 +69,12 @@ public class AppMain {
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		
 		(new CrudHost()).activeCrud(s, g);
-		(new CrudGest()).activeCrud(s, g);
+		(new CrudGuest()).activeCrud(s, g);
 		(new CrudAdministrator()).activeCrud(s, g);
 		(new CrudApartment()).activeCrud(s, g);
 		(new CrudReservation()).activeCrud(s, g);
 		(new CrudPicture()).activeCrud(s, g);
+		(new CrudUsers()).activeCrud(s, g);
 
 	}
 

@@ -14,7 +14,7 @@ Vue.component("pictureSave", {
 	},
 	template: ` 
 <div>
-		<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/*"/>
+		<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
 		<button class="dugme" v-on:click="submitFile()">Posalji sliku</button>
 			    
 			    

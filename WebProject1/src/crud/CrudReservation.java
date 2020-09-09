@@ -40,7 +40,7 @@ public class CrudReservation implements CrudInterface{
 			
 			Session session=req.session();
 			User user = session.attribute("LogedUser");
-			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+			List<Reservation> reservations=s.getGuests().get(user.getUserName()).getReservations();
 			
 			for (Reservation reservation : reservations) {
 				if(reservation.getId().equals(id)) {
@@ -58,7 +58,7 @@ public class CrudReservation implements CrudInterface{
 			Session session=req.session();
 			User user = session.attribute("LogedUser");
 			Reservation reservation = g.fromJson(req.body(), Reservation.class);
-			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+			List<Reservation> reservations=s.getGuests().get(user.getUserName()).getReservations();
 			
 			for (Reservation reserv : reservations) {
 				if(reserv.getId().equals(reservation.getId())) {
@@ -66,7 +66,7 @@ public class CrudReservation implements CrudInterface{
 					return g.toJson(null);
 				}
 			}
-			s.getGests().get(user.getUserName()).getReservations().add(reservation);
+			s.getGuests().get(user.getUserName()).getReservations().add(reservation);
 			return g.toJson(reservation);
 		});
 		
@@ -76,7 +76,7 @@ public class CrudReservation implements CrudInterface{
 			Session session=req.session();
 			User user = session.attribute("LogedUser");
 			Reservation r = g.fromJson(req.body(), Reservation.class);
-			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+			List<Reservation> reservations=s.getGuests().get(user.getUserName()).getReservations();
 
 			for (Reservation reservation : reservations) {
 				if(reservation.getId().equals(r.getId())) {
@@ -103,7 +103,7 @@ public class CrudReservation implements CrudInterface{
 			
 			Session session=req.session();
 			User user = session.attribute("LogedUser");
-			List<Reservation> reservations=s.getGests().get(user.getUserName()).getReservations();
+			List<Reservation> reservations=s.getGuests().get(user.getUserName()).getReservations();
 			
 			for (Reservation reservation : reservations) {
 				if(reservation.getId().equals(id)) {
