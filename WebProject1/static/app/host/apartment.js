@@ -1,8 +1,10 @@
 Vue.component("apartment", {
 	data: function () {
 		    return {
-		      ap: null,
-		      selectedApartment: {}
+		    	ap: null,
+		      	selectedApartment: {},
+		      	picture:''
+		    	
 		    }
 	},
 	template: ` 
@@ -12,14 +14,15 @@ Vue.component("apartment", {
 		<tr bgcolor="lightgrey">
 			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Vreme za prijavu</th><th>Vreme za odjavu</th><th>Status</th></tr>
 			<tr v-for="i in ap" v-on:click="selectHost(i)">
-			<td> {{i.type}}</td>
-			<td> {{i.numOfRooms}}</td>
-			<td> {{i.numOfGuests}}</td>
-			<td> {{i.host}} </td>
-			<td> {{i.pricePerNight}} </td>
-			<td> {{i.checkInTime}} </td>
-			<td> {{i.checkOutTime}} </td>
-			<td> {{i.status}} </td>
+				<td> {{i.type}}</td>
+				<td> {{i.numOfRooms}}</td>
+				<td> {{i.numOfGuests}}</td>
+				<td> {{i.host}} </td>
+				<td> {{i.pricePerNight}} </td>
+				<td> {{i.checkInTime}} </td>
+				<td> {{i.checkOutTime}} </td>
+				<td> {{i.status}} </td>
+				<td><img :src=getPictureAddres(i) width="100" height="100"></img></td>
 			</tr>
 		</table>
 		<br /> 
@@ -47,7 +50,10 @@ Vue.component("apartment", {
 		        	}
 		          )
 			}
-		} 
+		},
+		getPictureAddres: function(i){
+			return 'slike/'+i.pictures[0];
+		}
 	},
 	
 	mounted () {

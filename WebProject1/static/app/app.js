@@ -13,7 +13,6 @@ const router = new VueRouter({
 	  	{ path: '/registration', component: Registration}, 
 	    { path: '/guestAdd',component: GuestAdd},
 	    { path: '/location',component:Location},
-	    { path: '/pictureSave',component:Picture},
 	    { path: '*', beforeEnter: nepostojecaRuta}
 	  ]
 });

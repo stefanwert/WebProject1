@@ -33,7 +33,16 @@ public class Apartment {
 	private List<Amenities> amenities =new ArrayList<>();
 	private List<Reservation> reservations =new ArrayList<>();
 	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
+	private List<String> pictures=new ArrayList<String>();
 	
+	public List<String> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<String> pictures) {
+		this.pictures = pictures;
+	}
+
 	@Override
 	public String toString() {
 		return "Apartment [id=" + id + ", type=" + type + ", numOfRooms=" + numOfRooms + ", numOfGuests=" + numOfGuests

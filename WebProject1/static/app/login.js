@@ -50,3 +50,14 @@ Vue.component("login", {
 	}
 	
 });
+
+
+window.onload = function() {
+	$.ajax({
+		url: "/",
+		type:"GET",
+		contentType:"application/json",
+		dataType:"json",
+		
+	});
+	};
