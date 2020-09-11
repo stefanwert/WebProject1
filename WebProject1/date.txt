@@ -1,1 +1,301 @@
-{"apartmentNextId":13,"hosts":{"stefan":{"apartments":{"1":{"id":1,"numOfRooms":1,"numOfGuests":1,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":1.0,"amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"2":{"id":2,"numOfRooms":2,"numOfGuests":2,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":3.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"3":{"id":3,"numOfRooms":2,"numOfGuests":2,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":3.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"4":{"id":4,"type":"ROOM","numOfRooms":5,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":10.0,"status":"INACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"5":{"id":5,"type":"ROOM","numOfRooms":5,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":10.0,"status":"INACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"6":{"id":6,"type":"ROOM","numOfRooms":5,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":10.0,"status":"INACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"7":{"id":7,"numOfRooms":1,"numOfGuests":1,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":1.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"8":{"id":8,"numOfRooms":3,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":3.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["miodrag.PNG","tenet.jpg"]},"9":{"id":9,"numOfRooms":4,"numOfGuests":4,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":4.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["tenet.jpg"]},"10":{"id":10,"numOfRooms":12,"numOfGuests":12,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":12.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["movie.PNG"]},"11":{"id":11,"numOfRooms":22,"numOfGuests":22,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":22.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["tenet.jpg"]},"12":{"id":12,"numOfRooms":33,"numOfGuests":33,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":33.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["tenet.jpg"]}},"userName":"stefan","password":"stefan","name":"astea","surname":"dsad","gender":"dsdads","deletedStatus":"ACTIVE"}},"guests":{"petrovic":{"rentedApartments":[],"reservations":[],"userName":"petrovic","password":"petrovic","name":"Stefan","surname":"Petrovic","gender":"musko","deletedStatus":"ACTIVE"},"nikola":{"rentedApartments":[],"reservations":[],"userName":"nikola","password":"nikola","name":"nikola","surname":"nikola","gender":"Musko","deletedStatus":"ACTIVE"}},"administrators":{},"apartments":{"0":{"id":0,"numOfRooms":1,"numOfGuests":1,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":1.0,"amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"1":{"id":1,"numOfRooms":1,"numOfGuests":1,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":1.0,"amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"2":{"id":2,"numOfRooms":2,"numOfGuests":2,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":3.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"3":{"id":3,"numOfRooms":2,"numOfGuests":2,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":3.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"4":{"id":4,"type":"ROOM","numOfRooms":5,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":10.0,"status":"INACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"5":{"id":5,"type":"ROOM","numOfRooms":5,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":10.0,"status":"INACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"6":{"id":6,"type":"ROOM","numOfRooms":5,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":10.0,"status":"INACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"7":{"id":7,"numOfRooms":1,"numOfGuests":1,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":1.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"8":{"id":8,"numOfRooms":3,"numOfGuests":3,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":3.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":[]},"9":{"id":9,"numOfRooms":4,"numOfGuests":4,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":4.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["tenet.jpg"]},"10":{"id":10,"numOfRooms":12,"numOfGuests":12,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":12.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["movie.PNG"]},"11":{"id":11,"numOfRooms":22,"numOfGuests":22,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":22.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["tenet.jpg"]},"12":{"id":12,"numOfRooms":33,"numOfGuests":33,"rentingDays":[],"availableDates":[],"host":"stefan","comments":[],"pricePerNight":33.0,"status":"ACTIVE","amenities":[],"reservations":[],"deletedStatus":"ACTIVE","pictures":["tenet.jpg"]}}}
+{
+  "apartmentNextId": 13,
+  "hosts": {
+    "stefan": {
+      "apartments": {
+        "1": {
+          "id": 1,
+          "numOfRooms": 1,
+          "numOfGuests": 1,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 1,
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": []
+        },
+        "2": {
+          "id": 2,
+          "numOfRooms": 2,
+          "numOfGuests": 2,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 3,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": []
+        },
+        "3": {
+          "id": 3,
+          "numOfRooms": 2,
+          "numOfGuests": 2,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 3,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": []
+        },
+        "4": {
+          "id": 4,
+          "type": "ROOM",
+          "numOfRooms": 5,
+          "numOfGuests": 3,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 10,
+          "status": "INACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": []
+        },
+        "5": {
+          "id": 5,
+          "type": "ROOM",
+          "numOfRooms": 5,
+          "numOfGuests": 3,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 10,
+          "status": "INACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": []
+        },
+        "6": {
+          "id": 6,
+          "type": "ROOM",
+          "numOfRooms": 5,
+          "numOfGuests": 3,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 10,
+          "status": "INACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": []
+        },
+        "7": {
+          "id": 7,
+          "numOfRooms": 1,
+          "numOfGuests": 1,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 1,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": []
+        },
+        "8": {
+          "id": 8,
+          "numOfRooms": 3,
+          "numOfGuests": 3,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 3,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": [
+            "miodrag.PNG",
+            "tenet.jpg"
+          ]
+        },
+        "9": {
+          "id": 9,
+          "numOfRooms": 4,
+          "numOfGuests": 4,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 4,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": [
+            "tenet.jpg"
+          ]
+        },
+        "10": {
+          "id": 10,
+          "numOfRooms": 12,
+          "numOfGuests": 12,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 12,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": [
+            "movie.PNG"
+          ]
+        },
+        "11": {
+          "id": 11,
+          "numOfRooms": 22,
+          "numOfGuests": 22,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 22,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": [
+            "tenet.jpg"
+          ]
+        },
+        "12": {
+          "id": 12,
+          "numOfRooms": 33,
+          "numOfGuests": 33,
+          "rentingDays": [],
+          "availableDates": [],
+          "host": "stefan",
+          "comments": [],
+          "pricePerNight": 33,
+          "status": "ACTIVE",
+          "amenities": [],
+          "reservations": [],
+          "deletedStatus": "ACTIVE",
+          "pictures": [
+            "tenet.jpg"
+          ]
+        }
+      },
+      "userName": "stefan",
+      "password": "stefan",
+      "name": "astea",
+      "surname": "dsad",
+      "gender": "dsdads",
+      "deletedStatus": "ACTIVE"
+    }
+  },
+  "guests": {
+    "petrovic": {
+      "rentedApartments": [],
+      "reservations": [],
+      "userName": "petrovic",
+      "password": "petrovic",
+      "name": "Stefan",
+      "surname": "Petrovic",
+      "gender": "musko",
+      "deletedStatus": "ACTIVE"
+    },
+    "nikola": {
+      "rentedApartments": [],
+      "reservations": [],
+      "userName": "nikola",
+      "password": "nikola",
+      "name": "nikola",
+      "surname": "nikola",
+      "gender": "Musko",
+      "deletedStatus": "ACTIVE"
+    }
+  },
+  "administrators": {},
+  "apartments": {
+    "9": {
+      "id": 9,
+      "numOfRooms": 4,
+      "numOfGuests": 4,
+      "rentingDays": [],
+      "availableDates": [],
+      "host": "stefan",
+      "comments": [],
+      "pricePerNight": 4,
+      "status": "ACTIVE",
+      "amenities": [],
+      "reservations": [],
+      "deletedStatus": "ACTIVE",
+      "pictures": [
+        "tenet.jpg"
+      ]
+    },
+    "10": {
+      "id": 10,
+      "numOfRooms": 12,
+      "numOfGuests": 12,
+      "rentingDays": [],
+      "availableDates": [],
+      "host": "stefan",
+      "comments": [],
+      "pricePerNight": 12,
+      "status": "ACTIVE",
+      "amenities": [],
+      "reservations": [],
+      "deletedStatus": "ACTIVE",
+      "pictures": [
+        "movie.PNG"
+      ]
+    },
+    "11": {
+      "id": 11,
+      "numOfRooms": 22,
+      "numOfGuests": 22,
+      "rentingDays": [],
+      "availableDates": [],
+      "host": "stefan",
+      "comments": [],
+      "pricePerNight": 22,
+      "status": "ACTIVE",
+      "amenities": [],
+      "reservations": [],
+      "deletedStatus": "ACTIVE",
+      "pictures": [
+        "tenet.jpg"
+      ]
+    },
+    "12": {
+      "id": 12,
+      "numOfRooms": 33,
+      "numOfGuests": 33,
+      "rentingDays": [],
+      "availableDates": [],
+      "host": "stefan",
+      "comments": [],
+      "pricePerNight": 33,
+      "status": "ACTIVE",
+      "amenities": [],
+      "reservations": [],
+      "deletedStatus": "ACTIVE",
+      "pictures": [
+        "tenet.jpg"
+      ]
+    }
+  }
+}

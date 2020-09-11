@@ -1,0 +1,15 @@
+.column {
+  float: center;
+  width: 30%;
+   padding-top: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+  padding-left: 3%;
+  
+}
+
+/* Clear floats after the columns */
+.row {
+  display: flex;
+  justify-content: center;
+}
