@@ -34,8 +34,12 @@ Vue.component("registration", {
 				    <input type="password" class="form-control" id="password" v-model="password" placeholder="Unesite šifru" required>
 				  </div>
 				  <div class="form-group">
-				    <label>Šifra</label>
-				    <input type="checkbox" class="form-control" id="password" v-model="gender" placeholder="Unesite šifru" required>
+				    <label>Pol</label></br>
+				    <select name="cars" id="gender" v-model="gender">
+					    <option value="Musko">Musko</option>
+					    <option value="Zensko">Zensko</option>
+					    <option value="Drugo">Drugo</option>
+					</select>
 				  </div>
 				  <button type="submit" id="register" v-on:click="register()" class="btn btn-success">Registrujte se</button>
 				 </fieldset>
@@ -56,6 +60,20 @@ Vue.component("registration", {
 			ret.gender=this.gender;
 			axios
 			.post('/Gest',ret)
+			.then(response => {
+				if(response.data!=null)
+				{
+					$("#register").after("<p style=\"color:white\">USPESNO STE SE LOGOVALI !!!<p>");
+					this.username='';
+					this.password='';
+					this.firstName='';
+					this.lastName='';
+					this.gender='';
+				}
+			})
+			.catch(error =>{
+				$("#register").after("<p style=\"color:white\">VEC JE ZAUZETO KORISNICKO IME !!!<p>");
+				});
 		}
 	},
 

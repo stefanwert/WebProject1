@@ -55,7 +55,7 @@ public class CrudGuest implements CrudInterface{
 		post("/Gest",(req,res)->{
 			res.type("application/json");
 			Guest g1 = g.fromJson(req.body(), Guest.class);
-			if(s.getGuests().containsKey(g1.getUserName())) {
+			if(AppMain.isUserNameUnique(g1.getUserName())) {
 				res.status(403);
 				return g.toJson(null);
 			}

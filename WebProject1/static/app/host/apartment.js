@@ -13,7 +13,7 @@ Vue.component("apartment", {
 		<table border="1">
 		<tr bgcolor="lightgrey">
 			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Vreme za prijavu</th><th>Vreme za odjavu</th><th>Status</th></tr>
-			<tr v-for="i in ap" v-on:click="selectHost(i)">
+			<tr v-for="i in ap" v-on:click="selectApartment(i)">
 				<td> {{i.type}}</td>
 				<td> {{i.numOfRooms}}</td>
 				<td> {{i.numOfGuests}}</td>

@@ -58,7 +58,7 @@ public class CrudHost implements CrudInterface{
 		post("/Host",(req,res)->{
 			res.type("application/json");
 			Host h1 = g.fromJson(req.body(), Host.class);
-			if(s.getHosts().containsKey(h1.getUserName())) {
+			if(AppMain.isUserNameUnique(h1.getUserName())) {
 				res.status(403);
 				return g.toJson(null);
 			}

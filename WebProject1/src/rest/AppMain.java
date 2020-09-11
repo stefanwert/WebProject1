@@ -60,10 +60,23 @@ public class AppMain {
 		fileWriter.close();
 	}
 	
+	public static boolean isUserNameUnique(String userName) {
+		if(s.getHosts().containsKey(userName) || 
+				s.getAdministrators().containsKey(userName) || 
+				s.getGuests().containsKey(userName)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public static void main(String[] args) throws IOException {
 		
 		//writeToFile();
 		readFromFile();
+		Guest guest=new Guest("petrovic","petrovic","Stefan","Petrovic","musko");
+		s.getGuests().put(guest.getUserName(), guest);
 		port(8080);
 		//System.out.println(new File("./static").getCanonicalPath());
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
