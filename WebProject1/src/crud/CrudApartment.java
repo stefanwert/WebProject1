@@ -115,8 +115,11 @@ public class CrudApartment implements CrudInterface{
 			return g.toJson(null);
 		});
 		
-		delete("/Apartments",(req,res)->{
-			String id = req.queryParams("id");
+		delete("/Apartment",(req,res)->{
+			Apartment app = g.fromJson(req.body(), Apartment.class);
+			
+			int id=app.getId();
+			
 			Apartment appartmant=s.getApartments().get(id);
 			if(appartmant!=null) {
 				s.getApartments().get(id).setDeletedStatus(DeletedStatus.DELETED);

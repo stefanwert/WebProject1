@@ -44,6 +44,7 @@ Vue.component("login", {
 	    			}
 	        	}
 	          )
+	          
 			
 		}
 		

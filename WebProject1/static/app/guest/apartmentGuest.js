@@ -10,11 +10,12 @@ Vue.component("apartment-guest", {
 	template: ` 
 <div >
 		<div class="row">
-			<template v-for="i in apartments">
+			<template v-for="i in apartments" v-on:click="showApartment(i)">
 				<div class="column">
 					<img style="height: 400px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
 					<div class="card-body">
-						<p class="card-text">Broj soba: {{i.numOfRooms}}</p>
+						<p class="card-text" style="color:green;">Broj soba: {{i.numOfRooms}} </br>Cena po danu je: {{i.pricePerNight}}</p></br>
+						
 					</div>
 				</div>
 			</template>
@@ -26,7 +27,7 @@ Vue.component("apartment-guest", {
 		init : function() {
 			this.ap = {};
 		}, 
-		selectApartment: function(apartment) {
+		showApartment: function(apartment) {
 			this.selectedApartment = apartment;
 			
     	},
