@@ -12,6 +12,7 @@ Vue.component("add-apartment", {
 		    	amenities:[],
 		    	selectedAmenities:[],
 		    	locations:[],
+		    	selectedLocation:'',
 		    	pictures:[]
 		    }
 	},
@@ -79,8 +80,8 @@ Vue.component("add-apartment", {
 					</ul>
 				</div></br>
 				<div class="d-flex flex-row">
-					<select name="cars" id="cars">
-						<option v-for="l in locations" v-bind:value="l">{{l.address.address}}</option>
+					<select v-model="selectedLocation">
+						<option v-for="l in locations"   v-bind:value="l">{{l.address.address}}</option>
 					</select>
 				</div></br>
 				<button type="button" class="btn btn-success" v-on:click="add()">Dodaj apartman</button>
@@ -107,6 +108,7 @@ Vue.component("add-apartment", {
 			ret.status=this.status;
 			ret.pictures=this.pictures;
 			ret.amenities=this.selectedAmenities;
+			ret.location=this.selectedLocation;
 			axios
 			.post('/Apartments',ret);
 		},
