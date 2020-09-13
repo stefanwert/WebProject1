@@ -1,9 +1,11 @@
 const AppartmentGuest={template: '<apartment-guest></apartment-guest>'}
+const ApartmentDetails={template:'<apartment-detail></apartment-detail>'}
 
 const router = new VueRouter({
     mode: 'hash',
     routes: [
     	{ path: '/AppartmentGuest',component:AppartmentGuest  },
+    	{ path: '/apartment-detail/:apId',component:ApartmentDetails  },
     	{ path: '/',component:AppartmentGuest  },
     	{ path: '*', beforeEnter: nepostojecaRuta}
     ]

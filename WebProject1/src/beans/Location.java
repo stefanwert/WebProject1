@@ -3,6 +3,10 @@ package beans;
 import beans.Address;
 
 public class Location {
+	@Override
+	public String toString() {
+		return "Location [longitude=" + longitude + ", latitude=" + latitude + ", address=" + address + "]";
+	}
 	private double longitude;
 	private double latitude;
 	private Address address;

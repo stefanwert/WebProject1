@@ -45,7 +45,7 @@ public class CrudUsers implements CrudInterface{
 					res.cookie("userID", user.getUserName());
 					mapa.put("path","/admin.html");
 					mapa.put("uslov", "TRUE");
-					//req.session().attribute("user", s.getAdministrators().get(user.getUserName()));
+					req.session().attribute("user", s.getAdministrators().get(user.getUserName()));
 					return g.toJson(mapa);
 				}
 			}
@@ -55,7 +55,7 @@ public class CrudUsers implements CrudInterface{
 					res.cookie("userID", user.getUserName());
 					mapa.put("path","/guest.html");
 					mapa.put("uslov", "TRUE");
-					//req.session().attribute("user", s.getGuests().get(user.getUserName()));
+					req.session().attribute("user", s.getGuests().get(user.getUserName()));
 					return g.toJson(mapa);
 				}
 			}
@@ -65,7 +65,7 @@ public class CrudUsers implements CrudInterface{
 					res.cookie("userID", user.getUserName());
 					mapa.put("path","/host.html");
 					mapa.put("uslov", "TRUE");
-					//req.session().attribute("user", s.getHosts().get(user.getUserName()));
+					req.session().attribute("user", s.getHosts().get(user.getUserName()));
 					return g.toJson(mapa);
 				}
 			}

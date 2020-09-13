@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import beans.Administrator;
+import beans.Amenities;
 import beans.Guest;
 import beans.Host;
 import beans.Reservation;
 import beans.Apartment;
+import beans.Location;
 
 public class DateBase {
 	private static DateBase singletonDateBase=null;
@@ -18,9 +20,27 @@ public class DateBase {
 	private HashMap<String, Guest> guests = new HashMap<String, Guest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	private HashMap<Integer,Apartment> apartments=new HashMap<Integer,Apartment>();
+	private List<Amenities> amenities=new ArrayList<Amenities>();
+	private List<Location> locations=new ArrayList<Location>();
 
 	
 	
+	public List<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
+	}
+
+	public List<Amenities> getAmenities() {
+		return amenities;
+	}
+
+	public void setAmenities(List<Amenities> amenities) {
+		this.amenities = amenities;
+	}
+
 	public int getApartmentNextId() {
 		return apartmentNextId;
 	}

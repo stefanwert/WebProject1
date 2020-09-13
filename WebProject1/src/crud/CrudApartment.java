@@ -35,7 +35,7 @@ public class CrudApartment implements CrudInterface{
 	@Override
 	public void activeCrud(DateBase s, Gson g) {
 		
-		after("/Apartments", (req, res) -> {
+		after("/*", (req, res) -> {
 			AppMain.writeToFile();
 		});
 		
@@ -50,6 +50,43 @@ public class CrudApartment implements CrudInterface{
 				return null;
 			}
 			return g.toJson(appartement);
+		});
+		
+		get("/Amenities",(req,res)->{
+			res.type("application/json");
+			
+			
+			return g.toJson(s.getAmenities());
+		});
+		
+		get("/ApartmentDetails", (req,res)->{
+			res.type("application/json");
+			String idS = req.queryParams("id");
+			int id= Integer.parseInt(idS);
+			
+			Apartment appartement=s.getApartments().get(id);
+			if(appartement==null || (appartement.getId()!=id)) {
+				res.status(404);
+				return null;
+			}
+			return g.toJson(appartement);
+		});
+		
+		get("/AllApartmentsForHost",(req,res)->{
+			res.type("application/json");
+			
+			Session session=req.session();
+			User user = session.attribute("user");
+			
+			List<Apartment> apartments = new ArrayList<Apartment>();
+			List<Apartment> allApartments=new ArrayList<Apartment>(s.getHosts().get(user.getUserName()).getApartments().values());
+			for (int i=0; i<allApartments.size();i++) {
+				if(allApartments.get(i).getDeletedStatus()==DeletedStatus.ACTIVE) {
+					apartments.add(allApartments.get(i));
+				}
+			}
+			
+			return g.toJson(apartments);
 		});
 		
 		get("/AllApartments",(req,res)->{
@@ -69,9 +106,9 @@ public class CrudApartment implements CrudInterface{
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
 			
 			Session session=req.session();
-			User user = session.attribute("LogedUser");
-			//appartement.setHost(user.getUserName());
-			appartement.setHost("stefan");
+			User user = session.attribute("user");
+			appartement.setHost(user.getUserName());
+			//appartement.setHost("stefan");
 			
 			appartement.setId(s.getApartmentNextId());
 			s.setApartmentNextId(1+s.getApartmentNextId());

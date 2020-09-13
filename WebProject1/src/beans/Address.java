@@ -1,6 +1,11 @@
 package beans;
 
 public class Address {
+	@Override
+	public String toString() {
+		return "Address [address=" + address + "]";
+	}
+
 	private String address="";
 	
 	public String getAddress() {
@@ -11,9 +16,9 @@ public class Address {
 		this.address = address;
 	}
 
-	Address(){}
+	public Address(){}
 	
-	Address(String street,int num,String placeName,int postalCode){
+	public Address(String street,int num,String placeName,int postalCode){
 		address=street+" "+num+","+placeName+postalCode;
 	}
 }

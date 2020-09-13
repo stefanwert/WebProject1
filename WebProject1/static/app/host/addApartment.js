@@ -9,6 +9,8 @@ Vue.component("add-apartment", {
 		    	status:'INACTIVE',
 		    	checkInTime:"14:00",
 		    	checkOutTime:"10:00",
+		    	amenities:[],
+		    	selectedAmenities:[],
 		    	pictures:[]
 		    }
 	},
@@ -39,7 +41,7 @@ Vue.component("add-apartment", {
 					</div>
 					<div class="d-flex flex-column p-2">
 						<label>Broj gostiju: </label>
-						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfGuests"  /> 
+						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfGuest"  /> 
 					</div>
 				</div>
 				<div class="d-flex flex-row p-2">
@@ -58,10 +60,26 @@ Vue.component("add-apartment", {
 					<label>Slike: </label>
 					<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
 				</div>
+				
 				<div class="d-flex flex-row">
 					<button type="button" class="btn btn-primary w-50" v-on:click="submitFile()">Pošalji sliku</button>
 				</div></br>
+				<div class="d-flex flex-row p-2">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+					Svi korisnici<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li v-for = "a in amenities">
+							<table>
+								<tr>
+									<td><input :value='a' type='checkbox' v-model="selectedAmenities"/></td>
+									<td>{{a.name}}</td>
+								</tr>
+							</table>
+						</li>
+					</ul>
+				</div>
 				<button type="button" class="btn btn-success" v-on:click="add()">Dodaj apartman</button>
+				
 			</fieldset>
 		</form>	 
 	</div>	
@@ -70,6 +88,9 @@ Vue.component("add-apartment", {
 `
 	, 
 	methods : {
+		addAmenities:function(i){
+			this.selectedAmenities.push(i);
+		},
 		add:function(){
 			ret={}
 			ret.type=this.type;
@@ -80,8 +101,12 @@ Vue.component("add-apartment", {
 			//ret.checkOutTime=this.checkOutTime;
 			ret.status=this.status;
 			ret.pictures=this.pictures;
+			ret.amenities=this.selectedAmenities;
 			axios
 			.post('/Apartments',ret);
+		},
+		getValue:function(i){
+			return i.name;
 		},
 	promeniPutanju: function () {
 		this.files = this.$refs.file.files;
@@ -122,6 +147,14 @@ Vue.component("add-apartment", {
 
       }
 	
-	}
+	},
+	
+	mounted () {
+        axios
+          .get('/Amenities')
+          .then(response => {
+        		  	this.amenities = response.data;
+          });
+    }
 	
 });

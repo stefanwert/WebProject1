@@ -8,19 +8,21 @@ Vue.component("apartment-guest", {
 		    }
 	},
 	template: ` 
-<div >
+<div>
 		<div class="row">
-			<template v-for="i in apartments" v-on:click="showApartment(i)">
+			<template v-for="i in apartments" >
 				<div class="column">
-					<img style="height: 400px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
+					<img v-on:click="showApartment(i)" style="height: 400px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
 					<div class="card-body">
-						<p class="card-text" style="color:green;">Broj soba: {{i.numOfRooms}} </br>Cena po danu je: {{i.pricePerNight}}</p></br>
-						
+						<p class="card-text" style="color:green;">
+							Broj soba: {{i.numOfRooms}} 
+							</br>Cena po danu je: {{i.pricePerNight}}
+						</p>
 					</div>
 				</div>
 			</template>
-		<div class="row">
-</div>		  
+		</div>
+</div>			  
 `
 	, 
 	methods : {
@@ -28,7 +30,11 @@ Vue.component("apartment-guest", {
 			this.ap = {};
 		}, 
 		showApartment: function(apartment) {
-			this.selectedApartment = apartment;
+			var a="apartment-detail/";
+			var b=apartment.id.toString();
+			a = a + b
+			promeniRutu(a);
+			//promeniRutu("");
 			
     	},
 		deleteApartment : function () {

@@ -13,7 +13,7 @@ Vue.component("apartment", {
 		<legend>Tabela apartmana</legend>
 		<table  class="table table-hover" border="3">
 		<tr class="table-info" bgcolor="lightgrey">
-			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Vreme za prijavu</th><th>Vreme za odjavu</th><th>Status</th><th>Slika</th></tr>
+			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Vreme za prijavu</th><th>Vreme za odjavu</th><th>Status</th><th>Id</th><th>Slika</th></tr>
 			<tr v-for="i in ap" v-on:click="selectApartment(i)">
 				<td> {{i.type}}</td>
 				<td> {{i.numOfRooms}}</td>
@@ -23,6 +23,7 @@ Vue.component("apartment", {
 				<td> {{i.checkInTime}} </td>
 				<td> {{i.checkOutTime}} </td>
 				<td> {{i.status}} </td>
+				<td> {{i.id}} </td>
 				<td><img :src=getPictureAddres(i) width="100" height="100"></img></td>
 			</tr>
 		</table><br />
@@ -59,7 +60,7 @@ Vue.component("apartment", {
 	
 	mounted () {
         axios
-          .get('/AllApartments')
+          .get('/AllApartmentsForHost')
           .then(response => {
         		  	this.ap = response.data;
           			console.log(this.ap);
