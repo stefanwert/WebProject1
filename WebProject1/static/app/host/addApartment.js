@@ -11,6 +11,7 @@ Vue.component("add-apartment", {
 		    	checkOutTime:"10:00",
 		    	amenities:[],
 		    	selectedAmenities:[],
+		    	locations:[],
 		    	pictures:[]
 		    }
 	},
@@ -60,7 +61,6 @@ Vue.component("add-apartment", {
 					<label>Slike: </label>
 					<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
 				</div>
-				
 				<div class="d-flex flex-row">
 					<button type="button" class="btn btn-primary w-50" v-on:click="submitFile()">Pošalji sliku</button>
 				</div></br>
@@ -77,7 +77,12 @@ Vue.component("add-apartment", {
 							</table>
 						</li>
 					</ul>
-				</div>
+				</div></br>
+				<div class="d-flex flex-row">
+					<select name="cars" id="cars">
+						<option v-for="l in locations" v-bind:value="l">{{l.address.address}}</option>
+					</select>
+				</div></br>
 				<button type="button" class="btn btn-success" v-on:click="add()">Dodaj apartman</button>
 				
 			</fieldset>
@@ -155,6 +160,11 @@ Vue.component("add-apartment", {
           .then(response => {
         		  	this.amenities = response.data;
           });
+        axios
+        .get('/Locatios')
+        .then(response => {
+      		  	this.locations = response.data;
+        });
     }
 	
 });

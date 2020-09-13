@@ -3,7 +3,7 @@ package beans;
 public class Address {
 	@Override
 	public String toString() {
-		return "Address [address=" + address + "]";
+		return  address;
 	}
 
 	private String address="";
