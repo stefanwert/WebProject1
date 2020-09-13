@@ -1,0 +1,11 @@
+#divForPicture {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pic{
+	 max-width: 500px;
+  max-height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
