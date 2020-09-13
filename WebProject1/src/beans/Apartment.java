@@ -27,8 +27,10 @@ public class Apartment {
 	private String host;
 	private List<CommentForApartment> comments =new ArrayList<>();
 	private double pricePerNight;
-	private LocalTime checkInTime;
-	private LocalTime checkOutTime;
+	//private LocalTime checkInTime;
+	//private LocalTime checkOutTime;
+	private String checkInTime;
+	private String checkOutTime;
 	private Status status;
 	private List<Amenities> amenities =new ArrayList<>();
 	private List<Reservation> reservations =new ArrayList<>();
@@ -42,7 +44,7 @@ public class Apartment {
 	public void setPictures(List<String> pictures) {
 		this.pictures = pictures;
 	}
-
+	/*
 	@Override
 	public String toString() {
 		return "Apartment [id=" + id + ", type=" + type + ", numOfRooms=" + numOfRooms + ", numOfGuests=" + numOfGuests
@@ -75,12 +77,50 @@ public class Apartment {
 		this.amenities = amenities;
 		this.reservations = reservations;
 		this.deletedStatus = deletedStatus;
+	} 
+	*/
+
+	
+	
+	@Override
+	public String toString() {
+		return "Apartment [id=" + id + ", type=" + type + ", numOfRooms=" + numOfRooms + ", numOfGuests=" + numOfGuests
+				+ ", location=" + location + ", rentingDays=" + rentingDays + ", availableDates=" + availableDates
+				+ ", host=" + host + ", comments=" + comments + ", pricePerNight=" + pricePerNight + ", checkInTime="
+				+ checkInTime + ", checkOutTime=" + checkOutTime + ", status=" + status + ", amenities=" + amenities
+				+ ", reservations=" + reservations + ", deletedStatus=" + deletedStatus + ", pictures=" + pictures
+				+ "]";
 	}
+	public Apartment() {}
+	
+	public Apartment(int id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
+			List<Date> availableDates, String host, List<CommentForApartment> comments, double pricePerNight,
+			String checkInTime, String checkOutTime, Status status, List<Amenities> amenities,
+			List<Reservation> reservations, DeletedStatus deletedStatus, List<String> pictures) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.numOfRooms = numOfRooms;
+		this.numOfGuests = numOfGuests;
+		this.location = location;
+		this.rentingDays = rentingDays;
+		this.availableDates = availableDates;
+		this.host = host;
+		this.comments = comments;
+		this.pricePerNight = pricePerNight;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+		this.status = status;
+		this.amenities = amenities;
+		this.reservations = reservations;
+		this.deletedStatus = deletedStatus;
+		this.pictures = pictures;
+	} 
 
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -156,7 +196,7 @@ public class Apartment {
 	public void setPricePerNight(double pricePerNight) {
 		this.pricePerNight = pricePerNight;
 	}
-
+	/*
 	public LocalTime getCheckInTime() {
 		return checkInTime;
 	}
@@ -171,8 +211,24 @@ public class Apartment {
 
 	public void setCheckOutTime(LocalTime checkOutTime) {
 		this.checkOutTime = checkOutTime;
+	}*/
+	
+	public String getCheckInTime() {
+		return checkInTime;
 	}
 
+	public void setCheckInTime(String checkInTime) {
+		this.checkInTime = checkInTime;
+	}
+
+	public String getCheckOutTime() {
+		return checkOutTime;
+	}
+
+	public void setCheckOutTime(String checkOutTime) {
+		this.checkOutTime = checkOutTime;
+	}
+	
 	public Status getStatus() {
 		return status;
 	}

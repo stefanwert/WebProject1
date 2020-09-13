@@ -2,52 +2,71 @@ Vue.component("add-apartment", {
 	data: function () {
 		    return {
 		    	files: [],
-		    	type:'',
-		    	numOfRooms:0,
-		    	numOfGuest:0,
-		    	pricePerNight:0,
-		    	status:'',
+		    	type:'ROOM',
+		    	numOfRooms:1,
+		    	numOfGuest:1,
+		    	pricePerNight:1,
+		    	status:'INACTIVE',
+		    	checkInTime:"14:00",
+		    	checkOutTime:"10:00",
 		    	pictures:[]
 		    }
 	},
 	template: ` 
-<div>
-		Dodavanje apartmana
-		<br>
-		
-		<label>Tip:</label>
-		<select v-model="type">
-		<option value="APARTMAN">APARTMAN</option>
-		<option value="ROOM">ROOM</option>
-		</select> <br />
-		
-		
-		<label>Broj soba:</label>
-		<input type="number" v-model="numOfRooms"  /> <br />
-		
-		<label>Broj gostiju:</label>
-		<input type="number" v-model="numOfGuests"  /> <br />
-		
-		<label>Cena po noćenju:</label>
-		<input type="number" v-model="pricePerNight"  /> <br />
-		
-		<label>Status:</label>
-		<select v-model="status">
-		<option value="ACTIVE">ACTIVE</option>
-		<option value="INACTIVE">INACTIVE</option>
-		</select> <br />
-		<label>Vreme za prijavu:</label>
-		<input type="time" v-model="checkInTime">	<br />
-		<label>Vreme za odjavu:</label>
-		<input type="time" v-model="checkOutTime">	<br />
-		
-		<label>Slike:</label>
-		<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
-		<button class="dugme" v-on:click="submitFile()">Posalji sliku</button></br>
-		
-	
-		<button v-on:click="add()">Dodaj apartman</button>
-</div>		  
+<div class="d-flex justify-content-center">
+	<div class="d-flex flex-column ">
+				<legend>Dodavanje apartmana</legend>
+				<div class="d-flex flex-row row-sm-2">
+					<div class="d-flex flex-column p-2">
+						<label>Tip:	</label>
+						<select v-model="type" >
+						<option value="APARTMAN">APARTMAN</option>
+						<option value="ROOM" selected>ROOM</option>
+						</select>
+					</div>
+					<div class="d-flex flex-column p-2">
+						<label>Status:</label>
+						<select v-model="status">
+						<option value="ACTIVE">ACTIVE</option>
+						<option value="INACTIVE">INACTIVE</option>
+						</select>
+					</div>
+				</div>
+				<div class="d-flex flex-row">
+					<div class="d-flex flex-column p-2">
+						<label>Broj soba: </label>
+						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfRooms"  />
+					</div>
+					<div class="d-flex flex-column p-2">
+						<label>Broj gostiju: </label>
+						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfGuests"  /> 
+					</div>
+				</div>
+				<div class="d-flex flex-row p-2">
+					<label>Cena po noćenju: </label>
+					<input type="number" step="any" min="1" max="100000" value="1" v-model="pricePerNight"  />
+				</div>
+				<div class="d-flex flex-row p-2">
+					<label>Vreme za prijavu: </label>
+					<input type="time" v-model="checkInTime" value="14:00">
+				</div>
+				<div class="d-flex flex-row p-2">
+					<label>Vreme za odjavu: </label>
+					<input type="time" v-model="checkOutTime" value="10:00"><br />
+				</div>
+				<div class="d-flex flex-row p-2">
+					<label>Slike: </label>
+					<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
+				</div>
+				<div class="d-flex flex-row">
+					<button type="button" class="btn btn-primary w-50" v-on:click="submitFile()">Pošalji sliku</button>
+				</div></br>
+				<button type="button" class="btn btn-success" v-on:click="add()">Dodaj apartman</button>
+			</fieldset>
+		</form>	 
+	</div>	
+</div>	
+	  
 `
 	, 
 	methods : {
@@ -57,6 +76,8 @@ Vue.component("add-apartment", {
 			ret.numOfRooms=this.numOfRooms;
 			ret.numOfGuests=this.numOfGuests;
 			ret.pricePerNight=this.pricePerNight;
+			//ret.checkInTime=this.checkInTime;
+			//ret.checkOutTime=this.checkOutTime;
 			ret.status=this.status;
 			ret.pictures=this.pictures;
 			axios

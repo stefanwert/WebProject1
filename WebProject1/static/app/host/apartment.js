@@ -8,11 +8,12 @@ Vue.component("apartment", {
 		    }
 	},
 	template: ` 
-<div>
-		Tabela apartmana
-		<table border="1">
-		<tr bgcolor="lightgrey">
-			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Vreme za prijavu</th><th>Vreme za odjavu</th><th>Status</th></tr>
+<div class="d-flex justify-content-center">
+	<div class="d-flex flex-column ">
+		<legend>Tabela apartmana</legend>
+		<table  class="table table-hover" border="3">
+		<tr class="table-info" bgcolor="lightgrey">
+			<th>Tip</th><th>Broj soba</th><th>Broj gostiju</th><th>Domaćin</th><th>Cena po noći</th><th>Vreme za prijavu</th><th>Vreme za odjavu</th><th>Status</th><th>Slika</th></tr>
 			<tr v-for="i in ap" v-on:click="selectApartment(i)">
 				<td> {{i.type}}</td>
 				<td> {{i.numOfRooms}}</td>
@@ -24,9 +25,9 @@ Vue.component("apartment", {
 				<td> {{i.status}} </td>
 				<td><img :src=getPictureAddres(i) width="100" height="100"></img></td>
 			</tr>
-		</table>
-		<br /> 
-		<button v-on:click="deleteApartment" >Obriši apartman</button>
+		</table><br />
+		<button type="button" class="btn btn-danger" v-on:click="deleteApartment" >Obriši apartman</button><br /> <br /> 
+	</div>
 </div>		  
 `
 	, 

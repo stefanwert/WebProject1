@@ -30,15 +30,18 @@ Vue.component("registration", {
 				    <input type="text" class="form-control" id="username" v-model="username"  placeholder="Unesite korisničko ime" required>
 				  </div>
 				  <div class="form-group">
-				    <label>Šifra</label>
-				    <input type="password" class="form-control" id="password" v-model="password" placeholder="Unesite šifru" required>
+				    <label>Lozinka</label>
+				    <input type="password" class="form-control" id="password" v-model="password" onfocus="this.value=''" placeholder="Unesite lozinku" required>
 				  </div>
 				  <div class="form-group">
-				    <label>Pol</label></br>
-				    <select name="cars" id="gender" v-model="gender">
-					    <option value="Musko">Musko</option>
-					    <option value="Zensko">Zensko</option>
-					    <option value="Drugo">Drugo</option>
+				    <label>Potvrdi lozinku</label>
+				    <input type="password" class="form-control" id="confirmPassword" onfocus="this.value=''" placeholder="Potvrdite lozinku" required>
+				  </div>
+				  <div class="form-group">
+				    <label>Pol: </label>
+				    <select name="pol" id="gender" v-model="gender">
+					    <option value="musko" selected>Muško</option>
+					    <option value="zensko">Žensko</option>
 					</select>
 				  </div>
 				  <button type="submit" id="register" v-on:click="register()" class="btn btn-success">Registrujte se</button>
@@ -52,6 +55,12 @@ Vue.component("registration", {
 	},
 	methods: {
 		register: function(){
+			if(this.password != this.confirmPassword)
+			{
+				alert("Lozinke se ne podudaraju")
+				this.confirmPassword === "";
+				return;
+			}
 			ret={}
 			ret.userName=this.username;
 			ret.password=this.password;
