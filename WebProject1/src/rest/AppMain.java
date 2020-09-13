@@ -80,14 +80,14 @@ public class AppMain {
 //		s.getAmenities().add(new Amenities("Pegla","Pegla"));
 //		s.getAmenities().add(new Amenities("Ves masina","Ves masina"));
 //		s.getAmenities().add(new Amenities("Klima","Klima"));
-		s.getLocations().add(new Location(10, 10, new Address("Pavla Pape",20,"Novi Sad",21000)));
-		s.getLocations().add(new Location(10, 10, new Address("Backa",24,"Novi Sad",21000)));
-		s.getLocations().add(new Location(10, 10, new Address("Brace Ribnikar",21,"Novi Sad",21000)));
-		s.getLocations().add(new Location(10, 10, new Address("Narodnog fronta",10,"Novi Sad",21000)));
-		s.getLocations().add(new Location(10, 10, new Address("Dr Zorana Djindjica",22,"Novi Sad",21000)));
-		s.getLocations().add(new Location(10, 10, new Address("Trifkovicev trg",6,"Novi Sad",21000)));
-		s.getLocations().add(new Location(10, 10, new Address("Berislava Berica",4,"Novi Sad",21000)));
-		writeToFile();
+//		s.getLocations().add(new Location(10, 10, new Address("Pavla Pape",20,"Novi Sad",21000)));
+//		s.getLocations().add(new Location(10, 10, new Address("Backa",24,"Novi Sad",21000)));
+//		s.getLocations().add(new Location(10, 10, new Address("Brace Ribnikar",21,"Novi Sad",21000)));
+//		s.getLocations().add(new Location(10, 10, new Address("Narodnog fronta",10,"Novi Sad",21000)));
+//		s.getLocations().add(new Location(10, 10, new Address("Dr Zorana Djindjica",22,"Novi Sad",21000)));
+//		s.getLocations().add(new Location(10, 10, new Address("Trifkovicev trg",6,"Novi Sad",21000)));
+//		s.getLocations().add(new Location(10, 10, new Address("Berislava Berica",4,"Novi Sad",21000)));
+//		writeToFile();
 		
 		
 //		Guest guest=new Guest("petrovic","petrovic","Stefan","Petrovic","musko");
