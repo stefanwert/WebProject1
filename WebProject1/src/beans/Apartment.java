@@ -6,14 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-enum Type {
-    APARTMENT,
-    ROOM
-  }
-enum Status {
-    ACTIVE,
-    INACTIVE
-  }
+
 
 public class Apartment {
 	

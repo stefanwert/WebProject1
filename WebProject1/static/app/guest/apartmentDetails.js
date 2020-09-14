@@ -30,6 +30,8 @@ Vue.component("apartment-detail", {
 	},
 	template: ` 
 <div>
+<div class="d-flex justify-content-center">
+	<div class="d-flex flex-column col-sm-3">
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			  <link href="">
 			  <div class="carousel-inner">
@@ -69,7 +71,8 @@ Vue.component("apartment-detail", {
 				</td>
 			</tr>
 		</table>
-		
+</div>
+</div>
 </div>		  
 `
 	, 

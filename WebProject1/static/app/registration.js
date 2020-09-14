@@ -8,6 +8,7 @@ Vue.component("registration", {
 				username: '',
 				password: '',
 				gender: '',
+				confirmPassword:''
 		}
 	},
 	template: ` 
@@ -35,7 +36,7 @@ Vue.component("registration", {
 				  </div>
 				  <div class="form-group">
 				    <label>Potvrdi lozinku</label>
-				    <input type="password" class="form-control" id="confirmPassword" onfocus="this.value=''" placeholder="Potvrdite lozinku" required>
+				    <input type="password" class="form-control" id="confirmPassword" v-model="confirmPassword" v-model="confirmPassword" onfocus="this.value=''" placeholder="Potvrdite lozinku" required>
 				  </div>
 				  <div class="form-group">
 				    <label>Pol: </label>
@@ -55,7 +56,7 @@ Vue.component("registration", {
 	},
 	methods: {
 		register: function(){
-			if(!(this.password.equals(this.confirmPassword)))
+			if(!(this.password==this.confirmPassword))
 			{
 				alert("Lozinke se ne podudaraju");
 				return;

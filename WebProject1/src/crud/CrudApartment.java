@@ -100,7 +100,7 @@ public class CrudApartment implements CrudInterface{
 			res.type("application/json");
 			List<Apartment> apartments = new ArrayList<Apartment>();
 			for (Integer apartmentId : s.getApartments().keySet()) {
-				if(s.getApartments().get(apartmentId).getDeletedStatus()==DeletedStatus.ACTIVE) {
+				if(s.getApartments().get(apartmentId).getDeletedStatus()==DeletedStatus.ACTIVE && s.getApartments().get(apartmentId).getStatus()==beans.Status.ACTIVE) {
 					apartments.add(s.getApartments().get(apartmentId));
 				}
 			}

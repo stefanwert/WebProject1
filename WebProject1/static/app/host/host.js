@@ -12,7 +12,7 @@ Vue.component("host", {
 		<table  class="table table-hover" border="3">
 		<tr class="table-info" bgcolor="lightgrey">
 			<th>Korisničko ime</th><th>Lozinka</th><th>Ime</th><th>Prezime</th><th>Pol</th></tr>
-			<tr v-for="i in hosts">
+			<tr v-for="i in hosts" v-on:click="selectHost(i)">
 				<td> {{i.userName}}</td>
 				<td> {{i.password}}</td>
 				<td> {{i.name}}</td>

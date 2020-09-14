@@ -12,7 +12,7 @@ Vue.component("guest", {
 		<table  class="table table-hover" border="3">
 		<tr class="table-info" bgcolor="lightgrey">
 			<th>Korisničko ime</th><th>Lozinka</th><th>Ime</th><th>Prezime</th><th>Pol</th></tr>
-			<tr v-for="i in guests">
+			<tr v-for="i in guests" v-on:click="selectGest(i)">
 				<td> {{i.userName}}</td>
 				<td> {{i.password}}</td>
 				<td> {{i.name}}</td>
@@ -62,7 +62,6 @@ Vue.component("viewProfile", {
     data: function() {
         return {
         	loggedin:{},
-            guest: {username: '', password: '', name: '', surename: '', gender: ''},
         }
     },
     
@@ -71,6 +70,7 @@ Vue.component("viewProfile", {
         .get('/loggedUser')
         .then(response => {
             this.loggedin = response.data;
+            this.loggedin.confirmPassword=this.loggedin.password;
         })
         .catch(error => {
             alert(error);
@@ -88,39 +88,39 @@ Vue.component("viewProfile", {
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Ime:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" v-model="loggedin.name">
+                        <input class="form-control" type="text" v-model="loggedin.name" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Prezime:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" v-model="loggedin.surname">
+                        <input class="form-control" type="text" v-model="loggedin.surname" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Korisničko ime:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="text" v-model="loggedin.userName">
+                        <input class="form-control" type="text" v-model="loggedin.userName" disabled >
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Lozinka:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="password" v-model="loggedin.password">
+                        <input class="form-control" type="password" v-model="loggedin.password" onfocus="this.value=''" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Potvrdi lozinku:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="password" v-model="loggedin.password">
+                        <input class="form-control" type="password" v-model="loggedin.confirmPassword" onfocus="this.value=''" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-8">
-                        <input type="button" class="btn btn-primary" value="Sačuvaj promene">
+                        <input type="button" class="btn btn-primary" v-on:click="editUser()" value="Sačuvaj promene">
                         <span></span>
-                        <input type="reset" class="btn btn-danger" value="Odustani">
+                        <input type="reset" class="btn btn-danger" value="Odustani" href="#/viewProfile">
                     </div>
                 </div>
             </form>
@@ -131,13 +131,32 @@ Vue.component("viewProfile", {
     methods: {
        
         editUser: function() {
-            window.location.href = "guest.html#/edit/" + this.$route.params.username;
+        	
+            if(!(this.loggedin.password==this.loggedin.confirmPassword))
+			{
+				alert("Lozinke se ne podudaraju");
+				return;
+			}
+            axios
+            .put('/Gest',this.loggedin)
+            .then(response => {
+                //this.guest = response.data.guest;
+            })
+            .catch(error => {
+                alert(error.response.data);
+            })
+            
         },
         reload() {
+        	if(!(this.loggedin.password==this.loggedin.confirmPassword))
+			{
+				alert("Lozinke se ne podudaraju");
+				return;
+			}
             axios
-            .get('guest/' + this.$route.params.username)
+            .put('/Gest',this.loggedin)
             .then(response => {
-                this.guest = response.data.guest;
+                //this.guest = response.data.guest;
             })
             .catch(error => {
                 alert(error.response.data);
