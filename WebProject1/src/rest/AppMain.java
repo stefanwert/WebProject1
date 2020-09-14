@@ -26,6 +26,7 @@ import beans.Guest;
 import beans.Host;
 import beans.Location;
 import beans.Address;
+import beans.Administrator;
 import crud.CrudAdministrator;
 import crud.CrudApartment;
 import crud.CrudGuest;
@@ -88,7 +89,8 @@ public class AppMain {
 //		s.getLocations().add(new Location(10, 10, new Address("Dr Zorana Djindjica",22,"Novi Sad",21000)));
 //		s.getLocations().add(new Location(10, 10, new Address("Trifkovicev trg",6,"Novi Sad",21000)));
 //		s.getLocations().add(new Location(10, 10, new Address("Berislava Berica",4,"Novi Sad",21000)));
-		
+//		Administrator administrator=new Administrator("marko", "marko", "marko", "marko", "musko");
+//		s.getAdministrators().put(administrator.getUserName(), administrator);
 //		writeToFile();
 		
 		
