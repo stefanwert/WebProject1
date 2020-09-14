@@ -69,9 +69,9 @@ Vue.component("add-apartment", {
 					<label>Slike: </label>
 					<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
 				</div>
-				<div class="d-flex flex-row">
+				<!--<div class="d-flex flex-row">
 					<button type="button" class="btn btn-primary w-50" v-on:click="submitFile()">Pošalji sliku</button>
-				</div></br>
+				</div></br>-->
 				<div class="d-flex flex-row p-2">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
 					Sadržaj apartmana<span class="caret"></span></button>
@@ -106,6 +106,7 @@ Vue.component("add-apartment", {
 		},
 		add:function(){
 			ret={}
+			this.submitFile();
 			ret.type=this.type;
 			ret.numOfRooms=this.numOfRooms;
 			ret.numOfGuests=this.numOfGuests;

@@ -5,7 +5,7 @@ Vue.component("apartment-detail", {
 		      apartment: {},
 		      pictures:[],
 		      apartmentId:-1,
-		      br:0
+		      selectedDate:[]
 		    }
 	},
 	template: ` 
@@ -29,6 +29,25 @@ Vue.component("apartment-detail", {
 			    <span class="sr-only">Next</span>
 			  </a>
 		</div>
+		<table>
+			<tr>
+				<td>Slobodni dani:</td>
+				<td>
+					<div class="d-flex flex-row">
+						<select v-model="selectedLocation">
+							<option v-for="d in apartment.availableDates"   v-bind:value="d">{{d}}</option>
+						</select>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>Broj dana:</td>
+				<td>
+					<input type="number"  min="1" >
+				</td>
+			</tr>
+		</table>
+		
 </div>		  
 `
 	, 

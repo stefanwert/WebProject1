@@ -23,7 +23,6 @@ public class Apartment {
 	private int numOfGuests;
 	private Location location;
 	private List<String> rentingIntegers= new ArrayList<String>();
-	
 
 	private List<Date> rentingDays =new ArrayList<>();
 	private List<Date> availableDates =new ArrayList<>();
@@ -96,6 +95,8 @@ public class Apartment {
 			long br=Long.parseLong(broj);
 			Date date=new Date(br);
 			rentingDays.add(date);
+			
+			availableDates.add(date);
 		}
 	}
 	
