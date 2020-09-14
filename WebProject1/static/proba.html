@@ -5,51 +5,19 @@
   		<link rel="stylesheet" href="dropboxJs/chosen.css">
 	</head>
 	<body>
-		<div>
-          <em>Into This</em>
-          <select data-placeholder="Choose a Country..." class="chosen-select" multiple tabindex="4">
-            <option value=""></option>
-            <option value="United States">United States</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Afghanistan">Afghanistan</option>
-            <option value="Aland Islands">Aland Islands</option>
-            <option value="Albania">Albania</option>
-            <option value="Algeria">Algeria</option>
-            <option value="American Samoa">American Samoa</option>
-            <option value="Andorra">Andorra</option>
-            <option value="Angola">Angola</option>
-            <option value="Anguilla">Anguilla</option>
-            <option value="Antarctica">Antarctica</option>
-
-            <option value="Brazil">Brazil</option>
-
-
-            <option value="Ethiopia">Ethiopia</option>
-  
-            <option value="Nigeria">Nigeria</option>
-            <option value="Niue">Niue</option>
-            <option value="Norfolk Island">Norfolk Island</option>
-            <option value="Northern Mariana Islands">Northern Mariana Islands</option>
-            <option value="Norway">Norway</option>
-            <option value="Oman">Oman</option>
-            <option value="Pakistan">Pakistan</option>
-            <option value="Palau">Palau</option>
-            <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
-            <option value="Panama">Panama</option>
-            <option value="Papua New Guinea">Papua New Guinea</option>
-            <option value="Paraguay">Paraguay</option>
-            <option value="Peru">Peru</option>
-            <option value="Philippines">Philippines</option>
-           
-          </select>
-          </br>
-          <input></input>
-        </div>
-        
-      	<script src="dropboxJs/jquery-3.2.1.min.js" type="text/javascript"></script>
-  		<script src="dropboxJs/chosen.jquery.js" type="text/javascript"></script>
-  		<script src="dropboxJs/prism.js" type="text/javascript" charset="utf-8"></script>
-  		<script src="dropboxJs/init.js" type="text/javascript" charset="utf-8"></script>
+		<div id="app">
+		  <vuejs-datepicker></vuejs-datepicker>
+		</div>
+		<script src="https://unpkg.com/vue"></script>
+		<script src="https://unpkg.com/vuejs-datepicker"></script>
+		<script>
+		const app = new Vue({
+		  el: '#app',
+		  components: {
+		  	vuejsDatepicker
+		  }
+		})
+		</script>
 	</body>
 </html>
  
