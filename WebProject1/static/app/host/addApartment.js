@@ -11,8 +11,8 @@ Vue.component("add-apartment", {
 		    	checkOutTime:"10:00",
 		    	amenities:[],
 		    	selectedAmenities:[],
-		    	locations:[],
-		    	selectedLocation:'',
+		    	locations:{},
+		    	selectedLocation:{},
 		    	pictures:[],
 		    	dates: []
 		    }
@@ -110,12 +110,21 @@ Vue.component("add-apartment", {
 			ret.numOfRooms=this.numOfRooms;
 			ret.numOfGuests=this.numOfGuests;
 			ret.pricePerNight=this.pricePerNight;
-			//ret.checkInTime=this.checkInTime;
-			//ret.checkOutTime=this.checkOutTime;
+			ret.checkInTime=this.checkInTime.toString();
+			ret.checkOutTime=this.checkOutTime.toString();
 			ret.status=this.status;
 			ret.pictures=this.pictures;
 			ret.amenities=this.selectedAmenities;
 			ret.location=this.selectedLocation;
+			var newList=[];
+			for(i=0;i<this.dates.length;i++){
+				newList.push(((new Date(this.dates[i])).getTime()).toString());
+			}
+			ret.rentingIntegers=newList;
+			console.log(this.dates);
+			console.log(newList);
+			console.log(
+			JSON.stringify(ret));
 			axios
 			.post('/Apartments',ret);
 		},

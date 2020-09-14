@@ -19,6 +19,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import beans.Amenities;
 import beans.Guest;
@@ -36,11 +37,11 @@ import rest.DateBase;
 
 public class AppMain {
 
-	private static Gson g = new Gson();
+	private static Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").create();
 	
 	public static DateBase s=new DateBase();
 	
-	public static String fileName="date.txt";
+	public static String fileName="date.json";
 	
 	public static void readFromFile() throws IOException {
 		BufferedReader br=new BufferedReader(new FileReader(fileName));    
@@ -87,6 +88,7 @@ public class AppMain {
 //		s.getLocations().add(new Location(10, 10, new Address("Dr Zorana Djindjica",22,"Novi Sad",21000)));
 //		s.getLocations().add(new Location(10, 10, new Address("Trifkovicev trg",6,"Novi Sad",21000)));
 //		s.getLocations().add(new Location(10, 10, new Address("Berislava Berica",4,"Novi Sad",21000)));
+		
 //		writeToFile();
 		
 		

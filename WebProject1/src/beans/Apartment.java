@@ -22,6 +22,9 @@ public class Apartment {
 	private int numOfRooms;
 	private int numOfGuests;
 	private Location location;
+	private List<String> rentingIntegers= new ArrayList<String>();
+	
+
 	private List<Date> rentingDays =new ArrayList<>();
 	private List<Date> availableDates =new ArrayList<>();
 	private String host;
@@ -37,6 +40,14 @@ public class Apartment {
 	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	private List<String> pictures=new ArrayList<String>();
 	
+	
+	public List<String> getRentingIntegers() {
+		return rentingIntegers;
+	}
+
+	public void setRentingIntegers(List<String> rentingIntegers) {
+		this.rentingIntegers = rentingIntegers;
+	}
 	public List<String> getPictures() {
 		return pictures;
 	}
@@ -80,7 +91,13 @@ public class Apartment {
 	} 
 	*/
 
-	
+	public void createRentingDays() {
+		for (String broj : rentingIntegers) {
+			long br=Long.parseLong(broj);
+			Date date=new Date(br);
+			rentingDays.add(date);
+		}
+	}
 	
 	@Override
 	public String toString() {
@@ -96,7 +113,7 @@ public class Apartment {
 	public Apartment(int id, Type type, int numOfRooms, int numOfGuests, Location location, List<Date> rentingDays,
 			List<Date> availableDates, String host, List<CommentForApartment> comments, double pricePerNight,
 			String checkInTime, String checkOutTime, Status status, List<Amenities> amenities,
-			List<Reservation> reservations, DeletedStatus deletedStatus, List<String> pictures) {
+			List<Reservation> reservations, DeletedStatus deletedStatus, List<String> pictures,List<String>rentingIntegers) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -115,6 +132,7 @@ public class Apartment {
 		this.reservations = reservations;
 		this.deletedStatus = deletedStatus;
 		this.pictures = pictures;
+		this.rentingIntegers = rentingIntegers;
 	} 
 
 	public int getId() {

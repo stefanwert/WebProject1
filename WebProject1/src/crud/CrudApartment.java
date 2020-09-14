@@ -108,9 +108,16 @@ public class CrudApartment implements CrudInterface{
 			return g.toJson(apartments);
 		});
 		
+//		post("/A", (req,res)->{
+//			List<Date> listaDates= 
+//			
+//			return g.toJson(null);
+//		});
+		
 		post("/Apartments",(req,res)->{
 			res.type("application/json");
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
+			appartement.createRentingDays();
 			
 			Session session=req.session();
 			User user = session.attribute("user");
