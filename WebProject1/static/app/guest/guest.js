@@ -83,19 +83,53 @@ Vue.component("viewProfile", {
     },
     template: 
 `
-<div id="profilePreview" class="d-flex p-2 justify-content-center">
-    <div class="d-flex flex-column p-2">
-        <div class="d-flex flex-column p-2">
-            <h4>{{guest.username}}</h4>
-            <p>Korisničko ime: {{guest.userName}}</p>
-            <p>Lozinka: {{guest.password}}</p>
-            <p>Ime: {{guest.name}}</p>
-            <p>Prezime: {{guest.surename}}</p>
-            <p>Pol: {{guest.gender}}</p>
-            <div class="d-flex flex-row p-2">
-                <a  href="#" v-on:click.prevent="editUser" class="btn btn-primary m-2">Izmjeni</a> 
-            </div>
-        </div>                     
+<div class="container">
+    <h2>Edit Profile</h2>
+    <div class="row">
+        <div class="col-md-9 justify-content-cente personal-info">
+            <h3>Lični podaci</h3>
+            <form class="form-horizontal justify-content-cente" role="form">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Ime:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="Nemanja">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Prezime:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="Tam">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Korisničko ime:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" value="Tamic">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Lozinka:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="11111122333">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Potvrdi lozinku:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="11111122333">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="button" class="btn btn-primary" value="Sačuvaj promene">
+                        <span></span>
+                        <input type="reset" class="btn btn-danger" value="Odustani">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 `,
     methods: {
