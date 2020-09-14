@@ -13,7 +13,8 @@ Vue.component("add-apartment", {
 		    	selectedAmenities:[],
 		    	locations:[],
 		    	selectedLocation:'',
-		    	pictures:[]
+		    	pictures:[],
+		    	dates: []
 		    }
 	},
 	template: ` 
@@ -59,6 +60,12 @@ Vue.component("add-apartment", {
 					<input type="time" v-model="checkOutTime" value="10:00"><br />
 				</div>
 				<div class="d-flex flex-row p-2">
+				<label>Datumi za izdavanje: </label>
+				<v-date-picker
+				  mode='multiple'
+				  v-model='dates'
+				  /></div>
+				<div class="d-flex flex-row p-2">
 					<label>Slike: </label>
 					<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
 				</div>
@@ -67,7 +74,7 @@ Vue.component("add-apartment", {
 				</div></br>
 				<div class="d-flex flex-row p-2">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-					Svi korisnici<span class="caret"></span></button>
+					Sadržaj apartmana<span class="caret"></span></button>
 					<ul class="dropdown-menu">
 						<li v-for = "a in amenities">
 							<table>

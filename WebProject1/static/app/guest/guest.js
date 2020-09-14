@@ -56,30 +56,26 @@ Vue.component("guest", {
           });
     }
 });
+
+
 Vue.component("viewProfile", {
     data: function() {
         return {
+        	loggedin:{},
             guest: {username: '', password: '', name: '', surename: '', gender: ''},
         }
     },
+    
     mounted: function() {
         axios
-        .get('/Users/loggedin')
+        .get('/loggedUser')
         .then(response => {
             this.loggedin = response.data;
         })
         .catch(error => {
             alert(error);
         })
-
-        axios
-        .get('/Guest/' + this.$route.params.username)
-        .then(response => {
-            this.guest = response.data.guest;
-        })
-        .catch(error => {
-            alert(error.response.data);
-        })
+        
     },
     template: 
 `
@@ -92,31 +88,31 @@ Vue.component("viewProfile", {
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Ime:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="Nemanja">
+                        <input class="form-control" type="text" v-model="loggedin.name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Prezime:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="Tam">
+                        <input class="form-control" type="text" v-model="loggedin.surname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Korisničko ime:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="text" value="Tamic">
+                        <input class="form-control" type="text" v-model="loggedin.userName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Lozinka:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="password" value="11111122333">
+                        <input class="form-control" type="password" v-model="loggedin.password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Potvrdi lozinku:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="password" value="11111122333">
+                        <input class="form-control" type="password" v-model="loggedin.password">
                     </div>
                 </div>
                 <div class="form-group">

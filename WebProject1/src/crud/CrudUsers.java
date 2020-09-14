@@ -82,6 +82,11 @@ public class CrudUsers implements CrudInterface{
 			return "OK";
 		});	
 		
+		get("/loggedUser",(req, res) -> {
+			User user = req.session().attribute("user");
+			return g.toJson(user);
+		});
+		
 	}
 	
 	private static void loggedIn(Request req,Response res,DateBase s) {
