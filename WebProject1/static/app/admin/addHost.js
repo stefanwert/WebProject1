@@ -1,8 +1,7 @@
-Vue.component("registration", {
+Vue.component("addHost", {
 	data: function(){
 		return {
-				user:{},
-				role: null,
+				host:{},
 				firstName: '',
 				lastName: '',
 				username: '',
@@ -15,8 +14,7 @@ Vue.component("registration", {
 		<div class="d-flex flex-column col-sm-3">
 			<form>
 			<fieldset>
-			    <legend v-if="role === 'ADMIN'">Registrujte domacina</legend>
-			    <legend v-if="role === null">Registrujte se</legend>
+			    <legend>Registrujte domacina</legend>
 				  <div class="form-group">
 				    <label>Ime</label>
 				    <input type="text" v-model="firstName" class="form-control" id="fname" placeholder="Unesite ime" required>
@@ -44,7 +42,7 @@ Vue.component("registration", {
 					    <option value="zensko">Žensko</option>
 					</select>
 				  </div>
-				  <button type="submit" id="register" v-on:click="register()" class="btn btn-success">Registrujte se</button>
+				  <button type="submit" id="register" v-on:click="register()" class="btn btn-success">Registruj domaćina</button>
 				 </fieldset>
 			</form>	 
 		</div>
@@ -67,7 +65,7 @@ Vue.component("registration", {
 			ret.surname=this.lastName;
 			ret.gender=this.gender;
 			axios
-			.post('/Gest',ret)
+			.post('/Host',ret)
 			.then(response => {
 				if(response.data!=null)
 				{

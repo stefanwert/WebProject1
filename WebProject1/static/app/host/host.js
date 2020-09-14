@@ -1,32 +1,33 @@
 Vue.component("host", {
 	data: function () {
 		    return {
-		      sc: null,
+		      hosts: null,
 		      selectedHost: {}
 		    }
 	},
 	template: ` 
-<div>
-		Tabela host-ova
-		<table border="1">
-		<tr bgcolor="lightgrey">
-			<th>UserName</th><th>Password</th><th>Name</th><th>Surname</th><th>Gender</th></tr>
-			<tr v-for="i in sc" v-on:click="selectHost(i)">
-			<td> {{i.userName}}</td>
-			<td> {{i.password}}</td>
-			<td> {{i.name}} </td>
-			<td> {{i.surname}} </td>
-			<td> {{i.gender}} </td>
+<div class="d-flex justify-content-center">
+	<div class="d-flex flex-column ">
+		<legend>Tabela gostiju</legend>
+		<table  class="table table-hover" border="3">
+		<tr class="table-info" bgcolor="lightgrey">
+			<th>Korisničko ime</th><th>Lozinka</th><th>Ime</th><th>Prezime</th><th>Pol</th></tr>
+			<tr v-for="i in hosts">
+				<td> {{i.userName}}</td>
+				<td> {{i.password}}</td>
+				<td> {{i.name}}</td>
+				<td> {{i.surname}}</td>
+				<td> {{i.gender}} </td>
 			</tr>
-		</table>
-		<br /> 
-		<button v-on:click="deleteHost" >Obriši korpu</button>
+		</table><br />
+		<button type="button" class="btn btn-danger" v-on:click="deleteHost" >Obriši domaćina</button><br /> <br /> 
+	</div>
 </div>		  
 `
 	, 
 	methods : {
 		init : function() {
-			this.sc = {};
+			this.hosts = {};
 		}, 
 		selectHost: function(host) {
 			this.selectedHost = host;
@@ -38,7 +39,7 @@ Vue.component("host", {
 		          .delete('/Host',{'data':this.selectedHost})
 		          .then(
 		        	response=>{
-		        		this.sc = this.sc.filter((item) => {
+		        		this.hosts = this.hosts.filter((item) => {
 		        			return item.userName !=this.selectedHost.userName; });
 		        		this.selectedHost= {};
 		        	}
@@ -50,8 +51,8 @@ Vue.component("host", {
         axios
           .get('/AllHost')
           .then(response => {
-        		  	this.sc = response.data;
-          			console.log(this.sc);
+        		  	this.hosts = response.data;
+          			console.log(this.hosts);
           });
     }
 });

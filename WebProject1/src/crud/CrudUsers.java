@@ -84,7 +84,7 @@ public class CrudUsers implements CrudInterface{
 		
 	}
 	
-	private static void logedIn(Request req,Response res,DateBase s) {
+	private static void loggedIn(Request req,Response res,DateBase s) {
 		req.session();
 		String[] params = req.splat();
 		String path;
