@@ -282,7 +282,7 @@ Vue.component("apartments", {
     		                	<h5 class="card-title">Status: {{apartment.status}}</h5>
     		                    <h5 class="card-title">Tip: {{apartment.type}}</h5>
     		                    </div>
-								  <img style="height: 200px; width: 100%; display: block;" src="getPictureAddres(apartment)" alt="Card image">
+								  <img style="height: 200px; width: 100%; display: block;" :src=getPictureAddres(apartment) alt="Card image">
 								  <div class="card-body">
 								 </div>
     		                    <ul class="list-group list-group-flush">
@@ -304,7 +304,10 @@ methods: {
         },
         show: function(a) {
             window.location.href = "admin.html#/apartment/" + a.id;
-        }
+        },
+        getPictureAddres: function(i){
+			return 'slike/'+i.pictures[0];
+		},
     }
 });
 
@@ -335,7 +338,7 @@ Vue.component("viewApartment", {
             <h5 class="card-title">Status: {{apartment.status}}</h5>
     		<h5 class="card-title">Tip: {{apartment.type}}</h5>
             </div>
-    			<img style="height: 200px; width: 100%; display: block;" src="getPictureAddres(apartment)" alt="Card image">
+    			<img style="height: 200px; width: 100%; display: block;" :src=getPictureAddres(apartment) alt="Card image">
     		</div>
             <p class="card-text">Broj gostiju: {{apartment.numOfGuests}}</p>
             <p class="card-text">Broj soba: {{apartment.numOfRooms}}</p>
@@ -367,7 +370,7 @@ Vue.component("editApartment", {
     	return{
         apartment: {},
         dates:[],
-        locations:[],
+        locations:{},
         amenities:[],
     	}
     },
@@ -452,7 +455,7 @@ Vue.component("editApartment", {
 				  /></div>
 				<div class="d-flex flex-row p-2">
 					<label>Slike: </label>
-					<input multiple type ="file" ref='file' v-model="apartment.pictures" v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
+					<input multiple type ="file" ref='file' v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
 				</div>
 				<!--<div class="d-flex flex-row">
 					<button type="button" class="btn btn-primary w-50" v-on:click="submitFile()">Pošalji sliku</button>
@@ -464,7 +467,7 @@ Vue.component("editApartment", {
 						<li v-for = "a in amenities">
 							<table>
 								<tr>
-									<td><input :value='a' type='checkbox' v-model="apartment.selectedAmenities"/></td>
+									<td><input :value='a' type='checkbox' <div v-if="checkAmeneti(a)">checked</div /></td>
 									<td>{{a.name}}</td>
 								</tr>
 							</table>
@@ -495,6 +498,14 @@ Vue.component("editApartment", {
             });
             
         },
+        checkAmeneti: function(ameneti){
+        	for(a of amenities){
+        		if(a==amenities){
+        			return true;
+        		}
+        	}
+        	return false;
+        }
     }
 });
 
@@ -558,7 +569,7 @@ Vue.component("searchApartment", {
 Vue.component("amenities", {
     data: function() {
         return {
-            amenities:{},
+            amenities:[],
             addName:''
         }
     },
@@ -566,6 +577,7 @@ Vue.component("amenities", {
     	axios
         .get('/Amenities')
         .then(response => {
+        	//ovo je mapa !!!
       		  	this.amenities = response.data;
         			console.log(this.amenities);
         });
@@ -595,11 +607,11 @@ Vue.component("amenities", {
 `,  
 methods: {
 		init : function() {
-			this.amenities = {};
+			this.amenities = [];
 		}, 
 		selectAmenity: function(amenity) {
 			this.selectedAmenity = amenity;
-			console.log(this.selectedAmenity);
+			//console.log(this.selectedAmenity);
 			
 		},
 		deleteAmenity : function () {
@@ -618,6 +630,7 @@ methods: {
 		addAmenity: function(){
 			ret={};
 			ret.name=this.addName;
+			
 			axios
 			.post('/Amenities',ret)
 			.then(response => {
