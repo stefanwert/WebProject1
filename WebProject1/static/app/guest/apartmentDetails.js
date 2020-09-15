@@ -13,7 +13,7 @@ Vue.component("apartment-detail", {
 		      apartment: {},
 		      pictures:[],
 		      apartmentId:-1,
-		      selectedDate:[],
+		      selectedDate:{},
 		      disabledDates:{
 		    	  customPredictor:(date)=> {
 		    		  var a=0;
@@ -55,13 +55,7 @@ Vue.component("apartment-detail", {
 			<tr>
 				<td>Slobodni dani:</td>
 				<td id="nista" style="color:black;">
-					  <vuejs-datepicker :disabled-dates=disabledDates></vuejs-datepicker>
-					
-					<div class="d-flex flex-row">
-						<select v-model="selectedLocation">
-							<option v-for="d in apartment.availableDates"   v-bind:value="d">{{d}}</option>
-						</select>
-					</div>
+					  <vuejs-datepicker :disabled-dates=disabledDates ></vuejs-datepicker>
 				</td>
 			</tr>
 			<tr>
@@ -69,6 +63,9 @@ Vue.component("apartment-detail", {
 				<td>
 					<input type="number"  min="1" >
 				</td>
+			</tr>
+			<tr>
+				<button type="submit" id="register" v-on:click="reserve()" class="btn btn-success">Registrujte se</button>
 			</tr>
 		</table>
 </div>
@@ -80,13 +77,11 @@ Vue.component("apartment-detail", {
 		address: function (pic){
 			return "slike/"+pic;
 		},
-		disabledDates:function(date){
-			for(i=0;i<this.apartment.availableDates;i++){
-				if(date.getDate()==this.apartment.availableDates[i]){
-					return true;
-				}
-			}
-			return false;
+		changeSelected: function(){
+			console.log("radii");
+		},
+		reserve: function(){
+			console.log(this.selectedDate);
 		}
 	},
 	mounted () {
@@ -101,11 +96,7 @@ Vue.component("apartment-detail", {
 			this.pictures.shift(); 
 			console.log(this.apartment);
 		});
-        this.disabledDates.customPredictor=function(date) {
-	    	      // disables the date if it is a multiple of 5
-	    	      
-	    	    	  
-	    	    }
+        this.selectedDate=this.apartment.availableDates[0];
 	    	  
     },
     methods : {
