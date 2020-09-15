@@ -11,6 +11,7 @@ public class Reservation {
 	private Date startDate;
 	private int numOfNights=1;
 	private double totalPrice;
+	private String guestUserName;
 	private String message;
 	private String hostUserName;
 	private ReservationStatus reservStatus;
@@ -18,23 +19,35 @@ public class Reservation {
 	
 	public Reservation() {}
 
-
 	
 
-	public Reservation(String id, int apartmentId, Date startDate, int numOfNights, double totalPrice, String message,
-			String hostUserName, ReservationStatus reservStatus, DeletedStatus deletedStatus) {
+	public Reservation(String id, int apartmentId, Date startDate, int numOfNights, double totalPrice,
+			 String message, String hostUserName, ReservationStatus reservStatus,
+			DeletedStatus deletedStatus,String guestUserName) {
 		super();
 		this.id = id;
 		this.apartmentId = apartmentId;
 		this.startDate = startDate;
 		this.numOfNights = numOfNights;
 		this.totalPrice = totalPrice;
+		this.guestUserName = guestUserName;
 		this.message = message;
 		this.hostUserName = hostUserName;
 		this.reservStatus = reservStatus;
 		this.deletedStatus = deletedStatus;
 	}
 
+
+
+	public String getGuestUserNameString() {
+		return guestUserName;
+	}
+
+
+
+	public void setGuestUserNameString(String guestUserName) {
+		this.guestUserName = guestUserName;
+	}
 
 
 

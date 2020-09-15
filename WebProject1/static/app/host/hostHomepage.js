@@ -17,6 +17,7 @@ var adminPage = new Vue({
 
 const AddApartment = { template: '<add-apartment></add-apartment>' }
 const Apartment = { template: '<apartment></apartment>' }
+const HostReservation = { template: '<host-reservation></host-reservation>' }
 
 
 const router = new VueRouter({
@@ -24,6 +25,7 @@ const router = new VueRouter({
     routes: [
 		{ path: '/addApartment', component: AddApartment},
 		{ path: '/apartment', component: Apartment},
+		{ path: '/HostReservation', component: HostReservation},
 
     ]
 });
@@ -33,3 +35,8 @@ var app = new Vue({
     router,
     el: '#routerHost'
 });
+
+
+function promeniRutu(ruta){
+	router.push("/"+ ruta);
+}

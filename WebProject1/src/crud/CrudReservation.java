@@ -6,6 +6,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -75,6 +76,26 @@ public class CrudReservation implements CrudInterface{
 			
 		});
 		
+		get("/ReservationHost",(req,res)->{
+			res.type("application/json");
+			
+			Session session=req.session();
+			User user = session.attribute("user");
+			Host host=s.getHosts().get(user.getUserName());
+			if(host==null) {
+				res.status(400);
+				return null;
+			}
+			
+			List<Reservation> reservations=new ArrayList<Reservation>();
+			for (Apartment a : host.getApartments().values()) {
+				reservations.addAll(a.getReservations());
+			}
+			return g.toJson(reservations);
+			
+			
+		});
+		
 		post("/Reservation",(req,res)->{
 			res.type("application/json");
 			
@@ -121,7 +142,10 @@ public class CrudReservation implements CrudInterface{
 				//sve super rezervisi
 				//new beans.Reservation(id, apartment, startDate, numOfNights, totalPrice, message, host, reservStatus, deletedStatus)
 				Host host=s.getHosts().get(apartment.getHost());
-				beans.Reservation reservation=new beans.Reservation("", apartment.getId(), startDate,numOfNights , apartment.getPricePerNight(), "", host.getUserName(), ReservationStatus.CREATED, DeletedStatus.ACTIVE);
+				int idInt=s.getReservationNextId();
+				s.setReservationNextId(idInt+1);
+				String idReservation=Integer.toString(idInt);
+				beans.Reservation reservation=new beans.Reservation(idReservation, apartment.getId(), startDate,numOfNights , apartment.getPricePerNight(), "", host.getUserName(), ReservationStatus.CREATED, DeletedStatus.ACTIVE,user.getUserName());
 				s.getGuests().get(user.getUserName()).getReservations().add(reservation);
 				s.getHosts().get(apartment.getHost()).getApartments().get(apartment.getId()).getReservations().add(reservation);
 				//izbrisi termine iz liste slobodnih
@@ -140,7 +164,7 @@ public class CrudReservation implements CrudInterface{
 			
 		});
 		
-		put("/Reservation", (req, res) ->{
+		put("/ReservationGuest", (req, res) ->{
 			res.type("application/json");
 			
 			Session session=req.session();
@@ -168,6 +192,63 @@ public class CrudReservation implements CrudInterface{
 			res.status(404);
 			return g.toJson(null);
 		});
+		
+		
+		put("/ReservationHost", (req, res) ->{
+			res.type("application/json");
+			
+			Session session=req.session();
+			User user = session.attribute("user");
+			Reservation r = g.fromJson(req.body(), Reservation.class);
+			List<Apartment> apartments=new ArrayList<Apartment>(s.getHosts().get(user.getUserName()).getApartments().values());
+			if(s.getHosts().get(user.getUserName())==null) {
+				res.status(400);
+				return g.toJson(null);
+			}
+			for(Apartment a : apartments) {
+				for (Reservation reservation : a.getReservations()) {
+					if(reservation.getId().equals(r.getId())) {
+						//izmena kod host-a
+						reservation.setId(r.getId());
+						reservation.setApartmentId(r.getApartmentId());
+						reservation.setStartDate(r.getStartDate());
+						reservation.setNumOfNights(r.getNumOfNights());
+						reservation.setTotalPrice(r.getTotalPrice());
+						reservation.setStartDate(r.getStartDate());
+						reservation.setMessage(r.getMessage());
+						reservation.setHostUserName(r.getHostUserName());
+						reservation.setReservStatus(r.getReservStatus());
+						//izmena kod guest-a
+						Guest guest=s.getGuests().get(reservation.getGuestUserNameString());
+						if(guest==null) {
+							res.status(400);
+							return g.toJson(null);
+						}
+						for (Reservation rG : guest.getReservations()) {
+							if(rG.getId().equals(r.getId())) {
+								rG.setId(r.getId());
+								rG.setApartmentId(r.getApartmentId());
+								rG.setStartDate(r.getStartDate());
+								rG.setNumOfNights(r.getNumOfNights());
+								rG.setTotalPrice(r.getTotalPrice());
+								rG.setStartDate(r.getStartDate());
+								rG.setMessage(r.getMessage());
+								rG.setHostUserName(r.getHostUserName());
+								rG.setReservStatus(r.getReservStatus());
+							}
+							
+						}
+						
+						return g.toJson(reservation);
+					}
+				}
+			}
+			
+			
+			res.status(400);
+			return g.toJson(null);
+		});
+		
 		delete("/Reservation",(req,res)->{
 			String id = req.queryParams("id");
 			

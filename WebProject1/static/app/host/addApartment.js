@@ -116,7 +116,13 @@ Vue.component("add-apartment", {
 			ret.checkOutTime=this.checkOutTime.toString();
 			ret.status=this.status;
 			ret.pictures=this.pictures;
-			ret.amenities=this.selectedAmenities;
+			//ret.amenities=this.selectedAmenities;//problem
+			ret.amenities=[];
+			var br=0;
+			for(am of this.selectedAmenities){
+				ret.amenities[br]=am;
+				br=br+1;
+			}
 			ret.location=this.selectedLocation;
 			var newList=[];
 			for(i=0;i<this.dates.length;i++){

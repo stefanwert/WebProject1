@@ -15,6 +15,7 @@ import beans.Location;
 public class DateBase {
 	private static DateBase singletonDateBase=null;
 	
+	private int reservationNextId=0;
 	private int apartmentNextId=0;
 	private int amenitiesNextId=0;
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
@@ -26,6 +27,13 @@ public class DateBase {
 	private List<Location> locations=new ArrayList<Location>();
 
 	
+	public int getReservationNextId() {
+		return reservationNextId;
+	}
+
+	public void setReservationNextId(int reservationNextId) {
+		this.reservationNextId = reservationNextId;
+	}
 	
 	public List<Location> getLocations() {
 		return locations;
