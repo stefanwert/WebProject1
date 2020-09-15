@@ -117,7 +117,7 @@ Vue.component("add-apartment", {
 			ret.status=this.status;
 			ret.pictures=this.pictures;
 			//ret.amenities=this.selectedAmenities;//problem
-			ret.amenities=[];
+			ret.amenities=new Map();
 			var br=0;
 			for(am of this.selectedAmenities){
 				ret.amenities[br]=am;
