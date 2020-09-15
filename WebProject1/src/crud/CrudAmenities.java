@@ -31,9 +31,7 @@ public class CrudAmenities implements CrudInterface {
 	
 	@Override
 	public void activeCrud(DateBase s, Gson g) {
-		after("/Amenities", (req, res) -> {
-			AppMain.writeToFile();
-		});
+		
 		
 		get("/Amenities",(req,res)->{
 			res.type("application/json");

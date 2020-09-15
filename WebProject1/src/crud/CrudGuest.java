@@ -23,9 +23,7 @@ public class CrudGuest implements CrudInterface{
 
 	@Override
 	public void activeCrud(DateBase s, Gson g) {
-		after("/Gest", (req, res) -> {
-			AppMain.writeToFile();
-		});
+		
 		
 		get("/AllGest",(req,res)->{
 			res.type("application/json");

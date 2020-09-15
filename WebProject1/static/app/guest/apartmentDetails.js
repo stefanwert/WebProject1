@@ -10,10 +10,12 @@ Vue.component("apartment-detail", {
 	data: function () {
 		    return {
 		      sc: null,
+		      id:null,
 		      apartment: {},
 		      pictures:[],
 		      apartmentId:-1,
-		      selectedDate:{},
+		      selectedDate:new Date(),
+		      numOfDates:1,
 		      disabledDates:{
 		    	  customPredictor:(date)=> {
 		    		  var a=0;
@@ -55,13 +57,13 @@ Vue.component("apartment-detail", {
 			<tr>
 				<td>Slobodni dani:</td>
 				<td id="nista" style="color:black;">
-					  <vuejs-datepicker :disabled-dates=disabledDates ></vuejs-datepicker>
+					  <vuejs-datepicker :disabled-dates=disabledDates v-model="selectedDate"></vuejs-datepicker>
 				</td>
 			</tr>
 			<tr>
 				<td>Broj dana:</td>
 				<td>
-					<input type="number"  min="1" >
+					<input type="number" v-model="numOfDates" min="1" >
 				</td>
 			</tr>
 			<tr>
@@ -81,13 +83,24 @@ Vue.component("apartment-detail", {
 			console.log("radii");
 		},
 		reserve: function(){
-			console.log(this.selectedDate);
+			var date=new Date(this.selectedDate).getTime().toString();
+			var selectedKategorija={"selectedDate":date,"numOfDates":this.numOfDates.toString(),"id":this.id}
+			axios
+	        .post("/Reservation",JSON.stringify(selectedKategorija))
+			.then(response => {
+				this.apartment = response.data;
+				for(i=0;i<this.apartment.pictures.length;i++){
+					this.pictures[i]=this.apartment.pictures[i];
+				}
+				this.pictures.shift(); 
+				console.log(this.apartment);
+			});
 		}
 	},
 	mounted () {
-        var id=router.currentRoute.params.apId;
+        this.id=router.currentRoute.params.apId;
         axios
-        .get("/Apartments?id="+id)
+        .get("/Apartments?id="+this.id)
 		.then(response => {
 			this.apartment = response.data;
 			for(i=0;i<this.apartment.pictures.length;i++){
@@ -96,26 +109,7 @@ Vue.component("apartment-detail", {
 			this.pictures.shift(); 
 			console.log(this.apartment);
 		});
-        this.selectedDate=this.apartment.availableDates[0];
 	    	  
-    },
-    methods : {
-		address: function (pic){
-			return "slike/"+pic;
-		}
-	},
-	mounted () {
-        var id=router.currentRoute.params.apId;
-        axios
-        .get("/Apartments?id="+id)
-		.then(response => {
-			this.apartment = response.data;
-			for(i=0;i<this.apartment.pictures.length;i++){
-				this.pictures[i]=this.apartment.pictures[i];
-			}
-			this.pictures.shift(); 
-			console.log(this.apartment);
-		});
     },
     components: {
       	vuejsDatepicker

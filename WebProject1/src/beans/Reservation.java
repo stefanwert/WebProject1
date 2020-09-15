@@ -2,48 +2,65 @@ package beans;
 
 import java.util.Date;
 
-enum ReservationStatus {
-    CREATED,
-    DENIED,
-    CANCELED,
-    ACCEPTED,
-    COMPLITED
-  }
+
 
 public class Reservation {
 
 	private String id;
-	private Apartment apartment;
+	private int apartmentId;
 	private Date startDate;
 	private int numOfNights=1;
 	private double totalPrice;
 	private String message;
-	private Host host;
+	private String hostUserName;
 	private ReservationStatus reservStatus;
 	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	
-	@Override
-	public String toString() {
-		return "Reservation [id=" + id + ", apartment=" + apartment + ", startDate=" + startDate + ", numOfNights="
-				+ numOfNights + ", totalPrice=" + totalPrice + ", message=" + message + ", host=" + host
-				+ ", reservStatus=" + reservStatus + ", deletedStatus=" + deletedStatus + "]";
-	}
-
 	public Reservation() {}
+
+
 	
-	public Reservation(String id, Apartment apartment, Date startDate, int numOfNights, double totalPrice,
-			String message, Host host, ReservationStatus reservStatus, DeletedStatus deletedStatus) {
+
+	public Reservation(String id, int apartmentId, Date startDate, int numOfNights, double totalPrice, String message,
+			String hostUserName, ReservationStatus reservStatus, DeletedStatus deletedStatus) {
 		super();
 		this.id = id;
-		this.apartment = apartment;
+		this.apartmentId = apartmentId;
 		this.startDate = startDate;
 		this.numOfNights = numOfNights;
 		this.totalPrice = totalPrice;
 		this.message = message;
-		this.host = host;
+		this.hostUserName = hostUserName;
 		this.reservStatus = reservStatus;
 		this.deletedStatus = deletedStatus;
 	}
+
+
+
+
+	public String getHostUserName() {
+		return hostUserName;
+	}
+
+
+
+
+	public void setHostUserName(String hostUserName) {
+		this.hostUserName = hostUserName;
+	}
+
+
+
+
+	public int getApartmentId() {
+		return apartmentId;
+	}
+	
+	public void setApartmentId(int apartmentId) {
+		this.apartmentId = apartmentId;
+	}
+
+
 
 	public String getId() {
 		return id;
@@ -53,13 +70,7 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public Apartment getApartment() {
-		return apartment;
-	}
-
-	public void setApartment(Apartment apartment) {
-		this.apartment = apartment;
-	}
+	
 
 	public Date getStartDate() {
 		return startDate;
@@ -93,13 +104,6 @@ public class Reservation {
 		this.message = message;
 	}
 
-	public Host getHost() {
-		return host;
-	}
-
-	public void setHost(Host host) {
-		this.host = host;
-	}
 
 	public ReservationStatus getReservStatus() {
 		return reservStatus;

@@ -26,9 +26,7 @@ public class CrudHost implements CrudInterface{
 	@Override
 	public void activeCrud(DateBase s,Gson g) {
 		
-		after("/Host", (req, res) -> {
-			AppMain.writeToFile();
-		});
+		
 		
 		get("/Host",(req,res)->{
 			res.type("application/json");
