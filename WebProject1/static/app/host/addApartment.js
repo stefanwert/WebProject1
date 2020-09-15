@@ -24,14 +24,14 @@ Vue.component("add-apartment", {
 				<div class="d-flex flex-row row-sm-2">
 					<div class="d-flex flex-column p-2">
 						<label>Tip:	</label>
-						<select v-model="type" >
+						<select v-model="type" required>
 						<option value="APARTMAN">APARTMAN</option>
 						<option value="ROOM" selected>ROOM</option>
 						</select>
 					</div>
 					<div class="d-flex flex-column p-2">
 						<label>Status:</label>
-						<select v-model="status">
+						<select v-model="status" required>
 						<option value="ACTIVE">ACTIVE</option>
 						<option value="INACTIVE">INACTIVE</option>
 						</select>
@@ -40,30 +40,31 @@ Vue.component("add-apartment", {
 				<div class="d-flex flex-row">
 					<div class="d-flex flex-column p-2">
 						<label>Broj soba: </label>
-						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfRooms"  />
+						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfRooms" required />
 					</div>
 					<div class="d-flex flex-column p-2">
 						<label>Broj gostiju: </label>
-						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfGuest"  /> 
+						<input type="number" step="1" min="1" max="10" value="1" v-model="numOfGuest" required /> 
 					</div>
 				</div>
 				<div class="d-flex flex-row p-2">
 					<label>Cena po noćenju: </label>
-					<input type="number" step="any" min="1" max="100000" value="1" v-model="pricePerNight"  />
+					<input type="number" step="any" min="1" max="100000" value="1" v-model="pricePerNight" required />
 				</div>
 				<div class="d-flex flex-row p-2">
 					<label>Vreme za prijavu: </label>
-					<input type="time" v-model="checkInTime" value="14:00">
+					<input type="time" v-model="checkInTime" value="14:00" required>
 				</div>
 				<div class="d-flex flex-row p-2">
 					<label>Vreme za odjavu: </label>
-					<input type="time" v-model="checkOutTime" value="10:00"><br />
+					<input type="time" v-model="checkOutTime" value="10:00" required><br />
 				</div>
 				<div class="d-flex flex-row p-2">
 				<label>Datumi za izdavanje: </label>
 				<v-date-picker
 				  mode='multiple'
 				  v-model='dates'
+				  required
 				  /></div>
 				<div class="d-flex flex-row p-2">
 					<label>Slike: </label>
@@ -87,7 +88,7 @@ Vue.component("add-apartment", {
 					</ul>
 				</div></br>
 				<div class="d-flex flex-row">
-					<select v-model="selectedLocation">
+					<select v-model="selectedLocation" required>
 						<option v-for="l in locations"   v-bind:value="l">{{l.address.address}}</option>
 					</select>
 				</div></br>

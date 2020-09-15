@@ -302,8 +302,8 @@ methods: {
         search: function() {
             window.location.href = "admin.html#/search";
         },
-        show: function(username) {
-            window.location.href = "admin.html#/apartments/" + username;
+        show: function(host) {
+            window.location.href = "admin.html#/apartments/" + host;
         }
     }
 });
@@ -350,76 +350,132 @@ Vue.component("viewApartment", {
 `,
     methods: {
        
-        editUser: function() {
-            window.location.href = "admin.html#/apartments/edit" + this.$route.params.username;
+        editApartment: function() {
+            window.location.href = "admin.html#/apartments/edit" + this.$route.params.host
         },
-        reload() {
-            axios
-            .get('users/' + this.$route.params.username)
-            .then(response => {
-                this.user = response.data.user;
-            })
-            .catch(error => {
-                alert(error.response.data);
-            })
-        },
+        
     }
 });
 Vue.component("editApartment", {
     data: function() {
-        return {
-            user: undefined,
-            name: undefined,
-            surename: undefined
-        }
+        apartment{}
     },
     mounted() {
         axios
-        .get('users/' + this.$route.params.username)
+        .get('/Apartment')
         .then(response => {
-            this.user = response.data.user;
-            this.name = this.user.name;
-            this.surename = this.user.surename;
+      		  	this.apartment = response.data;
+        			console.log(this.apartment);
         })
         .catch(error => {
-            alert("Greska prilikom dobavljanja korisnika.")
-        })
+            alert("Greska prilikom dobavljanja apartmana.")
+        });
+        axios
+        .get('/Amenities')
+        .then(response => {
+      		  	this.amenities = response.data;
+        });
+        axios
+        .get('/Locatios')
+        .then(response => {
+    		  	this.locations = response.data;
+        });
     },
     template: 
 `
-<div id="editingUser" class="d-flex p-2 justify-content-center">
-    <div class="d-flex flex-column p-2 col-sm-4">
-        <form id="login" accept-charset="UTF-8" class="d-flex flex-column p-2">
-            <h1 class="p-2">Promjeni korisnika</h1>
-            
-            <label class="p-2 col-form-label">Ime: {{name}}</label>
-            
-            <label class="p-2 col-form-label">Prezime: {{surename}}</label>
-            
-            <button class="btn btn-primary m-5" v-on:click.prevent="editUser">Potvrdi</button>
-        </form>
-    </div>
+<div class="d-flex justify-content-center">
+	<div class="d-flex flex-column ">
+				<legend>Izmena apartmana apartmana</legend>
+				<div class="d-flex flex-row row-sm-2">
+					<div class="d-flex flex-column p-2">
+						<label>Tip:	</label>
+						<select v-model="apartment.type" required>
+						<option value="APARTMAN">APARTMAN</option>
+						<option value="ROOM" selected>ROOM</option>
+						</select>
+					</div>
+					<div class="d-flex flex-column p-2">
+						<label>Status:</label>
+						<select v-model="apartment.status" required>
+						<option value="ACTIVE">ACTIVE</option>
+						<option value="INACTIVE">INACTIVE</option>
+						</select>
+					</div>
+				</div>
+				<div class="d-flex flex-row">
+					<div class="d-flex flex-column p-2">
+						<label>Broj soba: </label>
+						<input type="number" step="1" min="1" max="10" value="1" v-model="apartment.numOfRooms" required />
+					</div>
+					<div class="d-flex flex-column p-2">
+						<label>Broj gostiju: </label>
+						<input type="number" step="1" min="1" max="10" value="1" v-model="apartment.numOfGuest" required /> 
+					</div>
+				</div>
+				<div class="d-flex flex-row p-2">
+					<label>Cena po noćenju: </label>
+					<input type="number" step="any" min="1" max="100000" value="1" v-model="apartment.pricePerNight" required />
+				</div>
+				<div class="d-flex flex-row p-2">
+					<label>Vreme za prijavu: </label>
+					<input type="time" v-model="apartment.checkInTime" value="14:00" required>
+				</div>
+				<div class="d-flex flex-row p-2">
+					<label>Vreme za odjavu: </label>
+					<input type="time" v-model="apartment.checkOutTime" value="10:00" required><br />
+				</div>
+				<div class="d-flex flex-row p-2">
+				<label>Datumi za izdavanje: </label>
+				<v-date-picker
+				  mode='multiple'
+				  v-model='dates'
+				  required
+				  /></div>
+				<div class="d-flex flex-row p-2">
+					<label>Slike: </label>
+					<input multiple type ="file" ref='file' v-model="apartment.pictures" v-on:change='promeniPutanju()' name='slika' accept="image/x-png,image/jpeg" />
+				</div>
+				<!--<div class="d-flex flex-row">
+					<button type="button" class="btn btn-primary w-50" v-on:click="submitFile()">Pošalji sliku</button>
+				</div></br>-->
+				<div class="d-flex flex-row p-2">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+					Sadržaj apartmana<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li v-for = "a in amenities">
+							<table>
+								<tr>
+									<td><input :value='a' type='checkbox' v-model="apartment.selectedAmenities"/></td>
+									<td>{{a.name}}</td>
+								</tr>
+							</table>
+						</li>
+					</ul>
+				</div></br>
+				<div class="d-flex flex-row">
+					<select v-model="apartment.selectedLocation" required>
+						<option v-for="l in locations"   v-bind:value="l">{{l.address.address}}</option>
+					</select>
+				</div></br>
+				<button type="button" class="btn btn-success" v-on:click="editApartment()">Izmeni apartman</button>
+				
+			</fieldset>
+		</form>	 
+	</div>	
 </div>
 `,
     methods: {
-        editUser: function() {
-            if (this.oldRole != this.role) {
-                var editedUser = {
-                    'password' : this.user.password,
-                    'name' : this.user.name,
-                    'surename' : this.user.surename,
-                };
-
-                axios
-                .post('users/edit', editedUser)
-                .then(response => {
-                    window.location.href = "admin.html#/";
-                })
-                .catch(error => {
-                    alert(error.response.data)
-                })
-            }
-        }
+        editApartment: function() {
+            axios
+            .put('/Apartment',this.apartment)
+            .then(response => {
+                //this.apartment = response.data.apartment;
+            })
+            .catch(error => {
+                alert(error.response.data);
+            })
+            
+        },
     }
 });
 
