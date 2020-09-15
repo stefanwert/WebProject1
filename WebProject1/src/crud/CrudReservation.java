@@ -59,6 +59,22 @@ public class CrudReservation implements CrudInterface{
 			
 		});
 		
+		get("/ReservationGuest",(req,res)->{
+			res.type("application/json");
+			
+			Session session=req.session();
+			User user = session.attribute("user");
+			Guest gust=s.getGuests().get(user.getUserName());
+			if(gust==null) {
+				res.status(400);
+				return null;
+			}
+			
+			return g.toJson(gust.getReservations());
+			
+			
+		});
+		
 		post("/Reservation",(req,res)->{
 			res.type("application/json");
 			
