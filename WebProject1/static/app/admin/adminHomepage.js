@@ -40,8 +40,8 @@ const router = new VueRouter({
 	    { path: '/host', component: Host},
 	    { path: '/guest',component:Guest},
 	    { path: '/apartments',component:Apartments},
-	    { path: '/apartment/:host',component:ViewApartment},
-	    { path: '/apartment/edit/:host',component:EditApartment},
+	    { path: '/apartment/:id',component:ViewApartment},
+	    { path: '/apartment/edit/:id',component:EditApartment},
 	    { path: '/amenities',component:Amenities},
 
     ]

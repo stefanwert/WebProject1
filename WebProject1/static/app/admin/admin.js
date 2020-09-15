@@ -276,7 +276,7 @@ Vue.component("apartments", {
             </div>
             <div class="d-flex flex-row flex-wrap p-2">
     	        <div v-for="apartment in apartments" class="p-2">
-    	            <div class="card border-light mb-3" style="max-width: 20rem;" v-on:click.prevent="show(apartment.host)">
+    	            <div class="card border-light mb-3" style="max-width: 20rem;" v-on:click.prevent="show(apartment)">
     	                <div class="card-header"><h4>Domaćin: {{apartment.host}}</h4></div>
     		                <div class="card-body">
     		                	<h5 class="card-title">Status: {{apartment.status}}</h5>
@@ -302,8 +302,8 @@ methods: {
         search: function() {
             window.location.href = "admin.html#/search";
         },
-        show: function(host) {
-            window.location.href = "admin.html#/apartments/" + host;
+        show: function(a) {
+            window.location.href = "admin.html#/apartment/" + a.id;
         }
     }
 });
@@ -316,11 +316,11 @@ Vue.component("viewApartment", {
         }
     },
     mounted: function() {
-        
+        let id = this.$route.params.id
         axios
-        .get('/ApartmentDetails')
+        .get('/Apartments?id='+id)
         .then(response => {
-            this.apartment = response.data.apartment;
+            this.apartment = response.data;
         })
         .catch(error => {
             alert(error.response.data);
@@ -331,8 +331,7 @@ Vue.component("viewApartment", {
 <div id="viewApartment" class="d-flex p-2 justify-content-center">
     <div class="d-flex flex-column p-2">
         <div class="d-flex flex-column p-2">
-            <h4>Domaćin{{apartment.host}}</h4>
-            <h2 v-if="reports > 3">*markiran zbog sumnjivih aktivnosti*</h2>
+            <h4>Domaćin: {{apartment.host}}</h4>
             <h5 class="card-title">Status: {{apartment.status}}</h5>
     		<h5 class="card-title">Tip: {{apartment.type}}</h5>
             </div>
@@ -341,7 +340,7 @@ Vue.component("viewApartment", {
             <p class="card-text">Broj gostiju: {{apartment.numOfGuests}}</p>
             <p class="card-text">Broj soba: {{apartment.numOfRooms}}</p>
             <p class="card-text">Cena po noćenju: {{apartment.pricePerNight}}</p>
-            <p class="card-text">Adresa: {{apartment.location}}</p>
+            <p class="card-text">Adresa: {{apartment.location.address.address}}</p>
             <div class="d-flex flex-row p-2">
                 <a  href="#" v-on:click.prevent="editApartment" class="btn btn-primary m-2">Izmjeni</a> 
             </div>
@@ -351,36 +350,54 @@ Vue.component("viewApartment", {
     methods: {
        
         editApartment: function() {
-            window.location.href = "admin.html#/apartments/edit" + this.$route.params.host
+            window.location.href = "admin.html#/apartment/edit/" + this.$route.params.id
         },
+        
+        getPictureAddres: function(i){
+			return 'slike/'+i.pictures[0];
+		},
+		
+		
         
     }
 });
+
 Vue.component("editApartment", {
     data: function() {
     	return{
         apartment: {},
+        dates:[],
+        locations:[],
+        amenities:[],
     	}
     },
     mounted() {
+    	let id = this.$route.params.id
         axios
-        .get('/Apartment')
+        .get('/Apartments?id='+id)
         .then(response => {
       		  	this.apartment = response.data;
+      		  	
         			console.log(this.apartment);
         })
         .catch(error => {
             alert("Greska prilikom dobavljanja apartmana.")
         });
+    	
         axios
         .get('/Amenities')
         .then(response => {
       		  	this.amenities = response.data;
+        }).catch(error => {
+            alert("Greska prilikom dobavljanja sadrzaja	.")
         });
+        
         axios
         .get('/Locatios')
         .then(response => {
     		  	this.locations = response.data;
+        }).catch(error => {
+            alert("Greska prilikom dobavljanja lokacija.")
         });
     },
     template: 
@@ -391,14 +408,14 @@ Vue.component("editApartment", {
 				<div class="d-flex flex-row row-sm-2">
 					<div class="d-flex flex-column p-2">
 						<label>Tip:	</label>
-						<select v-model="apartment.type" required>
+						<select v-model="apartment.type" >
 						<option value="APARTMAN">APARTMAN</option>
 						<option value="ROOM" selected>ROOM</option>
 						</select>
 					</div>
 					<div class="d-flex flex-column p-2">
 						<label>Status:</label>
-						<select v-model="apartment.status" required>
+						<select v-model="apartment.status" >
 						<option value="ACTIVE">ACTIVE</option>
 						<option value="INACTIVE">INACTIVE</option>
 						</select>
@@ -411,7 +428,7 @@ Vue.component("editApartment", {
 					</div>
 					<div class="d-flex flex-column p-2">
 						<label>Broj gostiju: </label>
-						<input type="number" step="1" min="1" max="10" value="1" v-model="apartment.numOfGuest" required /> 
+						<input type="number" step="1" min="1" max="10" value="1" v-model="apartment.numOfGuests" required /> 
 					</div>
 				</div>
 				<div class="d-flex flex-row p-2">
@@ -431,7 +448,7 @@ Vue.component("editApartment", {
 				<v-date-picker
 				  mode='multiple'
 				  v-model='dates'
-				  required
+				  
 				  /></div>
 				<div class="d-flex flex-row p-2">
 					<label>Slike: </label>
@@ -455,8 +472,8 @@ Vue.component("editApartment", {
 					</ul>
 				</div></br>
 				<div class="d-flex flex-row">
-					<select v-model="apartment.selectedLocation" required>
-						<option v-for="l in locations"   v-bind:value="l">{{l.address.address}}</option>
+					<select v-model="apartment.selectedLocation" >
+						<option v-for="l in locations" v-bind:value="l">{{l.address.address}}</option>
 					</select>
 				</div></br>
 				<button type="button" class="btn btn-success" v-on:click="editApartment()">Izmeni apartman</button>
