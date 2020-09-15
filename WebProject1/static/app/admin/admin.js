@@ -1,8 +1,8 @@
 Vue.component("users", {
     data: function() {
         return {
-            hosts: null,
-            guests: null
+            hosts: {},
+            guests: {}
         }
     },
     mounted() {
@@ -254,7 +254,7 @@ Vue.component("searchUser", {
 Vue.component("apartments", {
     data: function() {
         return {
-            apartments: null,
+            apartments: {},
             picture:''
         }
     },
@@ -358,7 +358,9 @@ Vue.component("viewApartment", {
 });
 Vue.component("editApartment", {
     data: function() {
-        apartment{}
+    	return{
+        apartment: {},
+    	}
     },
     mounted() {
         axios
@@ -473,7 +475,7 @@ Vue.component("editApartment", {
             })
             .catch(error => {
                 alert(error.response.data);
-            })
+            });
             
         },
     }
@@ -539,7 +541,7 @@ Vue.component("searchApartment", {
 Vue.component("amenities", {
     data: function() {
         return {
-            amenities: null,
+            amenities:{},
         }
     },
     mounted() {
