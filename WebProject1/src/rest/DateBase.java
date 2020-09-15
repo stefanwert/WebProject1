@@ -16,11 +16,12 @@ public class DateBase {
 	private static DateBase singletonDateBase=null;
 	
 	private int apartmentNextId=0;
+	private int amenitiesNextId=0;
 	private HashMap<String, Host> hosts = new HashMap<String, Host>();
 	private HashMap<String, Guest> guests = new HashMap<String, Guest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	private HashMap<Integer,Apartment> apartments=new HashMap<Integer,Apartment>();
-	private HashMap<String, Amenities> amenities=new HashMap<String, Amenities>();
+	private HashMap<Integer, Amenities> amenities=new HashMap<Integer, Amenities>();
 	//private List<Amenities> amenities=new ArrayList<Amenities>();
 	private List<Location> locations=new ArrayList<Location>();
 
@@ -48,6 +49,14 @@ public class DateBase {
 
 	public void setApartmentNextId(int apartmentNextId) {
 		this.apartmentNextId = apartmentNextId;
+	}
+	
+	public int getAmenitiesNextId() {
+		return amenitiesNextId;
+	}
+
+	public void setAmenitiesNextId(int amenitiesNextId) {
+		this.amenitiesNextId = amenitiesNextId;
 	}
 
 	public HashMap<Integer, Apartment> getApartments() {
@@ -94,11 +103,11 @@ public class DateBase {
 		this.administrators = administrators;
 	}
 	
-	public HashMap<String, Amenities> getAmenities() {
+	public HashMap<Integer, Amenities> getAmenities() {
 		return amenities;
 	}
 
-	public void setAmenities(HashMap<String, Amenities> amenities) {
+	public void setAmenities(HashMap<Integer, Amenities> amenities) {
 		this.amenities = amenities;
 	}
 

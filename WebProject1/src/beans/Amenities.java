@@ -2,7 +2,7 @@ package beans;
 
 public class Amenities {
 
-	private String id;
+	private int id;
 	private String name;
 	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	
@@ -12,18 +12,19 @@ public class Amenities {
 	}
 
 	public Amenities() {}
-	
-	public Amenities(String id, String name) {
+
+	public Amenities(int id, String name, DeletedStatus deletedStatus) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.deletedStatus = deletedStatus;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

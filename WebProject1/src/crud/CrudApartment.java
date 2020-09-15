@@ -52,6 +52,13 @@ public class CrudApartment implements CrudInterface{
 			return g.toJson(appartement);
 		});
 		
+		/*
+		get("/Amenities",(req,res)->{
+			res.type("application/json");
+
+			return g.toJson(s.getAmenities());
+		});*/
+		
 		get("/Locatios",(req,res)->{
 			res.type("application/json");
 			

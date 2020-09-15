@@ -4,6 +4,7 @@ import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -27,10 +28,20 @@ public class Apartment {
 	private String checkInTime;
 	private String checkOutTime;
 	private Status status;
-	private List<Amenities> amenities =new ArrayList<>();
+	//private List<Amenities> amenities =new ArrayList<>();
 	private List<Reservation> reservations =new ArrayList<>();
 	private DeletedStatus deletedStatus=DeletedStatus.ACTIVE;
 	private List<String> pictures=new ArrayList<String>();
+	
+	private HashMap<Integer,Amenities> amenities=new HashMap<Integer,Amenities>();
+
+	public HashMap<Integer, Amenities> getAmenities() {
+		return amenities;
+	}
+
+	public void setAmenities(HashMap<Integer, Amenities> amenities) {
+		this.amenities = amenities;
+	}
 	
 	
 	public List<String> getRentingIntegers() {
@@ -92,7 +103,7 @@ public class Apartment {
 			availableDates.add(date);
 		}
 	}
-	
+	/*
 	@Override
 	public String toString() {
 		return "Apartment [id=" + id + ", type=" + type + ", numOfRooms=" + numOfRooms + ", numOfGuests=" + numOfGuests
@@ -128,6 +139,45 @@ public class Apartment {
 		this.pictures = pictures;
 		this.rentingIntegers = rentingIntegers;
 	} 
+*/
+	
+	@Override
+	public String toString() {
+		return "Apartment [id=" + id + ", type=" + type + ", numOfRooms=" + numOfRooms + ", numOfGuests=" + numOfGuests
+				+ ", location=" + location + ", rentingIntegers=" + rentingIntegers + ", rentingDays=" + rentingDays
+				+ ", availableDates=" + availableDates + ", host=" + host + ", comments=" + comments
+				+ ", pricePerNight=" + pricePerNight + ", checkInTime=" + checkInTime + ", checkOutTime=" + checkOutTime
+				+ ", status=" + status + ", reservations=" + reservations + ", deletedStatus=" + deletedStatus
+				+ ", pictures=" + pictures + ", amenities=" + amenities + "]";
+	}
+
+	public Apartment() {}
+	
+	public Apartment(int id, Type type, int numOfRooms, int numOfGuests, Location location,
+			List<String> rentingIntegers, List<Date> rentingDays, List<Date> availableDates, String host,
+			List<CommentForApartment> comments, double pricePerNight, String checkInTime, String checkOutTime,
+			Status status, List<Reservation> reservations, DeletedStatus deletedStatus, List<String> pictures,
+			HashMap<Integer, Amenities> amenities) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.numOfRooms = numOfRooms;
+		this.numOfGuests = numOfGuests;
+		this.location = location;
+		this.rentingIntegers = rentingIntegers;
+		this.rentingDays = rentingDays;
+		this.availableDates = availableDates;
+		this.host = host;
+		this.comments = comments;
+		this.pricePerNight = pricePerNight;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+		this.status = status;
+		this.reservations = reservations;
+		this.deletedStatus = deletedStatus;
+		this.pictures = pictures;
+		this.amenities = amenities;
+	}
 
 	public int getId() {
 		return id;
@@ -249,14 +299,14 @@ public class Apartment {
 		this.status = status;
 	}
 
-	public List<Amenities> getAmenities() {
+	/*public List<Amenities> getAmenities() {
 		return amenities;
 	}
 
 	public void setAmenities(List<Amenities> amenities) {
 		this.amenities = amenities;
 	}
-
+	*/
 	public List<Reservation> getReservations() {
 		return reservations;
 	}

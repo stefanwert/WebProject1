@@ -44,6 +44,10 @@ public class CrudAmenities implements CrudInterface {
 		post("/Amenities",(req,res)->{
 			res.type("application/json");
 			Amenities a1 = g.fromJson(req.body(), Amenities.class);
+			
+			a1.setId(s.getAmenitiesNextId());
+			s.setAmenitiesNextId(1+s.getAmenitiesNextId());
+			
 			if(AppMain.isIdUnique(a1.getId())) {
 				res.status(403);
 				return g.toJson(null);

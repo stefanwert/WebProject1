@@ -28,6 +28,7 @@ import beans.Location;
 import beans.Address;
 import beans.Administrator;
 import crud.CrudAdministrator;
+import crud.CrudAmenities;
 import crud.CrudApartment;
 import crud.CrudGuest;
 import crud.CrudHost;
@@ -75,7 +76,7 @@ public class AppMain {
 		}
 	}
 	
-	public static boolean isIdUnique(String id) {
+	public static boolean isIdUnique(int id) {
 		if(s.getAmenities().containsKey(id)) {
 			return true;
 		}
@@ -119,7 +120,7 @@ public class AppMain {
 		(new CrudReservation()).activeCrud(s, g);
 		(new CrudPicture()).activeCrud(s, g);
 		(new CrudUsers()).activeCrud(s, g);
-
+		(new CrudAmenities()).activeCrud(s, g);
 	}
 
 }
