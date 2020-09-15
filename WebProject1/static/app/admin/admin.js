@@ -249,9 +249,7 @@ Vue.component("searchUser", {
 
     }
 });
-
-
-
+//**************************************************APARTMENTS*****************************************************
 
 Vue.component("apartments", {
     data: function() {
@@ -481,7 +479,7 @@ Vue.component("searchApartment", {
 
     }
 });
-
+//**************************************************AMENITIES******************************************************
 Vue.component("amenities", {
     data: function() {
         return {
