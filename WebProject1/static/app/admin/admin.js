@@ -542,6 +542,7 @@ Vue.component("amenities", {
     data: function() {
         return {
             amenities:{},
+            addName:''
         }
     },
     mounted() {
@@ -566,14 +567,12 @@ Vue.component("amenities", {
 				<td> {{i.deletedStatus}}</td>
 			</tr>
 		</table><br />
-		<div class="d-flex flex-row">
-					<div class="d-flex flex-column p-2">
-    					<button type="button" class="btn btn-info" v-on:click="addAmenity" >Dodaj sadržaj</button><br /> <br /> 
-					</div>
-					<div class="d-flex flex-column p-2">
-						<button type="button" class="btn btn-danger" v-on:click="deleteAmenity" >Obriši sadržaj</button><br /> <br /> 
-					</div>
+    	<button type="button" class="btn btn-danger" v-on:click="deleteAmenity" >Obriši sadržaj</button><br /> <br /> 
+		<div class="d-flex flex-row row-sm-2 p-2">
+				<label>Sadržaj apartmana: </label>
+				<input type="text" v-model="addName">		
 		</div>
+		<button type="button" class="btn btn-info" v-on:click="addAmenity" >Dodaj sadržaj</button><br /> <br /> 
 	</div>
 </div>	
 `,  
@@ -598,6 +597,20 @@ methods: {
 		        	}
 		          )
 			}
-		} 
+		},
+		addAmenity: function(){
+			ret={};
+			ret.name=this.addName;
+			axios
+			.post('/Amenities',ret)
+			.then(response => {
+				if(response.data!=null)
+				{
+					$("#addAmenity").after("<p style=\"color:white\">USPESNO STE SE LOGOVALI !!!<p>");
+					this.name='';
+				}
+			});
+		}
     }
 });
+
