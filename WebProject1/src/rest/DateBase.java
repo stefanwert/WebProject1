@@ -20,7 +20,8 @@ public class DateBase {
 	private HashMap<String, Guest> guests = new HashMap<String, Guest>();
 	private HashMap<String, Administrator> administrators = new HashMap<String, Administrator>();
 	private HashMap<Integer,Apartment> apartments=new HashMap<Integer,Apartment>();
-	private List<Amenities> amenities=new ArrayList<Amenities>();
+	private HashMap<String, Amenities> amenities=new HashMap<String, Amenities>();
+	//private List<Amenities> amenities=new ArrayList<Amenities>();
 	private List<Location> locations=new ArrayList<Location>();
 
 	
@@ -33,13 +34,13 @@ public class DateBase {
 		this.locations = locations;
 	}
 
-	public List<Amenities> getAmenities() {
-		return amenities;
-	}
+	//public List<Amenities> getAmenities() {
+		//return amenities;
+	//}
 
-	public void setAmenities(List<Amenities> amenities) {
-		this.amenities = amenities;
-	}
+	//public void setAmenities(List<Amenities> amenities) {
+		//this.amenities = amenities;
+	//}
 
 	public int getApartmentNextId() {
 		return apartmentNextId;
@@ -91,6 +92,14 @@ public class DateBase {
 
 	public void setAdministrators(HashMap<String, Administrator> administrators) {
 		this.administrators = administrators;
+	}
+	
+	public HashMap<String, Amenities> getAmenities() {
+		return amenities;
+	}
+
+	public void setAmenities(HashMap<String, Amenities> amenities) {
+		this.amenities = amenities;
 	}
 
 }

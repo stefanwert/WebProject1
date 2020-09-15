@@ -75,6 +75,15 @@ public class AppMain {
 		}
 	}
 	
+	public static boolean isIdUnique(String id) {
+		if(s.getAmenities().containsKey(id)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public static void main(String[] args) throws IOException {
 		
 		

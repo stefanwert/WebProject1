@@ -19,10 +19,13 @@ const Users = { template: '<users></users>' }
 const ViewUser = { template: '<viewUser></viewUser>' }
 const EditUser = { template: '<editUser></editUser>' }
 const SearchUser = { template: '<searchUser></searchUser>' }
-const HostAdd = { template: '<addHost></addHost>' }
+const AddHost = { template: '<addHost></addHost>' }
 const Host = { template: '<host></host>' }
 const Guest={template: '<guest></guest>'}
-
+const Apartments = { template: '<apartments></apartments>' }
+const ViewApartment = { template: '<viewApartment></viewApartment>' }
+const EditApartment = { template: '<editApartment></editApartment>' }
+const Amenities = { template: '<amenities></amenities>' }
 
 const router = new VueRouter({
     mode: 'hash',
@@ -33,10 +36,13 @@ const router = new VueRouter({
         { path: '/edit/:username', component: EditUser },
         { path: '/search', component: SearchUser },
         { path: '/users', component: Users },
-	    { path: '/addHost', component: HostAdd },
+	    { path: '/addHost', component: AddHost },
 	    { path: '/host', component: Host},
 	    { path: '/guest',component:Guest},
-
+	    { path: '/apartments',component:Apartments},
+	    { path: '/apartment/:username',component:ViewApartment},
+	    { path: '/apartment/edit/:username',component:EditApartment},
+	    { path: '/amenities',component:Amenities},
 
     ]
 });
