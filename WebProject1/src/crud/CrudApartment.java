@@ -173,10 +173,6 @@ public class CrudApartment implements CrudInterface{
 			
 			Apartment appartmant=s.getApartments().get(id);
 			if(appartmant!=null) {
-				for (Reservation r : appartmant.getReservations()) {
-					//obrisi sve rezervacije
-				}
-				
 				s.getApartments().get(id).setDeletedStatus(DeletedStatus.DELETED);
 				s.getHosts().get(appartmant.getHost()).getApartments().get(appartmant.getId()).setDeletedStatus(DeletedStatus.DELETED);	//setujem da je obrisano i unutar host-a
 				return g.toJson(appartmant);
