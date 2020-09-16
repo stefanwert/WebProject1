@@ -331,23 +331,32 @@ Vue.component("viewApartment", {
     },
     template: 
 `
-<div id="viewApartment" class="d-flex p-2 justify-content-center">
-    <div class="d-flex flex-column p-2">
-        <div class="d-flex flex-column p-2">
-            <h4>Domaćin: {{apartment.host}}</h4>
-            <h5 class="card-title">Status: {{apartment.status}}</h5>
-    		<h5 class="card-title">Tip: {{apartment.type}}</h5>
-            </div>
-    			<img style="height: 200px; width: 100%; display: block;" :src=getPictureAddres(apartment) alt="Card image">
-    		</div>
-            <p class="card-text">Broj gostiju: {{apartment.numOfGuests}}</p>
-            <p class="card-text">Broj soba: {{apartment.numOfRooms}}</p>
-            <p class="card-text">Cena po noćenju: {{apartment.pricePerNight}}</p>
-            <p class="card-text">Adresa: {{apartment.location.address.address}}</p>
-            <div class="d-flex flex-row p-2">
-                <a  href="#" v-on:click.prevent="editApartment" class="btn btn-primary m-2">Izmjeni</a> 
-            </div>
-        </div>                     
+<div class="d-flex justify-content-center align-items-center">
+<div class="d-flex flex-column ">
+    		<h3>Pregled apartmana apartmana</h3>
+				<div class="d-flex flex-row row-sm-2">
+					<div class="d-flex flex-column p-2">
+					    
+						<p class="card-text">Domaćin: {{apartment.host}}</p>
+            			<p class="card-text">Status: {{apartment.status}}</p>
+    					<p class="card-text">Tip: {{apartment.type}}</p>
+					</div>
+				</div>
+				<div class="d-flex flex-row row-2">
+					<div class="d-flex flex-column">
+    					<img style="margin-left: auto; margin-right: auto; display: block; width:400px;height:200px;" :src=getPictureAddres(apartment) alt="Card image">
+					</div>
+				</div>
+    			<div class="d-flex flex-row row-sm-2">
+					<div class="d-flex flex-column p-2">
+    					<p class="card-text">Broj gostiju: {{apartment.numOfGuests}}</p>	
+            			<p class="card-text">Broj soba: {{apartment.numOfRooms}}</p>
+            			<p class="card-text">Cena po noćenju: {{apartment.pricePerNight}}</p>
+            			<p class="card-text">Adresa: {{apartment.location.address.address}}</p>	
+    				</div>
+				</div>
+              <a  href="#" v-on:click.prevent="editApartment" class="btn btn-primary m-2">Izmjeni</a> 
+     </div>                  
 </div>
 `,
     methods: {
