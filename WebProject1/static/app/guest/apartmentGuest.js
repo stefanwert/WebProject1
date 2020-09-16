@@ -3,15 +3,50 @@ Vue.component("apartment-guest", {
 		    return {
 		    	apartments: null,
 		      	selectedApartment: {},
-		      	picture:''
+		      	picture:'',
+		      	listaApartmana:[],
+		      	filterLista:[]
 		    	
 		    }
 	},
 	template: ` 
 <div>
 		<div class="row">
-			<template v-for="i in apartments" >
-				<div class="column">
+			<table >
+				<tr >
+				 <td @mouseover="showmenu('menuFilter')" @mouseleave="hidemenu('menuFilter')">
+					 <p><b>Filter</b></p>
+				  <table class="menu"  id="menuFilter" border="1">
+					<tr>
+						<td class="menu">
+							<b>Cena</b>
+						</td>
+						<td class="menu">
+							<table>
+								<tr>
+									<td class="menu"><b>OD</b></td>
+									<td class="menu"><input id="odcena" type="number" name="odcena"></td>
+									<td class="menu"><b>DO</b></td>
+									<td class="menu"><input id="docena" type="number" name="docena"></td>
+								</tr>
+								<tr>
+								</tr>
+							</table>
+
+						</td>
+					</tr>
+					
+					
+					<tr >
+						<td class="menu"  colspan="2"><button class="dugme" name="buttonFiltriranja" v-on:click="pretragaiFilter">Filtriraj</button></td>
+					</tr>
+				  </table>
+				 </td>
+				</tr>
+			</table>
+		</div>
+		<div class="row">
+				<div class="column" v-for="i in novaLista">
 					<img v-on:click="showApartment(i)" style="height: 400px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
 					<div class="card-body">
 						<p class="card-text" style="color:green;">
@@ -20,11 +55,15 @@ Vue.component("apartment-guest", {
 						</p>
 					</div>
 				</div>
-			</template>
 		</div>
 </div>			  
 `
-	, 
+	, computed:{
+		novaLista:function (){
+			return this.filterLista;
+			
+		}
+	},
 	methods : {
 		init : function() {
 			this.ap = {};
@@ -52,15 +91,49 @@ Vue.component("apartment-guest", {
 		},
 		getPictureAddres: function(i){
 			return 'slike/'+i.pictures[0];
-		}
+		},
+		showmenu: function(data){
+            document.getElementById(data).style.display="block";
+        },
+        hidemenu: function(data){
+			document.getElementById(data).style.display="none";
+        },
+        pretragaiFilter:function(){
+        	axios
+            .get('/AllApartments')
+            .then(response => {
+          		  	this.apartments = response.data;
+            });
+        	 var odRam=document.getElementById("odcena").value;
+        	 var doRam=document.getElementById("docena").value;
+        	 odRam=parseInt(odRam);
+        	 doRam=parseInt(doRam);
+        	 var lista=[];
+        	 this.filterLista = []
+        	 for(a of this.apartments){
+        		 if(odRam<=a.pricePerNight && doRam>=a.pricePerNight){
+        			this.filterLista.push(a);
+        		 }
+        	 }
+        	 
+        	 
+        	 this.apartments.shift();
+        	 console.log(this.apartments);
+        	 
+        },
+        
 	},
 	
 	mounted () {
+		document.getElementById("menuFilter").style.display="none";
         axios
           .get('/AllApartments')
           .then(response => {
         		  	this.apartments = response.data;
-          			console.log(this.ap);
+        		  	for(a of this.apartments){
+        		  		this.filterLista.push(a);
+        		  	}
           });
+        
     }
 });

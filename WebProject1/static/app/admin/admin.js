@@ -379,7 +379,7 @@ Vue.component("editApartment", {
     	return{
         apartment: {},
         dates:[],
-        locations:{},
+        locations:null,
         amenities:[],
     	}
     },
@@ -408,6 +408,7 @@ Vue.component("editApartment", {
         .get('/Locatios')
         .then(response => {
     		  	this.locations = response.data;
+    		  	console.log(this.locations);
         }).catch(error => {
             alert("Greska prilikom dobavljanja lokacija.")
         });
@@ -469,7 +470,7 @@ Vue.component("editApartment", {
 				<!--<div class="d-flex flex-row">
 					<button type="button" class="btn btn-primary w-50" v-on:click="submitFile()">Pošalji sliku</button>
 				</div></br>-->
-				<div class="d-flex flex-row p-2">
+				<!--<div class="d-flex flex-row p-2">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
 					Sadržaj apartmana<span class="caret"></span></button>
 					<ul class="dropdown-menu">
@@ -482,10 +483,10 @@ Vue.component("editApartment", {
 							</table>
 						</li>
 					</ul>
-				</div></br>
+				</div></br>-->
 				<div class="d-flex flex-row">
-					<select v-model="apartment.selectedLocation" >
-						<option v-for="l in locations" v-bind:value="l">{{l.address.address}}</option>
+					<select v-model="apartment.location" >
+						<option v-for="l in locations" v-bind:value="l" >{{l.address.address}}</option>
 					</select>
 				</div></br>
 				<button type="button" class="btn btn-success" v-on:click="editApartment()">Izmeni apartman</button>
@@ -516,6 +517,12 @@ Vue.component("editApartment", {
         		if(a==amenities){
         			return true;
         		}
+        	}
+        	return false;
+        },
+        checkLocation: function(location){
+        	if(location.address.address==this.apartment.location.address.address){
+        		return true;
         	}
         	return false;
         }
