@@ -34,7 +34,28 @@ Vue.component("apartment-guest", {
 							</table>
 
 						</td>
+						
 					</tr>
+					<tr>
+						<td class="menu">
+							<b>Broj soba</b>
+						</td>
+						<td class="menu">
+							<table>
+								<tr>
+									<td class="menu"><b>OD</b></td>
+									<td class="menu"><input id="odsobe" type="number" name="odsobe"></td>
+									<td class="menu"><b>DO</b></td>
+									<td class="menu"><input id="dosobe" type="number" name="odsobe"></td>
+								</tr>
+								<tr>
+								</tr>
+							</table>
+
+						</td>
+						
+					</tr>
+					
 					
 					
 					<tr >
@@ -52,6 +73,7 @@ Vue.component("apartment-guest", {
 						<p class="card-text" style="color:green;">
 							Broj soba: {{i.numOfRooms}} 
 							</br>Cena po danu je: {{i.pricePerNight}}
+							</br>Broj gostiju: {{i.numOfGuests}}
 						</p>
 					</div>
 				</div>
@@ -106,19 +128,40 @@ Vue.component("apartment-guest", {
             });
         	 var odRam=document.getElementById("odcena").value;
         	 var doRam=document.getElementById("docena").value;
-        	 odRam=parseInt(odRam);
-        	 doRam=parseInt(doRam);
-        	 var lista=[];
-        	 this.filterLista = []
-        	 for(a of this.apartments){
-        		 if(odRam<=a.pricePerNight && doRam>=a.pricePerNight){
-        			this.filterLista.push(a);
-        		 }
+        	 if(!(odRam=="" || doRam=="")){
+        		 odRam=parseInt(odRam);
+            	 doRam=parseInt(doRam);
+            	 //var lista=[];
+            	 this.filterLista = []
+            	 for(a of this.apartments){
+            		 if(odRam<=a.pricePerNight && doRam>=a.pricePerNight){
+            			this.filterLista.push(a);
+            		 }
+            	 }
+        	 }else{
+        		 this.filterLista=this.apartments;
+        	 }
+        	 
+        	 var list = this.filterLista.slice();
+        	 this.filterLista=[];
+        	 var odsobe=document.getElementById("odsobe").value;
+        	 var dosobe=document.getElementById("dosobe").value;
+        	 if(!(odsobe=="" || dosobe=="")){
+        		 odsobe=parseInt(odsobe);
+        		 dosobe=parseInt(dosobe);
+            	 //var lista=[];
+            	 this.filterLista = []
+            	 for(a of list){
+            		 if(odsobe<=a.numOfRooms && dosobe>=a.numOfRooms){
+            			this.filterLista.push(a);
+            		 }
+            	 }
+        	 }else{
+        		 this.filterLista=list;
         	 }
         	 
         	 
-        	 this.apartments.shift();
-        	 console.log(this.apartments);
+        	 
         	 
         },
         

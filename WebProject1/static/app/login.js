@@ -20,7 +20,7 @@ Vue.component("login", {
 			      <label for="exampleInputPassword1">Lozinka</label>
 			      <input type="password" class="form-control" v-model="password" onfocus="this.value=''" id="password" placeholder="Lozinka" required >
 			    </div>
-			    <button type="submit" id="login" v-on:click="login()"  class="btn btn-primary">Prijavite se</button>
+			    <button  id="login" v-on:click="login()"  class="btn btn-primary">Prijavite se</button>
 			  </fieldset>
 			</form>	 
 		</div>

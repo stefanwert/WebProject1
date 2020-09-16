@@ -110,7 +110,7 @@ Vue.component("add-apartment", {
 			this.submitFile();
 			ret.type=this.type;
 			ret.numOfRooms=this.numOfRooms;
-			ret.numOfGuests=this.numOfGuests;
+			ret.numOfGuests=this.numOfGuest;
 			ret.pricePerNight=this.pricePerNight;
 			ret.checkInTime=this.checkInTime.toString();
 			ret.checkOutTime=this.checkOutTime.toString();
