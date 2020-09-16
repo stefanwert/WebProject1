@@ -38,7 +38,7 @@ Vue.component("addHost", {
 				  </div>
 				  <div class="form-group">
 				    <label>Pol: </label>
-				    <select name="pol" id="gender" v-model="gender">
+				    <select name="pol" id="gender" v-model="gender" required>
 					    <option value="musko" selected>Muško</option>
 					    <option value="zensko">Žensko</option>
 					</select>
@@ -56,7 +56,7 @@ Vue.component("addHost", {
 		register: function(){
 			if(!(this.password===this.confirmPassword))
 			{
-				alert("Lozinke se ne podudaraju");
+				$("#register").after("<p style=\"color:white\">Lozinke se ne podudaraju!<p>");
 				return;
 			}
 			ret={}
@@ -70,7 +70,7 @@ Vue.component("addHost", {
 			.then(response => {
 				if(response.data!=null)
 				{
-					$("#register").after("<p style=\"color:white\">USPESNO STE SE LOGOVALI !!!<p>");
+					$("#register").after("<p style=\"color:white\">Uspešno ste se registrovali!<p>");
 					this.username='';
 					this.password='';
 					this.firstName='';
@@ -79,8 +79,8 @@ Vue.component("addHost", {
 				}
 			})
 			.catch(error =>{
-				$("#register").after("<p style=\"color:white\">VEC JE ZAUZETO KORISNICKO IME !!!<p>");
-				});
+				$("#register").after("<p style=\"color:white\">Korisničko ime je već zauzeto!<p>");
+			});
 		}
 	},
 

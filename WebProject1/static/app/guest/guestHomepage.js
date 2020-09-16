@@ -1,3 +1,17 @@
+var adminPage = new Vue({
+    el: '#menuGuest',
+    data: {
+          
+    },
+
+    mounted() {
+        
+    },
+    
+    methods: {
+    	
+    },
+});
 const ViewProfile = { template: '<viewProfile></viewProfile>' }
 const AppartmentGuest={template: '<apartment-guest></apartment-guest>'}
 const ApartmentDetails={template:'<apartment-detail></apartment-detail>'}

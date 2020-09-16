@@ -134,7 +134,13 @@ Vue.component("add-apartment", {
 			console.log(
 			JSON.stringify(ret));
 			axios
-			.post('/Apartments',ret);
+			.post('/Apartments',ret)
+			.then(response => {
+				if(response.data!=null)
+				{
+					$("#add").after("<p style=\"color:white\">Uspešno ste dodali apartman!<p>");
+				}
+			});
 		},
 		getValue:function(i){
 			return i.name;
