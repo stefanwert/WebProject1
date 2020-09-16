@@ -17,8 +17,8 @@ Vue.component("login", {
 			      <input type="text" class="form-control" v-model="username" id="username" required  placeholder="Unesite korisničko ime" >
 			    </div>
 			    <div class="form-group">
-			      <label for="exampleInputPassword1">Šifra</label>
-			      <input type="password" class="form-control" v-model="password" id="password" placeholder="Šifra" required >
+			      <label for="exampleInputPassword1">Lozinka</label>
+			      <input type="password" class="form-control" v-model="password" onfocus="this.value=''" id="password" placeholder="Lozinka" required >
 			    </div>
 			    <button type="submit" id="login" v-on:click="login()"  class="btn btn-primary">Prijavite se</button>
 			  </fieldset>
@@ -30,7 +30,6 @@ Vue.component("login", {
 		login: function (){
 			this.v.userName=this.username;
 			this.v.password=this.password;
-			alert("Login");
 			axios
 	          .post('/Login',this.v)
 	          .then(
@@ -43,12 +42,10 @@ Vue.component("login", {
 	    				$("#login").before("<p style=\"color:red\">Uneto korisničko ime ili lozinka je pogresna<p>");
 	    			}
 	        	}
-	          )
-	          
-			
+	          );
 		}
 		
-	}
+	},
 	
 });
 

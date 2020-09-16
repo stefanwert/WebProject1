@@ -116,11 +116,11 @@ Vue.component("viewProfile", {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
+                  <br />
                     <div class="col-md-8">
                         <input type="button" class="btn btn-primary" v-on:click="editUser()" value="Sačuvaj promene">
                         <span></span>
-                        <input type="reset" class="btn btn-danger" value="Odustani" href="#/viewProfile">
+                        <input type="reset" class="btn btn-danger" value="Odustani" href="#/AppartmentGuest">
                     </div>
                 </div>
             </form>
@@ -134,18 +134,19 @@ Vue.component("viewProfile", {
         	
             if(!(this.loggedin.password==this.loggedin.confirmPassword))
 			{
-				alert("Lozinke se ne podudaraju");
-				return;
+				$("#editUser").after("<p style=\"color:white\">Lozinke se ne podudaraju!<p>");
+            	alert("Lozinke se ne podudaraju");
+            	return;
 			}
             axios
             .put('/Gest',this.loggedin)
             .then(response => {
                 //this.guest = response.data.guest;
-            })
-            .catch(error => {
-                alert(error.response.data);
-            })
-            
+            	if(response.data!=null)
+				{
+					$("#editUser").after("<p style=\"color:white\">Uspešno ste izmenili podatke!<p>");
+				}
+            });
         },
         reload() {
         	if(!(this.loggedin.password==this.loggedin.confirmPassword))

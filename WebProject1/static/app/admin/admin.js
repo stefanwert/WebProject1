@@ -420,14 +420,14 @@ Vue.component("editApartment", {
 				<div class="d-flex flex-row row-sm-2">
 					<div class="d-flex flex-column p-2">
 						<label>Tip:	</label>
-						<select v-model="apartment.type" >
+						<select v-model="apartment.type" required>
 						<option value="APARTMAN">APARTMAN</option>
-						<option value="ROOM" selected>ROOM</option>
+						<option value="ROOM">ROOM</option>
 						</select>
 					</div>
 					<div class="d-flex flex-column p-2">
 						<label>Status:</label>
-						<select v-model="apartment.status" >
+						<select v-model="apartment.status" required>
 						<option value="ACTIVE">ACTIVE</option>
 						<option value="INACTIVE">INACTIVE</option>
 						</select>
@@ -501,6 +501,10 @@ Vue.component("editApartment", {
             .put('/Apartment',this.apartment)
             .then(response => {
                 //this.apartment = response.data.apartment;
+            	if(response.data!=null)
+				{
+					$("#editApartment").after("<p style=\"color:white\">Uspešno ste izmenili apartman!<p>");
+				}
             })
             .catch(error => {
                 alert(error.response.data);
@@ -645,7 +649,7 @@ methods: {
 			.then(response => {
 				if(response.data!=null)
 				{
-					$("#addAmenity").after("<p style=\"color:white\">USPESNO STE SE LOGOVALI !!!<p>");
+					$("#addAmenity").after("<p style=\"color:white\">Uspeštno ste dodali sadržaj!!!<p>");
 					this.name='';
 				}
 			});

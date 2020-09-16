@@ -16,7 +16,7 @@ Vue.component("registration", {
 		<div class="d-flex flex-column col-sm-3">
 			<form>
 			<fieldset>
-			    <legend v-if="role === 'ADMIN'">Registrujte domacina</legend>
+			    <legend v-if="role === 'ADMIN'">Registrujte domaćina</legend>
 			    <legend v-if="role === null">Registrujte se</legend>
 				  <div class="form-group">
 				    <label>Ime</label>
@@ -36,11 +36,11 @@ Vue.component("registration", {
 				  </div>
 				  <div class="form-group">
 				    <label>Potvrdi lozinku</label>
-				    <input type="password" class="form-control" id="confirmPassword" v-model="confirmPassword" v-model="confirmPassword" onfocus="this.value=''" placeholder="Potvrdite lozinku" required>
+				    <input type="password" class="form-control" id="confirmPassword" v-model="confirmPassword" onfocus="this.value=''" placeholder="Potvrdite lozinku" required>
 				  </div>
 				  <div class="form-group">
 				    <label>Pol: </label>
-				    <select name="pol" id="gender" v-model="gender">
+				    <select name="pol" id="gender" v-model="gender" required>
 					    <option value="musko" selected>Muško</option>
 					    <option value="zensko">Žensko</option>
 					</select>
@@ -58,7 +58,8 @@ Vue.component("registration", {
 		register: function(){
 			if(!(this.password==this.confirmPassword))
 			{
-				alert("Lozinke se ne podudaraju");
+				//alert("Lozinke se ne podudaraju");
+				$("#register").after("<p style=\"color:white\">Lozinke se ne podudaraju!<p>");
 				return;
 			}
 			ret={}
@@ -72,7 +73,7 @@ Vue.component("registration", {
 			.then(response => {
 				if(response.data!=null)
 				{
-					$("#register").after("<p style=\"color:white\">USPESNO STE SE LOGOVALI !!!<p>");
+					$("#register").after("<p style=\"color:white\">Uspešno ste se registrovali!<p>");
 					this.username='';
 					this.password='';
 					this.firstName='';
@@ -81,7 +82,7 @@ Vue.component("registration", {
 				}
 			})
 			.catch(error =>{
-				$("#register").after("<p style=\"color:white\">VEC JE ZAUZETO KORISNICKO IME !!!<p>");
+				$("#register").after("<p style=\"color:white\">Korisničko ime je već zauzeto!<p>");
 				});
 		}
 	},

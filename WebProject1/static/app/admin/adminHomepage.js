@@ -9,9 +9,7 @@ var adminPage = new Vue({
     },
     
     methods: {
-    	logout(){
-    		alert("LOGOUT");
-    	}
+    	
     },
 });
 
