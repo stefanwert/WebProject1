@@ -289,7 +289,7 @@ Vue.component("apartments", {
     								<li class="list-group-item">Broj gostiju: {{apartment.numOfGuests}}</li>
     								<li class="list-group-item">Broj soba: {{apartment.numOfRooms}}</li>
     								<li class="list-group-item">Cena po noćenju: {{apartment.pricePerNight}}</li>
-    								<li class="list-group-item">Adresa: {{apartment.location}}</li>
+    								<li class="list-group-item">Adresa: {{apartment.location.address.address}}</li>
   								</ul>
     		                </div>
     	            </div>

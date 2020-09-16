@@ -55,7 +55,25 @@ Vue.component("apartment-guest", {
 						</td>
 						
 					</tr>
-					
+					<tr>
+						<td class="menu">
+							<b>Broj gostiju</b>
+						</td>
+						<td class="menu">
+							<table>
+								<tr>
+									<td class="menu"><b>OD</b></td>
+									<td class="menu"><input id="odgostiju" type="number" name="odsobe"></td>
+									<td class="menu"><b>DO</b></td>
+									<td class="menu"><input id="dogostiju" type="number" name="odsobe"></td>
+								</tr>
+								<tr>
+								</tr>
+							</table>
+
+						</td>
+						
+					</tr>
 					
 					
 					<tr >
@@ -141,7 +159,7 @@ Vue.component("apartment-guest", {
         	 }else{
         		 this.filterLista=this.apartments;
         	 }
-        	 
+        	 //odavde je za broj soba
         	 var list = this.filterLista.slice();
         	 this.filterLista=[];
         	 var odsobe=document.getElementById("odsobe").value;
@@ -150,7 +168,6 @@ Vue.component("apartment-guest", {
         		 odsobe=parseInt(odsobe);
         		 dosobe=parseInt(dosobe);
             	 //var lista=[];
-            	 this.filterLista = []
             	 for(a of list){
             		 if(odsobe<=a.numOfRooms && dosobe>=a.numOfRooms){
             			this.filterLista.push(a);
@@ -159,8 +176,23 @@ Vue.component("apartment-guest", {
         	 }else{
         		 this.filterLista=list;
         	 }
-        	 
-        	 
+        	 //odavde je za broj gostiju
+        	 var list = this.filterLista.slice();
+        	 this.filterLista=[];
+        	 var odsobe=document.getElementById("odgostiju").value;
+        	 var dosobe=document.getElementById("dogostiju").value;
+        	 if(!(odsobe=="" || dosobe=="")){
+        		 odsobe=parseInt(odsobe);
+        		 dosobe=parseInt(dosobe);
+            	 //var lista=[];
+            	 for(a of list){
+            		 if(odsobe<=a.numOfGuests && dosobe>=a.numOfGuests){
+            			this.filterLista.push(a);
+            		 }
+            	 }
+        	 }else{
+        		 this.filterLista=list;
+        	 }
         	 
         	 
         },
