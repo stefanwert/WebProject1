@@ -74,7 +74,22 @@ Vue.component("apartment-guest", {
 						</td>
 						
 					</tr>
-					
+					<tr>
+						<td class="menu">
+							<b>Po lokaciji</b>
+						</td>
+						<td class="menu">
+							<table>
+								<tr>
+									<td class="menu"><input id="lokacija" type="text" ></td>
+								</tr>
+								<tr>
+								</tr>
+							</table>
+
+						</td>
+						
+					</tr>
 					
 					<tr >
 						<td class="menu"  colspan="2"><button class="dugme" name="buttonFiltriranja" v-on:click="pretragaiFilter">Filtriraj</button></td>
@@ -92,6 +107,7 @@ Vue.component("apartment-guest", {
 							Broj soba: {{i.numOfRooms}} 
 							</br>Cena po danu je: {{i.pricePerNight}}
 							</br>Broj gostiju: {{i.numOfGuests}}
+							</br>Lokacija:{{i.location.address.address}}
 						</p>
 					</div>
 				</div>
@@ -187,6 +203,23 @@ Vue.component("apartment-guest", {
             	 //var lista=[];
             	 for(a of list){
             		 if(odsobe<=a.numOfGuests && dosobe>=a.numOfGuests){
+            			this.filterLista.push(a);
+            		 }
+            	 }
+        	 }else{
+        		 this.filterLista=list;
+        	 }
+        	 
+        	 //odavde za lokaciju
+        	 var list = this.filterLista.slice();
+        	 this.filterLista=[];
+        	 var l2=document.getElementById("lokacija").value;
+        	 if(!( l2=="")){
+            	 for(a of list){
+            		 var l1=a.location.address.address;
+            		 l1=l1.toLowerCase();
+            		 l2.toLowerCase();
+            		 if(l1.includes(l2)){
             			this.filterLista.push(a);
             		 }
             	 }
