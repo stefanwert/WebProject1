@@ -13,16 +13,16 @@ var adminPage = new Vue({
     },
 });
 
-const AddApartment = { template: '<add-apartment></add-apartment>' }
 const Apartment = { template: '<apartment></apartment>' }
+const AddApartment = { template: '<add-apartment></add-apartment>' }
 const HostReservation = { template: '<host-reservation></host-reservation>' }
 
 
 const router = new VueRouter({
     mode: 'hash',
     routes: [
-		{ path: '/addApartment', component: AddApartment},
 		{ path: '/apartment', component: Apartment},
+		{ path: '/addApartment', component: AddApartment},
 		{ path: '/HostReservation', component: HostReservation},
 
     ]

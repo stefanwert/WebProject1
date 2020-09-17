@@ -22,11 +22,15 @@ Vue.component("host-reservation", {
 				</tr>
 		</table><br />
 	</div>
-	
-	<button type="button" class="btn btn-success" v-on:click="decline()" >Odbi rezervaciju</button><br /> 
-	<button type="button" class="btn btn-success" v-on:click="accept()" >Prihvati rezervaciju</button><br /> 
-		
-	
+	<div class="d-flex flex-row row-sm-2 justify-content-around">
+			<div class="d-flex flex-column ">
+				<button type="button" class="btn btn-info" v-on:click="accept()" >Prihvati rezervaciju</button><br /> 
+			</div>
+			<div class="d-flex flex-column ">
+				<button type="button" class="btn btn-danger" v-on:click="decline()" >Odbi rezervaciju</button><br /> 
+			</div>
+	</div>
+
 </div>		  
 `
 	, 

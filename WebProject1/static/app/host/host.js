@@ -8,7 +8,7 @@ Vue.component("host", {
 	template: ` 
 <div class="d-flex justify-content-center">
 	<div class="d-flex flex-column ">
-		<legend>Tabela gostiju</legend>
+		<legend>Tabela domaćina</legend>
 		<table  class="table table-hover" border="3">
 		<tr class="table-info" bgcolor="lightgrey">
 			<th>Korisničko ime</th><th>Lozinka</th><th>Ime</th><th>Prezime</th><th>Pol</th></tr>

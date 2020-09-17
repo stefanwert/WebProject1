@@ -43,7 +43,7 @@ Vue.component("addHost", {
 					    <option value="zensko">Žensko</option>
 					</select>
 				  </div>
-				  <button  id="register" v-on:click="register()" class="btn btn-success">Registruj domaćina</button>
+				  <button  id="register" v-on:click="register()" class="btn btn-success">Registruj domaćina</button><br /><br /><br />
 				 </fieldset>
 			</form>	 
 		</div>

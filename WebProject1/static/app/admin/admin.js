@@ -276,13 +276,13 @@ Vue.component("apartments", {
             </div>
             <div class="d-flex flex-row flex-wrap p-2">
     	        <div v-for="apartment in apartments" class="p-2">
-    	            <div class="card border-light mb-3" style="max-width: 20rem;" v-on:click.prevent="show(apartment)">
+    	            <div class="card border-light mb-3" style="max-width: 15rem;" v-on:click.prevent="show(apartment)">
     	                <div class="card-header"><h4>Domaćin: {{apartment.host}}</h4></div>
     		                <div class="card-body">
     		                	<h5 class="card-title">Status: {{apartment.status}}</h5>
     		                    <h5 class="card-title">Tip: {{apartment.type}}</h5>
     		                    </div>
-								  <img style="height: 200px; width: 100%; display: block;" :src=getPictureAddres(apartment) alt="Card image">
+								  <img style="height: 150px; width: 100%; display: block;" :src=getPictureAddres(apartment) alt="Card image">
 								  <div class="card-body">
 								 </div>
     		                    <ul class="list-group list-group-flush">
@@ -490,7 +490,7 @@ Vue.component("editApartment", {
 					</select>
 				</div></br>
 				<button type="button" class="btn btn-success" v-on:click="editApartment()">Izmeni apartman</button>
-				
+			  <br /><br /><br /><br /><br /><br /><br /><br />
 			</fieldset>
 		</form>	 
 	</div>	

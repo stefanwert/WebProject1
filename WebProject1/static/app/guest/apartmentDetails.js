@@ -31,48 +31,57 @@ Vue.component("apartment-detail", {
 		    }
 	},
 	template: ` 
-<div>
-<div class="d-flex justify-content-center">
-	<div class="d-flex flex-column col-sm-3">
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			  <link href="">
-			  <div class="carousel-inner">
-			  		<div  class="carousel-item active">
-				      <img id="pic" class="d-block w-100" :src=address(apartment.pictures[0]) alt="First slide">
-				    </div>
-				    <div  v-for="picture in apartment.pictures.slice(1,apartment.pictures.length)" class="carousel-item " >
-				      <img id="pic" class="d-block w-100" :src=address(picture) >
-				    </div>
-			  </div>
-			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
-		</div>
-		<table>
-			<tr>
-				<td>Slobodni dani:</td>
-				<td id="nista" style="color:black;">
-					  <vuejs-datepicker :disabled-dates=disabledDates v-model="selectedDate"></vuejs-datepicker>
-				</td>
-			</tr>
-			<tr>
-				<td>Broj dana:</td>
-				<td>
-					<input type="number" v-model="numOfDates" min="1" >
-				</td>
-			</tr>
-			<tr>
-				<button type="submit" id="register" v-on:click="reserve()" class="btn btn-success">Registrujte se</button>
-			</tr>
-		</table>
-</div>
-</div>
-</div>		  
+<div class="d-flex justify-content-center align-items-center">
+		<div class="d-flex flex-column ">
+    		<h3>Pregled apartmana apartmana</h3>
+				<div class="d-flex flex-row row-sm-2">
+					<div class="d-flex flex-column p-2">
+					
+    					<p class="card-text">Broj gostiju: {{apartment.numOfGuests}}</p>	
+            			<p class="card-text">Broj soba: {{apartment.numOfRooms}}</p>
+            			<p class="card-text">Cena po noćenju: {{apartment.pricePerNight}}</p>
+            			<p class="card-text">Adresa: {{apartment.location.address.address}}</p>	
+    				</div>
+				</div>
+				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					  <link href="">
+					  <div class="carousel-inner">
+					  		<div  class="carousel-item active">
+						      <img id="pic" class="d-block w-75" :src=address(apartment.pictures[0]) alt="First slide">
+						    </div>
+						    <div  v-for="picture in apartment.pictures.slice(1,apartment.pictures.length)" class="carousel-item " >
+						      <img id="pic" class="d-block w-75" :src=address(picture) >
+						    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+		        </div>
+              <table class="table table-hover">
+					<tr>
+						<td>Slobodni dani:</td>
+						<td id="nista" style="color:black;">
+							  <vuejs-datepicker :disabled-dates=disabledDates v-model="selectedDate"></vuejs-datepicker>
+						</td>
+					</tr>
+					<tr>
+						<td>Broj dana:</td>
+						<td>
+							<input type="number" v-model="numOfDates" min="1" >
+						</td>
+					</tr>
+					<tr>
+					</tr>
+			  </table><br />
+			 	<button type="submit" id="register" v-on:click="reserve()" class="btn btn-success">Rezerviši</button>
+			 <br /><br /><br /><br /><br /><br /><br /><br /><br />
+     </div>  
+</div>                    	  
 `
 	, 
 	methods : {

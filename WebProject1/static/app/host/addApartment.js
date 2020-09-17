@@ -93,7 +93,7 @@ Vue.component("add-apartment", {
 					</select>
 				</div></br>
 				<button type="button" class="btn btn-success" v-on:click="add()">Dodaj apartman</button>
-				
+			   <br /><br /><br /><br /><br />
 			</fieldset>
 		</form>	 
 	</div>	

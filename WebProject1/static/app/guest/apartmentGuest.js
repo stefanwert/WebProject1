@@ -10,9 +10,10 @@ Vue.component("apartment-guest", {
 		    }
 	},
 	template: ` 
-<div>
+<div class="d-flex justify-content-center">
+	<div class="d-flex flex-column ">
 		<div class="row">
-			<table >
+			<table>
 				<tr >
 				 <td @mouseover="showmenu('menuFilter')" @mouseleave="hidemenu('menuFilter')">
 					 <p><b>Filter</b></p>
@@ -33,8 +34,7 @@ Vue.component("apartment-guest", {
 								</tr>
 							</table>
 
-						</td>
-						
+						</td>	
 					</tr>
 					<tr>
 						<td class="menu">
@@ -53,7 +53,6 @@ Vue.component("apartment-guest", {
 							</table>
 
 						</td>
-						
 					</tr>
 					<tr>
 						<td class="menu">
@@ -72,7 +71,6 @@ Vue.component("apartment-guest", {
 							</table>
 
 						</td>
-						
 					</tr>
 					<tr>
 						<td class="menu">
@@ -86,9 +84,7 @@ Vue.component("apartment-guest", {
 								<tr>
 								</tr>
 							</table>
-
 						</td>
-						
 					</tr>
 					
 					<tr >
@@ -99,9 +95,14 @@ Vue.component("apartment-guest", {
 				</tr>
 			</table>
 		</div>
+		<div class="d-flex justify-content-end p-2">
+			<h4>Sortiraj po ceni:</h4>
+			<button type="button" class="btn btn-danger btn-sm" v-on:click="sortiranjeRastuce()">Rastuće</button>
+			<button type="button" class="btn btn-primary btn-sm" v-on:click="sortiranjeOpadajuce()">Opadajuće</button>
+		</div>
 		<div class="row">
 				<div class="column" v-for="i in novaLista">
-					<img v-on:click="showApartment(i)" style="height: 400px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
+					<img v-on:click="showApartment(i)" style="height: 300px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
 					<div class="card-body">
 						<p class="card-text" style="color:green;">
 							Broj soba: {{i.numOfRooms}} 
@@ -112,6 +113,7 @@ Vue.component("apartment-guest", {
 					</div>
 				</div>
 		</div>
+	</div>
 </div>			  
 `
 	, computed:{
@@ -226,8 +228,70 @@ Vue.component("apartment-guest", {
         	 }else{
         		 this.filterLista=list;
         	 }
-        	 
-        	 
+        },
+        sortiranjeRastuce:function(){
+        	axios
+            .get('/AllApartments')
+            .then(response => {
+          		  	this.apartments = response.data;
+            });
+        	 var odRam=document.getElementById("odcena").value;
+	       	 var doRam=document.getElementById("docena").value;
+	       	 if(!(odRam=="" || doRam=="")){
+	       		 odRam=parseInt(odRam);
+	           	 doRam=parseInt(doRam);
+	           	 this.filterLista = []
+	           	 for(a of this.apartments){
+	           		 if(odRam<=a.pricePerNight && doRam>=a.pricePerNight){
+	           			this.filterLista.push(a);
+	           		 }
+	           	 }
+	       	 }else{
+	       		 this.filterLista=this.apartments;
+	       	 }
+	       	var len = this.filterLista.length;
+	        for (var i = len-1; i>=0; i--){
+	          for(var j = 1; j<=i; j++){
+	            if(this.filterLista[j-1].pricePerNight>this.filterLista[j].pricePerNight){
+	                var temp = this.filterLista[j-1];
+	                this.filterLista[j-1] = this.filterLista[j];
+	                this.filterLista[j] = temp;
+	             }
+	          }
+	        }
+	          	 
+        },
+        sortiranjeOpadajuce:function(){
+        	axios
+            .get('/AllApartments')
+            .then(response => {
+          		  	this.apartments = response.data;
+            });
+        	 var odRam=document.getElementById("odcena").value;
+	       	 var doRam=document.getElementById("docena").value;
+	       	 if(!(odRam=="" || doRam=="")){
+	       		 odRam=parseInt(odRam);
+	           	 doRam=parseInt(doRam);
+	           	 this.filterLista = []
+	           	 for(a of this.apartments){
+	           		 if(odRam<=a.pricePerNight && doRam>=a.pricePerNight){
+	           			this.filterLista.push(a);
+	           		 }
+	           	 }
+	       	 }else{
+	       		 this.filterLista=this.apartments;
+	       	 }
+	       	var len = this.filterLista.length;
+	        for (var i = len-1; i>=0; i--){
+	          for(var j = 1; j<=i; j++){
+	            if(this.filterLista[j-1].pricePerNight<this.filterLista[j].pricePerNight){
+	                var temp = this.filterLista[j-1];
+	                this.filterLista[j-1] = this.filterLista[j];
+	                this.filterLista[j] = temp;
+	             }
+	          }
+	        }
+	          	 
         },
         
 	},
