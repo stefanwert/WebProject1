@@ -9,7 +9,7 @@ Vue.component("login", {
 	template: ` 
 	<div class="d-flex justify-content-center">
 		<div class="d-flex flex-column col-sm-3">
-			<form>
+			<form onsubmit="return false">
 			  <fieldset>
 			    <legend>Prijavite se</legend>
 			    <div class="form-group">
@@ -50,7 +50,7 @@ Vue.component("login", {
 });
 
 
-window.onload = function() {
+/*window.onload = function() {
 	$.ajax({
 		url: "/",
 		type:"GET",
@@ -58,4 +58,4 @@ window.onload = function() {
 		dataType:"json",
 		
 	});
-	};
+	};*/

@@ -67,9 +67,16 @@ public class CrudAmenities implements CrudInterface {
 			HashMap<String,String> mapa=g.fromJson(req.body(), HashMap.class);
 			String oldString=mapa.get("old");
 			String newString=mapa.get("new");
-			for (beans.Amenities a : s.getAmenities().values()) {
+			for (Amenities a : s.getAmenities().values()) {
 				if(a.getName().equals(oldString)) {
 					a.setName(newString);
+				}
+			}
+			for (Apartment a : s.getApartments().values()) {
+				for (Amenities am : a.getAmenities().values()) {
+					if(am.getName().equals(oldString)) {
+						am.setName(newString);
+					}
 				}
 			}
 			return g.toJson(null);

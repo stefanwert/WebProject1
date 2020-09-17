@@ -44,6 +44,10 @@ Vue.component("apartment-detail", {
             			<p class="card-text">Broj soba: {{apartment.numOfRooms}}</p>
             			<p class="card-text">Cena po noćenju: {{apartment.pricePerNight}}</p>
             			<p class="card-text">Adresa: {{apartment.location.address.address}}</p>	
+            			<p class="card-text">Sadrzaj apartmana:</p>	
+            			<template v-for="(value, name) in apartment.amenities">
+            				{{value.name}}
+            			</template>
     				</div>
 				</div>
 				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

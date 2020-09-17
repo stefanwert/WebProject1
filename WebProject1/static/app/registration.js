@@ -45,7 +45,7 @@ Vue.component("registration", {
 					    <option value="zensko">Žensko</option>
 					</select>
 				  </div>
-				  <button type="submit" id="register" v-on:click="register()" class="btn btn-success">Registrujte se</button>
+				  <button  id="register" v-on:click="register()" class="btn btn-success">Registrujte se</button>
 				 </fieldset>
 			</form>	 
 		</div>
