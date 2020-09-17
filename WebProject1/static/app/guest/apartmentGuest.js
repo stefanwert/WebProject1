@@ -100,18 +100,26 @@ Vue.component("apartment-guest", {
 			<button type="button" class="btn btn-danger btn-sm" v-on:click="sortiranjeRastuce()">Rastuće</button>
 			<button type="button" class="btn btn-primary btn-sm" v-on:click="sortiranjeOpadajuce()">Opadajuće</button>
 		</div>
-		<div class="row">
-				<div class="column" v-for="i in novaLista">
-					<img v-on:click="showApartment(i)" style="height: 300px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
-					<div class="card-body">
-						<p class="card-text" style="color:green;">
-							Broj soba: {{i.numOfRooms}} 
-							</br>Cena po danu je: {{i.pricePerNight}}
-							</br>Broj gostiju: {{i.numOfGuests}}
-							</br>Lokacija:{{i.location.address.address}}
-						</p>
-					</div>
-				</div>
+				<div id="users" class="d-flex p-2 justify-content-center">
+				    <div class="d-flex flex-column p-2">
+						<div class="d-flex flex-row flex-wrap p-2">
+								<div v-for="i in novaLista" class="p-3">
+									<div class="card border-light mb-3" style="max-width: 16rem;">
+										<img v-on:click="showApartment(i)" style="height: 200px; width: 100%; display: block;" :src=getPictureAddres(i) alt="Card image">
+									<div class="card-body">
+									</div>
+										<ul class="list-group list-group-flush">
+												<li class="list-group-item">Broj gostiju: {{i.numOfGuests}}</li>
+												<li class="list-group-item">Broj soba: {{i.numOfRooms}}</li>
+												<li class="list-group-item">Cena po noćenju: {{i.pricePerNight}}</li>
+												<li class="list-group-item">Adresa: {{i.location.address.address}}</li>
+										</ul>
+								    </div>
+						        </div>
+					      </div>
+				      </div>
+			   	 </div>
+			</div>
 		</div>
 	</div>
 </div>			  

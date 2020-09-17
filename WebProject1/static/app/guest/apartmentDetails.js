@@ -79,7 +79,25 @@ Vue.component("apartment-detail", {
 					</tr>
 			  </table><br />
 			 	<button type="submit" id="register" v-on:click="reserve()" class="btn btn-success">Rezerviši</button>
-			 <br /><br /><br /><br /><br /><br /><br /><br /><br />
+			 <br />
+			 <div class="form-group">
+				<label for="exampleTextarea">Ostavi komentar:</label>
+				<textarea class="form-control" id="exampleTextarea" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+			 </div>
+			 <div class="form-group">
+				<label for="exampleSelect1">Ocena:</label>
+				<select class="form-control" id="exampleSelect1">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</div>
+			 <div class="d-flex flex-column align-items-start p-1">
+	     		<button type="submit" id="comment" class="btn btn-primary">Objavi komentar</button>
+			 </div>
+		<br /><br /><br />
      </div>  
 </div>                    	  
 `
