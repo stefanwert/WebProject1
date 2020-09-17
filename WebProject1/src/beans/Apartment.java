@@ -21,7 +21,7 @@ public class Apartment {
 	private List<Date> rentingDays =new ArrayList<>();
 	private List<Date> availableDates =new ArrayList<>();
 	private String host;
-	private List<CommentForApartment> comments =new ArrayList<>();
+	private List<Comments> comments =new ArrayList<>();
 	private double pricePerNight;
 	//private LocalTime checkInTime;
 	//private LocalTime checkOutTime;
@@ -155,7 +155,7 @@ public class Apartment {
 	
 	public Apartment(int id, Type type, int numOfRooms, int numOfGuests, Location location,
 			List<String> rentingIntegers, List<Date> rentingDays, List<Date> availableDates, String host,
-			List<CommentForApartment> comments, double pricePerNight, String checkInTime, String checkOutTime,
+			List<Comments> comments, double pricePerNight, String checkInTime, String checkOutTime,
 			Status status, List<Reservation> reservations, DeletedStatus deletedStatus, List<String> pictures,
 			HashMap<Integer, Amenities> amenities) {
 		super();
@@ -243,11 +243,11 @@ public class Apartment {
 		this.host = host;
 	}
 
-	public List<CommentForApartment> getComments() {
+	public List<Comments> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<CommentForApartment> comments) {
+	public void setComments(List<Comments> comments) {
 		this.comments = comments;
 	}
 

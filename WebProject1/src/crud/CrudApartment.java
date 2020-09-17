@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 
 import beans.Amenities;
 import beans.Apartment;
-import beans.CommentForApartment;
+import beans.Comments;
 import beans.DeletedStatus;
 import beans.Guest;
 import beans.Host;
