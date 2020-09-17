@@ -1,5 +1,5 @@
 function checkDate(date1,date2){
-	
+	var date2=new Date(date2);
 	date2 = new Date(date2);
 	return  date1.getDate() == date2.getDate() && 
 			date1.getMonth() == date2.getMonth() &&
@@ -81,7 +81,7 @@ Vue.component("apartment-detail", {
 					<tr>
 					</tr>
 			  </table><br />
-			 	<button type="submit" id="register" v-on:click="reserve()" class="btn btn-success">Rezerviši</button>
+			 	<button id="reserve" v-on:click="reserve()" class="btn btn-success">Rezerviši</button>
 			 <br />
 			 <div class="form-group">
 				<label for="exampleTextarea">Ostavi komentar:</label>
@@ -134,14 +134,14 @@ Vue.component("apartment-detail", {
 					$("#reserve").after("<p style=\"color:white\">Uspešno ste rezervisali apartman!<p>");
 				}
 				this.apartment = response.data;
-				for(i=0;i<this.apartment.pictures.length;i++){
+				/*for(i=0;i<this.apartment.pictures.length;i++){
 					this.pictures[i]=this.apartment.pictures[i];
 				}
 				this.pictures.shift(); 
-				console.log(this.apartment);
+				console.log(this.apartment);*/
 			})
 			.catch(error =>{
-				$("#reserve").after("<p style=\"color:white\">Došlo je do greške prilikom rezervacije, pokušajte ponovo!<p>");
+				$("#reserve").after("<p style=\"color:white\">Došlo je do greške prilikom rezervacije, pokušajte ponovo!<p></br><p style=\"color:red\">AKO NISTE ULOGOVANI PRVO SE ULOGUJTE !!!</p>");
 			});
 		},
 		dodajKomentar: function(){

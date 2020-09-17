@@ -3,14 +3,18 @@ const Home = { template: '<home></home>' }
 const Registration = { template: '<registration></registration>'}
 const Location={template: '<location></location>'}
 const Picture={template: '<pictureSave></pictureSave>'}
+const AppartmentGuest={template: '<apartment-guest></apartment-guest>'}
+const ApartmentDetails={template:'<apartment-detail></apartment-detail>'}
 
 const router = new VueRouter({
 	  mode: 'hash',
 	  routes: [
-		{ path: '/',component: Login },
+		{ path: '/',component: AppartmentGuest },
 		{ path: '/login', component: Login },
 	  	{ path: '/registration', component: Registration},
 	    { path: '/location',component:Location},
+	    { path: '/AppartmentGuest',component:AppartmentGuest  },
+    	{ path: '/apartment-detail/:apId',component:ApartmentDetails  },
 	    { path: '*', beforeEnter: nepostojecaRuta}
 	  ]
 });

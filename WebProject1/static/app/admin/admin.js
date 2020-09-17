@@ -1,3 +1,11 @@
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
+}
 Vue.component("users", {
     data: function() {
         return {
@@ -639,14 +647,24 @@ methods: {
 		}, 
 		selectAmenity: function(amenity) {
 			//this.selectedBefore=this.selectedAmenity;
-			Object.assign(this.selectedBefore,this.selectedAmenity.name);
+			if(this.selectedAmenity.name==null){
+				this.selectedAmenity = amenity;
+			}
+			var name=this.selectedAmenity.name;
+			this.selectedBefore=name.slice();
 			this.selectedAmenity = amenity;
-			//console.log(this.selectedAmenity);
+			
+			
 			
 		},
 		editAmenity: function(){
-			console.log(this.selectedAmenity);
 			console.log(this.selectedBefore);
+			console.log(this.selectedAmenity);
+			axios
+	          .put('/Amenities',{"old":this.selectedBefore,"new":this.selectedAmenity.name})
+	          .then(response=>{
+	        	  location.reload();
+	          });
 			
 		}
 		,

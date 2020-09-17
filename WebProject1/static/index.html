@@ -1,6 +1,6 @@
 <html>
 <head>
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
+   <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">-->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
       .map {
@@ -8,9 +8,12 @@
         width: 100%;
       }
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script src="app/map.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/guestAppartment.css">
+		<link rel="stylesheet" href="css/div.css">
 	
 	
 	
@@ -46,7 +49,7 @@
 <body>
 	<div id="menu">
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a class="navbar-brand" href="index.html#/">Homepage</a>
+                <a class="navbar-brand" href="#/AppartmentGuest">Homepage</a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -67,6 +70,9 @@
 	  <router-view></router-view>
 	</div>
 	
+	<script src="datePickerJs/fr.js"></script>
+        <script src="datePickerJs/vue.js"></script>
+        <script src="datePickerJs/vuejs-datepicker.min.js"></script>
 	<script src="js/vue.js"></script>
 	<script src="js/vue-router.js"></script>
 	<script src="js/axios.js"></script>
@@ -75,6 +81,8 @@
 	<script src="app/login.js"></script>
 	<script src="app/registration.js"></script>
 	<script src="app/guest/guestAdd.js"></script>
+	<script type = "text/javascript" src="app/guest/apartmentDetails.js"></script>
+	<script type = "text/javascript" src="app/guest/apartmentGuest.js"></script>
 	<script src="app/location.js"></script>
 	<script src="app/app.js"></script>
 </body>

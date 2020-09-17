@@ -29,9 +29,7 @@ public class CrudUsers implements CrudInterface{
 	@Override
 	public void activeCrud(DateBase s, Gson g) {
 		
-		before("/*",(req,res) -> {
-			//logedIn(req, res, s	);
-		});
+		
 			
 		post("/Login",(req,res)->{
 			res.type("application/json");

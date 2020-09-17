@@ -8,6 +8,7 @@ import static spark.Spark.put;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -62,14 +63,15 @@ public class CrudAmenities implements CrudInterface {
 		});
 		put("/Amenities", (req, res) ->{
 			res.type("application/json");
-			Amenities a1 = g.fromJson(req.body(), Amenities.class);
-			if(s.getAmenities().containsKey(a1.getId())) {
-				s.getAmenities().get(a1.getId()).setId(a1.getId());
-				s.getAmenities().get(a1.getId()).setName(a1.getName());
-				
-				return g.toJson(s.getAmenities().get(a1.getId()));
+			
+			HashMap<String,String> mapa=g.fromJson(req.body(), HashMap.class);
+			String oldString=mapa.get("old");
+			String newString=mapa.get("new");
+			for (beans.Amenities a : s.getAmenities().values()) {
+				if(a.getName().equals(oldString)) {
+					a.setName(newString);
+				}
 			}
-			res.status(404);
 			return g.toJson(null);
 		});
 		delete("/Amenities",(req,res)->{

@@ -1,7 +1,17 @@
 function checkDate(date1,date2){
+	
 	return  date1.getDate() == date2.getDate() && 
 			date1.getMonth() == date2.getMonth() &&
 			date1.getYear() == date2.getYear();
+}
+
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
 }
 
 Vue.component("apartment-guest", {
@@ -111,7 +121,10 @@ Vue.component("apartment-guest", {
 					</tr>
 					
 					<tr >
-						<td class="menu"  colspan="2"><button class="btn btn-primary btn-sm" name="buttonFiltriranja" v-on:click="pretragaiFilter">Filtriraj</button></td>
+						<td class="menu"  colspan="2">
+							<button class="btn btn-primary btn-sm" name="buttonFiltriranja" v-on:click="pretragaiFilter">Filtriraj</button>
+							<button class="btn btn-primary btn-sm" name="buttonFiltriranja" v-on:click="clearFilters">Ocisti</button>
+						</td>
 					</tr>
 				  </table>
 				 </td>
@@ -167,6 +180,18 @@ Vue.component("apartment-guest", {
 			//promeniRutu("");
 			
     	},
+    	clearFilters: function(){
+    		axios
+            .get('/AllApartments')
+            .then(response => {
+          		  	this.apartments = response.data;
+            });
+    		
+    		this.filterLista=[];
+    		for(a of this.apartments){
+    			this.filterLista.push(a);
+    		}
+    	},
 		deleteApartment : function () {
 			if (confirm('Da li ste sigurni?') == true) {
 				axios
@@ -197,7 +222,7 @@ Vue.component("apartment-guest", {
        	 	for(a of this.apartments){
        	 		var i=0;
        	 		var j=0;
-       	 		for(dTocheck=selectedDate;
+       	 		for(dTocheck=new Date(selectedDate.getTime());
        	 		dTocheck.getDate()<=selectedDate2.getDate()  
        	 		&& dTocheck.getMonth()<=selectedDate2.getMonth() 
        	 		&&dTocheck.getYear()<=selectedDate2.getYear()
@@ -212,11 +237,11 @@ Vue.component("apartment-guest", {
 	       	 			}
 	       	 			
 	       	 		}
-       	 			if(i==j){
-       	 				this.filterLista.push(a);
-       	 			}
+       	 			
        	 		}
-       	 		
+       	 		if(i==j){
+	 				this.filterLista.push(a);
+	 			}
        	 		
        	 	}
         },
@@ -292,10 +317,6 @@ Vue.component("apartment-guest", {
         	 }else{
         		 this.filterLista=list;
         	 }
-        	 //po datumu
-        	 var list = this.filterLista.slice();
-        	 this.filterLista=[];
-        	 
         	 
         	 
         },
@@ -319,16 +340,18 @@ Vue.component("apartment-guest", {
 	       	 }else{
 	       		 this.filterLista=this.apartments;
 	       	 }
+        	pretragaiFilter();
 	       	var len = this.filterLista.length;
 	        for (var i = len-1; i>=0; i--){
 	          for(var j = 1; j<=i; j++){
 	            if(this.filterLista[j-1].pricePerNight>this.filterLista[j].pricePerNight){
-	                var temp = this.filterLista[j-1];
-	                this.filterLista[j-1] = this.filterLista[j];
-	                this.filterLista[j] = temp;
+	                var temp = clone(this.filterLista[j-1]);
+	                this.filterLista[j-1] = clone(this.filterLista[j]);
+	                this.filterLista[j] = clone(temp);
 	             }
 	          }
 	        }
+	       
 	          	 
         },
         sortiranjeOpadajuce:function(){
@@ -351,6 +374,7 @@ Vue.component("apartment-guest", {
 	       	 }else{
 	       		 this.filterLista=this.apartments;
 	       	 }
+        	console.log(this.filterLista);
 	       	var len = this.filterLista.length;
 	        for (var i = len-1; i>=0; i--){
 	          for(var j = 1; j<=i; j++){
