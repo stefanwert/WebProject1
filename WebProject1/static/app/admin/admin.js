@@ -355,7 +355,7 @@ Vue.component("viewApartment", {
             			<p class="card-text">Adresa: {{apartment.location.address.address}}</p>	
     				</div>
 				</div>
-              <a  href="#" v-on:click.prevent="editApartment" class="btn btn-primary m-2">Izmjeni</a> 
+              <a  href="#" v-on:click.prevent="editApartment" class="btn btn-success m-2">Izmeni</a> 
      </div>                  
 </div>
 `,
@@ -489,7 +489,7 @@ Vue.component("editApartment", {
 						<option v-for="l in locations" v-bind:value="l" >{{l.address.address}}</option>
 					</select>
 				</div></br>
-				<button type="button" class="btn btn-success" v-on:click="editApartment()">Izmeni apartman</button>
+				<button type="button" class="btn btn-info" v-on:click="editApartment()">Potvrdi izmenu</button>
 			  <br /><br /><br /><br /><br /><br /><br /><br />
 			</fieldset>
 		</form>	 
@@ -621,7 +621,12 @@ Vue.component("amenities", {
 				<label>Sadržaj apartmana: </label>
 				<input type="text" v-model="addName">		
 		</div>
-		<button type="button" class="btn btn-info" v-on:click="addAmenity" >Dodaj sadržaj</button><br /> <br /> 
+		<button type="submit" class="btn btn-info" v-on:click="addAmenity" >Dodaj sadržaj</button><br /> <br /> 
+		<div class="d-flex flex-row row-sm-2 p-2">
+				<label>Sadržaj apartmana: </label>
+				<input type="text">		
+		</div>
+		<button type="submit" class="btn btn-success" >Izmeni sadržaj</button><br /> <br /> 
 	</div>
 </div>	
 `,  
@@ -634,6 +639,24 @@ methods: {
 			//console.log(this.selectedAmenity);
 			
 		},
+		addAmenity: function(){
+			ret={};
+			ret.name=this.addName;
+			
+			axios
+			.post('/Amenities',ret)
+			.then(response => {
+				if(response.data!=null)
+				{
+					$("#addAmenity").after("<p style=\"color:white\">Uspeštno ste dodali sadržaj!<p>");
+					this.name='';
+				}
+			})
+			.catch(error => {
+				$("#addAmenity").after("<p style=\"color:white\">Sadržaj već postoji!<p>");
+            });
+		},
+
 		deleteAmenity : function () {
 			if (confirm('Da li ste sigurni?') == true) {
 				axios
@@ -647,20 +670,6 @@ methods: {
 		          )
 			}
 		},
-		addAmenity: function(){
-			ret={};
-			ret.name=this.addName;
-			
-			axios
-			.post('/Amenities',ret)
-			.then(response => {
-				if(response.data!=null)
-				{
-					$("#addAmenity").after("<p style=\"color:white\">Uspeštno ste dodali sadržaj!!!<p>");
-					this.name='';
-				}
-			});
-		}
     }
 });
 

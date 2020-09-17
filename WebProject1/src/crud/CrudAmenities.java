@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 
 import beans.Amenities;
 import beans.Apartment;
+import beans.Comments;
 import beans.DeletedStatus;
 import beans.Guest;
 import beans.Host;
@@ -46,12 +47,16 @@ public class CrudAmenities implements CrudInterface {
 			a1.setId(s.getAmenitiesNextId());
 			s.setAmenitiesNextId(1+s.getAmenitiesNextId());
 			
-			if(AppMain.isIdUnique(a1.getId())) {
-				res.status(403);
-				return g.toJson(null);
-			}
-			s.getAmenities().put(a1.getId(), a1);
-			return g.toJson(a1);	
+			List<Amenities> amenities=new ArrayList<Amenities>(s.getAmenities().values());
+			//if(AppMain.isIdUnique(a1.getId())) {
+				for(Amenities amenity : amenities) {
+					if(!(amenity.getName().equals(a1.getName()))) {
+						s.getAmenities().put(a1.getId(), a1);
+						return g.toJson(a1);}
+					}
+			//}
+			res.status(403);
+			return g.toJson(null);
 		});
 		put("/Amenities", (req, res) ->{
 			res.type("application/json");

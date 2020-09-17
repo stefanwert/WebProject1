@@ -78,10 +78,10 @@ public class AppMain {
 	
 	public static boolean isIdUnique(int id) {
 		if(s.getAmenities().containsKey(id)) {
-			return true;
+			return false;
 		}
 		else {
-			return false;
+			return true;
 		}
 	}
 	
