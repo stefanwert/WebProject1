@@ -6,17 +6,14 @@ import static spark.Spark.post;
 import static spark.Spark.put;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
 
-import beans.Amenities;
 import beans.Apartment;
 import beans.Comments;
 import beans.CommentStatus;
-import beans.DeletedStatus;
 import beans.Guest;
 import beans.Host;
 import beans.Reservation;
@@ -36,7 +33,8 @@ public class CrudComments implements CrudInterface{
 		get("/Comments",(req,res)->{
 			res.type("application/json");
 			
-			String id = req.queryParams("id");
+			String stringId = req.queryParams("id");
+			int id = Integer.parseInt(stringId);
 			
 			List<Comments> comments=s.getApartments().get(id).getComments();
 			return g.toJson(comments);
@@ -47,12 +45,13 @@ public class CrudComments implements CrudInterface{
 		get("/CommentsGuest",(req,res)->{
 			res.type("application/json");
 			
-			String id = req.queryParams("id");
+			String stringId = req.queryParams("id");
+			int id = Integer.parseInt(stringId);
 					
 			List<Comments> comments=s.getApartments().get(id).getComments();
 			
 			for (Comments coment : comments) {
-				if(coment.getStatus().equals("VISIBLE")) {
+				if(coment.getStatus().equals(CommentStatus.VISIBLE)) {
 					return g.toJson(comments);
 				}
 			}
@@ -81,8 +80,10 @@ public class CrudComments implements CrudInterface{
 		post("/Comments",(req,res)->{
 			res.type("application/json");
 			Comments comment = g.fromJson(req.body(), Comments.class);
+			
 			String stringId = req.queryParams("id");
 			int id = Integer.parseInt(stringId); 
+			
 			Session session=req.session();
 			User user = session.attribute("user");
 			Guest guest=s.getGuests().get(user.getUserName());
@@ -94,8 +95,10 @@ public class CrudComments implements CrudInterface{
 			comment.setGest(guest);
 			List<Reservation> reservations=s.getGuests().get(user.getUserName()).getReservations();
 			for (Reservation reservation : reservations) {
-				if(reservation.getApartmentId()==id) {
-					s.getApartments().get(id).getComments().add(comment);
+				if(reservation.getReservStatus().equals(ReservationStatus.CANCELED) || reservation.getReservStatus().equals(ReservationStatus.COMPLITED)) {
+					if(reservation.getApartmentId()==id) {
+						s.getApartments().get(id).getComments().add(comment);
+					}
 				}
 			}
 			

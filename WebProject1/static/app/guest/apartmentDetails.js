@@ -12,6 +12,9 @@ Vue.component("apartment-detail", {
 		      sc: null,
 		      id:null,
 		      apartment: {},
+		      comments: {},
+		      rating:0,
+		      text: '',
 		      pictures:[],
 		      apartmentId:-1,
 		      selectedDate:new Date(),
@@ -82,11 +85,11 @@ Vue.component("apartment-detail", {
 			 <br />
 			 <div class="form-group">
 				<label for="exampleTextarea">Ostavi komentar:</label>
-				<textarea class="form-control" id="exampleTextarea" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+				<textarea class="form-control" v-model="text" id="exampleTextarea" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
 			 </div>
 			 <div class="form-group">
 				<label for="exampleSelect1">Ocena:</label>
-				<select class="form-control" id="exampleSelect1">
+				<select class="form-control" v-model="rating" id="exampleSelect1">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -95,9 +98,19 @@ Vue.component("apartment-detail", {
 				</select>
 			</div>
 			 <div class="d-flex flex-column align-items-start p-1">
-	     		<button type="submit" id="comment" class="btn btn-primary">Objavi komentar</button>
-			 </div>
-		<br /><br /><br />
+	     		<button type="submit" v-on:click="dodajKomentar()" id="comment" class="btn btn-primary">Objavi komentar</button>
+			 </div><br /><br />
+			 <div class="list-group">
+				  <a href="#" v-for="comment in coments" class="list-group-item list-group-item-action flex-column align-items-start active">
+				    <div class="d-flex w-100 justify-content-between" >
+				      <h4 class="mb-1">{{comment.guest.getUsername()}}</h4>
+				      <small>3 days ago</small>
+				    </div>
+				    <p class="mb-1 >{{comment.text}}</p>
+				    <small>Rating:{{comment.rating}}</small>
+				  </a>
+			</div>
+		<br />
      </div>  
 </div>                    	  
 `
@@ -115,14 +128,52 @@ Vue.component("apartment-detail", {
 			axios
 	        .post("/Reservation",JSON.stringify(selectedKategorija))
 			.then(response => {
+				if(response.data!=null)
+				{
+					$("#reserve").after("<p style=\"color:white\">Uspešno ste rezervisali apartman!<p>");
+				}
 				this.apartment = response.data;
 				for(i=0;i<this.apartment.pictures.length;i++){
 					this.pictures[i]=this.apartment.pictures[i];
 				}
 				this.pictures.shift(); 
 				console.log(this.apartment);
+			})
+			.catch(error =>{
+				$("#reserve").after("<p style=\"color:white\">Došlo je do greške prilikom rezervacije, pokušajte ponovo!<p>");
 			});
-		}
+		},
+		dodajKomentar: function(){
+			this.id=router.currentRoute.params.apId;
+	        axios
+	        .get("/Apartments?id="+this.id)
+			.then(response => {
+				if(response.data!=null)
+				{
+					this.apartment = response.data;
+				}
+			})
+			.catch(error =>{
+				alert("Greška pri dobavljanu apartmana");
+			});
+	        ret={}
+			ret.apartment=this.apartment;
+			ret.text=this.text;
+			ret.rating=this.rating;
+			axios
+			.post('/Comments',ret)
+			.then(response => {
+				if(response.data!=null)
+				{
+					$("#dodajKomentar").after("<p style=\"color:white\">Vaš komentar je uspešno poslat!<p>");
+					this.password='';
+					this.firstName='';
+				}
+			})
+			.catch(error =>{
+				$("#dodajKomentar").after("<p style=\"color:white\">Komentar možete ostaviti samo na apartmanima na kojima imate rezervaciju!<p>");
+			});
+		},
 	},
 	mounted () {
         this.id=router.currentRoute.params.apId;
@@ -135,6 +186,11 @@ Vue.component("apartment-detail", {
 			}
 			this.pictures.shift(); 
 			console.log(this.apartment);
+		});
+        axios
+        .get("/CommentsGuest?id="+this.id)
+		.then(response => {
+				this.comments = response.data;
 		});
 	    	  
     },

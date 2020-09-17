@@ -80,7 +80,6 @@ Vue.component("addHost", {
 			})
 			.catch(error =>{
 				$("#register").after("<p style=\"color:white\">Korisničko ime je već zauzeto!<p>");
-				//asd
 			});
 		}
 	},
