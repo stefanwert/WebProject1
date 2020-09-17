@@ -4,8 +4,8 @@ import beans.Apartment;
 import beans.Guest;
 
 public class Comments {
-	private Guest gest;
-	private Apartment apartment;
+	private String gestUserName;
+	private int idAppartment;
 	private String commentText;
 	private int rating;
 	private CommentStatus status = CommentStatus.VISIBLE;
@@ -13,37 +13,65 @@ public class Comments {
 	public Comments() {
 	}
 
+	
+
+	
+	
+
+
 	@Override
 	public String toString() {
-		return "CommentsForApartment [gest=" + gest + ", appartmant=" + apartment + ", commentText=" + commentText
-				+ ", rating=" + rating + ", status=" + status + "]";
+		return "Comments [gestUserName=" + gestUserName + ", idAppartment=" + idAppartment + ", commentText="
+				+ commentText + ", rating=" + rating + ", status=" + status + "]";
 	}
 
-	public Comments(Guest gest, Apartment appartmant, String commentText, int rating,
-			CommentStatus status) {
+
+
+
+
+
+
+	public Comments(String gestUserName, int idAppartment, String commentText, int rating, CommentStatus status) {
 		super();
-		this.gest = gest;
-		this.apartment = appartmant;
+		this.gestUserName = gestUserName;
+		this.idAppartment = idAppartment;
 		this.commentText = commentText;
 		this.rating = rating;
 		this.status = status;
 	}
 
-	public Guest getGest() {
-		return gest;
+
+
+
+
+
+
+	public String getGestUserName() {
+		return gestUserName;
 	}
 
-	public void setGest(Guest gest) {
-		this.gest = gest;
+
+	public void setGestUserName(String gestUserName) {
+		this.gestUserName = gestUserName;
 	}
 
-	public Apartment getApartment() {
-		return apartment;
+
+
+	public int getIdAppartment() {
+		return idAppartment;
 	}
 
-	public void setApartment(Apartment appartmant) {
-		this.apartment = appartmant;
+
+
+	public void setIdAppartment(int idAppartment) {
+		this.idAppartment = idAppartment;
 	}
+
+
+
+
+
+	
 
 	public String getCommentText() {
 		return commentText;

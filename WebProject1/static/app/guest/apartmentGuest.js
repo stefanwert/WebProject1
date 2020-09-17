@@ -1,3 +1,9 @@
+function checkDate(date1,date2){
+	return  date1.getDate() == date2.getDate() && 
+			date1.getMonth() == date2.getMonth() &&
+			date1.getYear() == date2.getYear();
+}
+
 Vue.component("apartment-guest", {
 	data: function () {
 		    return {
@@ -5,7 +11,9 @@ Vue.component("apartment-guest", {
 		      	selectedApartment: {},
 		      	picture:'',
 		      	listaApartmana:[],
-		      	filterLista:[]
+		      	filterLista:[],
+		      	selectedDate:new Date(),
+		      	selectedDate2:new Date(),
 		    	
 		    }
 	},
@@ -26,7 +34,8 @@ Vue.component("apartment-guest", {
 							<table>
 								<tr>
 									<td class="menu"><b>OD</b></td>
-									<td class="menu"><input id="odcena" type="number" name="odcena"></td>
+									<td class="menu"><input id="odcena" type="number" name="odcena">
+									</td>
 									<td class="menu"><b>DO</b></td>
 									<td class="menu"><input id="docena" type="number" name="docena"></td>
 								</tr>
@@ -81,14 +90,28 @@ Vue.component("apartment-guest", {
 								<tr>
 									<td class="menu"><input id="lokacija" type="text" ></td>
 								</tr>
-								<tr>
-								</tr>
 							</table>
 						</td>
 					</tr>
+					<tr>
+						<b>Po datumu</b>
+						<table>
+							<tr>
+							<td style="color:black;">
+								<vuejs-datepicker v-model="selectedDate"></vuejs-datepicker>
+							</td>
+							<td style="color:black;">
+								<vuejs-datepicker v-model="selectedDate2"></vuejs-datepicker>
+							</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm" v-on:click="filtrirajPoDatumu()">Po datumu</button>
+							</td>
+					</tr>
+			</table>
+					</tr>
 					
 					<tr >
-						<td class="menu"  colspan="2"><button class="dugme" name="buttonFiltriranja" v-on:click="pretragaiFilter">Filtriraj</button></td>
+						<td class="menu"  colspan="2"><button class="btn btn-primary btn-sm" name="buttonFiltriranja" v-on:click="pretragaiFilter">Filtriraj</button></td>
 					</tr>
 				  </table>
 				 </td>
@@ -100,6 +123,8 @@ Vue.component("apartment-guest", {
 			<button type="button" class="btn btn-danger btn-sm" v-on:click="sortiranjeRastuce()">Rastuće</button>
 			<button type="button" class="btn btn-primary btn-sm" v-on:click="sortiranjeOpadajuce()">Opadajuće</button>
 		</div>
+		
+					
 				<div id="users" class="d-flex p-2 justify-content-center">
 				    <div class="d-flex flex-column p-2">
 						<div class="d-flex flex-row flex-wrap p-2">
@@ -163,6 +188,37 @@ Vue.component("apartment-guest", {
         },
         hidemenu: function(data){
 			document.getElementById(data).style.display="none";
+        },
+        filtrirajPoDatumu:function(){
+        	var list = this.filterLista.slice();
+       	 	this.filterLista=[];
+       	 	var selectedDate=this.selectedDate;
+       	 	var selectedDate2=this.selectedDate2;
+       	 	for(a of this.apartments){
+       	 		var i=0;
+       	 		var j=0;
+       	 		for(dTocheck=selectedDate;
+       	 		dTocheck.getDate()<=selectedDate2.getDate()  
+       	 		&& dTocheck.getMonth()<=selectedDate2.getMonth() 
+       	 		&&dTocheck.getYear()<=selectedDate2.getYear()
+       	 		;  dTocheck.setDate(dTocheck.getDate()+1)){
+       	 			//for petlja
+       	 			j++
+	       	 		for(d of a.availableDates){
+	       	 			var d2=new Date(d);
+	       	 			if(checkDate(d2,dTocheck)){
+	       	 				i++;
+	       	 				break;
+	       	 			}
+	       	 			
+	       	 		}
+       	 			if(i==j){
+       	 				this.filterLista.push(a);
+       	 			}
+       	 		}
+       	 		
+       	 		
+       	 	}
         },
         pretragaiFilter:function(){
         	axios
@@ -236,6 +292,12 @@ Vue.component("apartment-guest", {
         	 }else{
         		 this.filterLista=list;
         	 }
+        	 //po datumu
+        	 var list = this.filterLista.slice();
+        	 this.filterLista=[];
+        	 
+        	 
+        	 
         },
         sortiranjeRastuce:function(){
         	axios
@@ -302,6 +364,7 @@ Vue.component("apartment-guest", {
 	          	 
         },
         
+        
 	},
 	
 	mounted () {
@@ -315,5 +378,8 @@ Vue.component("apartment-guest", {
         		  	}
           });
         
-    }
+    },
+    components: {
+      	vuejsDatepicker
+      }
 });

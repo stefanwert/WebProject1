@@ -17,7 +17,7 @@ Vue.component("apartment-detail", {
 		      text: '',
 		      pictures:[],
 		      apartmentId:-1,
-		      selectedDate:new Date(),
+		      selectedDate:null,
 		      numOfDates:1,
 		      disabledDates:{
 		    	  customPredictor:(date)=> {
@@ -100,13 +100,14 @@ Vue.component("apartment-detail", {
 			 <div class="d-flex flex-column align-items-start p-1">
 	     		<button type="submit" v-on:click="dodajKomentar()" id="comment" class="btn btn-primary">Objavi komentar</button>
 			 </div><br /><br />
+			 <label>Komentari:</label>
 			 <div class="list-group">
-				  <a href="#" v-for="comment in coments" class="list-group-item list-group-item-action flex-column align-items-start active">
+				  <a href="#" v-for="comment in comments" class="list-group-item list-group-item-action flex-column align-items-start active">
 				    <div class="d-flex w-100 justify-content-between" >
-				      <h4 class="mb-1">{{comment.guest.getUsername()}}</h4>
+				      <h4 class="mb-1">{{comment.gestUserName}}</h4>
 				      <small>3 days ago</small>
 				    </div>
-				    <p class="mb-1 >{{comment.text}}</p>
+				    <p class="mb-1" >{{comment.commentText}}</p>
 				    <small>Rating:{{comment.rating}}</small>
 				  </a>
 			</div>
@@ -154,20 +155,20 @@ Vue.component("apartment-detail", {
 				}
 			})
 			.catch(error =>{
-				alert("Greška pri dobavljanu apartmana");
+				//alert("Greška pri dobavljanu apartmana");
 			});
 	        ret={}
 			ret.apartment=this.apartment;
-			ret.text=this.text;
+			ret.commentText=this.text;
 			ret.rating=this.rating;
 			axios
-			.post('/Comments',ret)
+			.post('/Comments',{"commentText":ret.commentText+"","rating":ret.rating+"","id":this.id+""})
 			.then(response => {
 				if(response.data!=null)
 				{
-					$("#dodajKomentar").after("<p style=\"color:white\">Vaš komentar je uspešno poslat!<p>");
-					this.password='';
-					this.firstName='';
+					rating=0;
+					text='';
+					location.reload();
 				}
 			})
 			.catch(error =>{
@@ -192,6 +193,7 @@ Vue.component("apartment-detail", {
 		.then(response => {
 				this.comments = response.data;
 		});
+        selectedDate=this.apartment.availableDates[0];
 	    	  
     },
     components: {

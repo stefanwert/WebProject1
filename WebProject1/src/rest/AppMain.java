@@ -30,6 +30,7 @@ import beans.Administrator;
 import crud.CrudAdministrator;
 import crud.CrudAmenities;
 import crud.CrudApartment;
+import crud.CrudComments;
 import crud.CrudGuest;
 import crud.CrudHost;
 import crud.CrudPicture;
@@ -121,6 +122,7 @@ public class AppMain {
 		(new CrudPicture()).activeCrud(s, g);
 		(new CrudUsers()).activeCrud(s, g);
 		(new CrudAmenities()).activeCrud(s, g);
+		(new CrudComments()).activeCrud(s, g);
 	}
 
 }

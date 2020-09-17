@@ -50,13 +50,15 @@ public class CrudAmenities implements CrudInterface {
 			List<Amenities> amenities=new ArrayList<Amenities>(s.getAmenities().values());
 			//if(AppMain.isIdUnique(a1.getId())) {
 				for(Amenities amenity : amenities) {
-					if(!(amenity.getName().equals(a1.getName()))) {
-						s.getAmenities().put(a1.getId(), a1);
-						return g.toJson(a1);}
+					if((amenity.getName().equals(a1.getName()))) {
+						res.status(400);
+						return g.toJson(null);
 					}
+				}
+			s.getAmenities().put(a1.getId(), a1);
+			return g.toJson(a1);
 			//}
-			res.status(403);
-			return g.toJson(null);
+			
 		});
 		put("/Amenities", (req, res) ->{
 			res.type("application/json");

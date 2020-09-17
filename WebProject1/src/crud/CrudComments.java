@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import beans.Apartment;
 import beans.Comments;
+import beans.DeletedStatus;
 import beans.CommentStatus;
 import beans.Guest;
 import beans.Host;
@@ -79,23 +80,23 @@ public class CrudComments implements CrudInterface{
 		
 		post("/Comments",(req,res)->{
 			res.type("application/json");
-			Comments comment = g.fromJson(req.body(), Comments.class);
-			
-			String stringId = req.queryParams("id");
-			int id = Integer.parseInt(stringId); 
-			
 			Session session=req.session();
 			User user = session.attribute("user");
+			HashMap<String,String> mapa=g.fromJson(req.body(), HashMap.class);
+			int id=Integer.parseInt(mapa.get("id"));
+			String com=mapa.get("commentText");
+			int rating=Integer.parseInt(mapa.get("rating"));
+			Comments comment=new Comments(user.getUserName(), id, com, rating, CommentStatus.VISIBLE);
+			
 			Guest guest=s.getGuests().get(user.getUserName());
 			if(guest==null) {
 				res.status(400);
 				return null;
 			}
 			
-			comment.setGest(guest);
 			List<Reservation> reservations=s.getGuests().get(user.getUserName()).getReservations();
 			for (Reservation reservation : reservations) {
-				if(reservation.getReservStatus().equals(ReservationStatus.CANCELED) || reservation.getReservStatus().equals(ReservationStatus.COMPLITED)) {
+				if(reservation.getReservStatus().equals(ReservationStatus.DENIED) || reservation.getReservStatus().equals(ReservationStatus.COMPLITED)) {
 					if(reservation.getApartmentId()==id) {
 						s.getApartments().get(id).getComments().add(comment);
 					}
@@ -103,7 +104,6 @@ public class CrudComments implements CrudInterface{
 			}
 			
 			return g.toJson(comment);
-			
 		});
 		
 		delete("/Comments",(req,res)->{
@@ -114,13 +114,13 @@ public class CrudComments implements CrudInterface{
 			User user = session.attribute("user");
 			List<Comments> comments=s.getApartments().get(id).getComments();
 			
-			for (Comments comment : comments) {
+			/*for (Comments comment : comments) {
 				if(comment.getApartment().getHost().equals(user.getUserName())) {
 					
 					comment.setStatus(CommentStatus.HIDDEN);
 					return g.toJson(comments);
 				}
-			}
+			}*/
 			res.status(404);
 			return g.toJson(null);
 		});

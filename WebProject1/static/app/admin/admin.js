@@ -590,7 +590,10 @@ Vue.component("amenities", {
     data: function() {
         return {
             amenities:[],
-            addName:''
+            addName:'',
+            selectedAmenity:{},
+            selectedBefore:{},
+            	
         }
     },
     mounted() {
@@ -624,9 +627,9 @@ Vue.component("amenities", {
 		<button type="submit" class="btn btn-info" v-on:click="addAmenity" >Dodaj sadržaj</button><br /> <br /> 
 		<div class="d-flex flex-row row-sm-2 p-2">
 				<label>Sadržaj apartmana: </label>
-				<input type="text">		
+				<input type="text" v-model="selectedAmenity.name">
 		</div>
-		<button type="submit" class="btn btn-success" >Izmeni sadržaj</button><br /> <br /> 
+		<button type="submit" class="btn btn-success" v-on:click="editAmenity">Izmeni sadržaj</button><br /> <br /> 
 	</div>
 </div>	
 `,  
@@ -635,10 +638,18 @@ methods: {
 			this.amenities = [];
 		}, 
 		selectAmenity: function(amenity) {
+			//this.selectedBefore=this.selectedAmenity;
+			Object.assign(this.selectedBefore,this.selectedAmenity.name);
 			this.selectedAmenity = amenity;
 			//console.log(this.selectedAmenity);
 			
 		},
+		editAmenity: function(){
+			console.log(this.selectedAmenity);
+			console.log(this.selectedBefore);
+			
+		}
+		,
 		addAmenity: function(){
 			ret={};
 			ret.name=this.addName;
@@ -648,8 +659,9 @@ methods: {
 			.then(response => {
 				if(response.data!=null)
 				{
-					$("#addAmenity").after("<p style=\"color:white\">Uspeštno ste dodali sadržaj!<p>");
+					//$("#addAmenity").after("<p style=\"color:white\">Uspeštno ste dodali sadržaj!<p>");
 					this.name='';
+					location.reload();
 				}
 			})
 			.catch(error => {
@@ -663,12 +675,14 @@ methods: {
 		          .delete('/Amenities',{'data':this.selectedAmenity})
 		          .then(
 		        	response=>{
-		        		this.amenities = this.amenities.filter((item) => {
-		        			return item.id !=this.selectedAmenity.id; });
+		        		/*this.amenities = this.amenities.filter((item) => {
+		        			return item.id !=this.selectedAmenity.id; });*/
 		        		this.selectedAmenity= {};
+		        		location.reload();
 		        	}
 		          )
 			}
+			
 		},
     }
 });
