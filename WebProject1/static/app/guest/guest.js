@@ -74,7 +74,7 @@ Vue.component("viewProfile", {
         })
         .catch(error => {
             alert(error);
-        })
+        });
         
     },
     template: 

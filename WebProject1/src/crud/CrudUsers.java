@@ -79,7 +79,6 @@ public class CrudUsers implements CrudInterface{
 			res.redirect("/index.html");
 			return "OK";
 		});	
-		
 		get("/loggedUser",(req, res) -> {
 			User user = req.session().attribute("user");
 			return g.toJson(user);
