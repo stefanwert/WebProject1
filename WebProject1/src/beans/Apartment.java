@@ -98,11 +98,31 @@ public class Apartment {
 		for (String broj : rentingIntegers) {
 			long br=Long.parseLong(broj);
 			Date date=new Date(br);
-			rentingDays.add(date);
 			
+			rentingDays.add(date);
 			availableDates.add(date);
 		}
 	}
+	
+	public void editRentingDays(List<Date> list) {
+		int c=0;
+		for (Date date2 : list) {
+			c=0;
+			for(Date date: rentingDays) {
+				if(date2.getDay()==date.getDay() 
+						&& date.getMonth()==date2.getMonth() 
+						&& date.getYear()==date2.getYear()) {
+					c++;
+				}
+			}
+			if(c==0) {
+				rentingDays.add(date2);
+				availableDates.add(date2);
+			}
+		}
+	}
+	
+	
 	/*
 	@Override
 	public String toString() {

@@ -140,27 +140,37 @@ public class CrudApartment implements CrudInterface{
 		put("/Apartments", (req, res) ->{
 			res.type("application/json");
 			Apartment appartement = g.fromJson(req.body(), Apartment.class);
-			if(s.getGuests().containsKey(appartement.getId())) {
-				s.getApartments().get(appartement.getId()).setId(appartement.getId());
+			appartement.createRentingDays();
+			Apartment appartementORG =s.getApartments().get(appartement.getId());
+			appartementORG.editRentingDays(appartement.getRentingDays());
+			
+			if(s.getHosts().containsKey(appartementORG.getHost())) {
+				//s.getApartments().get(appartement.getId()).setId(appartement.getId());
 				s.getApartments().get(appartement.getId()).setType(appartement.getType());
 				s.getApartments().get(appartement.getId()).setNumOfRooms(appartement.getNumOfRooms());
 				s.getApartments().get(appartement.getId()).setNumOfGuests(appartement.getNumOfGuests());
 				s.getApartments().get(appartement.getId()).setLocation(appartement.getLocation());
-				s.getApartments().get(appartement.getId()).setRentingDays(appartement.getRentingDays());
-				s.getApartments().get(appartement.getId()).setAvailableDates(appartement.getAvailableDates());
-				s.getApartments().get(appartement.getId()).setHost(appartement.getHost());
-				s.getApartments().get(appartement.getId()).setComments(appartement.getComments());
+				//s.getApartments().get(appartement.getId()).setRentingDays(appartement.getRentingDays());
+				//s.getApartments().get(appartement.getId()).setAvailableDates(appartement.getAvailableDates());
+				//s.getApartments().get(appartement.getId()).setHost(appartement.getHost());
+				//s.getApartments().get(appartement.getId()).setComments(appartement.getComments());
 				s.getApartments().get(appartement.getId()).setPricePerNight(appartement.getPricePerNight());
 				s.getApartments().get(appartement.getId()).setCheckInTime(appartement.getCheckInTime());
 				s.getApartments().get(appartement.getId()).setCheckOutTime(appartement.getCheckOutTime());
 				s.getApartments().get(appartement.getId()).setStatus(appartement.getStatus());
-				s.getApartments().get(appartement.getId()).setAmenities(appartement.getAmenities());
-				s.getApartments().get(appartement.getId()).setReservations(appartement.getReservations());
+				//s.getApartments().get(appartement.getId()).setAmenities(appartement.getAmenities());
+				//s.getApartments().get(appartement.getId()).setReservations(appartement.getReservations());
 				
-				s.getHosts().get(appartement.getHost()).getApartments().remove(appartement.getId());
-				s.getHosts().get(appartement.getHost()).getApartments().put(appartement.getId(),appartement);	//ove dve linije edituju i unutar hosta taj apartman(tako sto ga obrisem pa upisem)
 				
-				return g.toJson(s.getApartments().get(appartement.getId()));
+				
+				
+				
+				
+				
+				s.getHosts().get(appartementORG.getHost()).getApartments().remove(appartementORG.getId());
+				s.getHosts().get(appartementORG.getHost()).getApartments().put(appartementORG.getId(),appartementORG);	//ove dve linije edituju i unutar hosta taj apartman(tako sto ga obrisem pa upisem)
+				
+				return g.toJson(s.getApartments().get(appartementORG.getId()));
 			}
 			res.status(404);
 			return g.toJson(null);

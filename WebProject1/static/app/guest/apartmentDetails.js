@@ -57,7 +57,7 @@ Vue.component("apartment-detail", {
 						      <img id="pic" class="d-block w-75" :src=address(apartment.pictures[0]) alt="First slide">
 						    </div>
 						    <div  v-for="picture in apartment.pictures.slice(1,apartment.pictures.length)" class="carousel-item " >
-						      <img id="pic" class="d-block w-75" :src=address(picture) >
+						      <img id="pic" class="d-block w-75" width="300" height="300" :src=address(picture) >
 						    </div>
 					  </div>
 					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

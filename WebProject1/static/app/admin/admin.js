@@ -494,10 +494,10 @@ Vue.component("editApartment", {
 				</div></br>-->
 				<div class="d-flex flex-row">
 					<select v-model="apartment.location" >
-						<option v-for="l in locations" v-bind:value="l" >{{l.address.address}}</option>
+						<option v-for="l in locations" v-bind:value="apartment.location" >{{l.address.address}}</option>
 					</select>
 				</div></br>
-				<button type="button" class="btn btn-info" v-on:click="editApartment()">Potvrdi izmenu</button>
+				<button type="button" id="editApartment" class="btn btn-info" v-on:click="editApartment()">Potvrdi izmenu</button>
 			  <br /><br /><br /><br /><br /><br /><br /><br />
 			</fieldset>
 		</form>	 
@@ -506,8 +506,33 @@ Vue.component("editApartment", {
 `,
     methods: {
         editApartment: function() {
+        	console.log(this.dates);
+        	ret={}
+			//this.submitFile();
+			ret.type=this.apartment.type;
+			ret.numOfRooms=this.apartment.numOfRooms;
+			ret.numOfGuests=this.apartment.numOfGuests;
+			ret.pricePerNight=this.apartment.pricePerNight;
+			ret.checkInTime=this.apartment.checkInTime.toString();
+			ret.checkOutTime=this.apartment.checkOutTime.toString();
+			ret.status=this.apartment.status;
+			//ret.pictures=this.apartment.pictures;
+			/*ret.amenities=new Map();
+			var br=0;
+			for(am of this.selectedAmenities){
+				ret.amenities[br]=am;
+				br=br+1;
+			}*/
+			ret.location=this.apartment.location;
+			var newList=[];
+			for(i=0;i<this.dates.length;i++){
+				newList.push(((new Date(this.dates[i])).getTime()).toString());
+			}
+			ret.rentingIntegers=newList;
+        	ret.id=this.apartment.id;
+        	//
             axios
-            .put('/Apartment',this.apartment)
+            .put('/Apartments',ret)
             .then(response => {
                 //this.apartment = response.data.apartment;
             	if(response.data!=null)

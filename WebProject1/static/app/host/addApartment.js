@@ -92,7 +92,7 @@ Vue.component("add-apartment", {
 						<option v-for="l in locations"   v-bind:value="l">{{l.address.address}}</option>
 					</select>
 				</div></br>
-				<button type="button" class="btn btn-info" v-on:click="add()">Dodaj apartman</button>
+				<button type="button" id="add" class="btn btn-info" v-on:click="add()">Dodaj apartman</button>
 			   <br /><br /><br /><br /><br />
 			</fieldset>
 		</form>	 
