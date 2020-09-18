@@ -14,33 +14,29 @@ var adminPage = new Vue({
 });
 
 const Users = { template: '<users></users>' }
-const ViewUser = { template: '<viewUser></viewUser>' }
-const EditUser = { template: '<editUser></editUser>' }
-const SearchUser = { template: '<searchUser></searchUser>' }
 const AddHost = { template: '<addHost></addHost>' }
 const Host = { template: '<host></host>' }
 const Guest={template: '<guest></guest>'}
 const Apartments = { template: '<apartments></apartments>' }
+const DeleteApartment = { template: '<deleteApartment></deleteApartment>' }
 const ViewApartment = { template: '<viewApartment></viewApartment>' }
 const EditApartment = { template: '<editApartment></editApartment>' }
 const Amenities = { template: '<amenities></amenities>' }
+const ReservationAdmin = { template: '<reservationAdmin></reservationAdmin>' }
 
 const router = new VueRouter({
     mode: 'hash',
     routes: [
-        //{ path: '/', component: HostAdd },
-    	{ path: '/', component: Users },
-    	{ path: '/profile/:username', component: ViewUser },
-        { path: '/edit/:username', component: EditUser },
-        { path: '/search', component: SearchUser },
+    	{ path: '/',component:Apartments  },
         { path: '/users', component: Users },
 	    { path: '/addHost', component: AddHost },
 	    { path: '/host', component: Host},
 	    { path: '/guest',component:Guest},
-	    { path: '/apartments',component:Apartments},
+	    { path: '/deleteApartment',component:DeleteApartment},
 	    { path: '/apartment/:id',component:ViewApartment},
 	    { path: '/apartment/edit/:id',component:EditApartment},
 	    { path: '/amenities',component:Amenities},
+	    { path: '/reservationAdmin',component:ReservationAdmin},
 
     ]
 });

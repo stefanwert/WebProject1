@@ -107,20 +107,20 @@ public class CrudComments implements CrudInterface{
 		});
 		
 		delete("/Comments",(req,res)->{
-			String stringId = req.queryParams("id");
-			int id = Integer.parseInt(stringId); 
-			
+			String id = req.queryParams("id");
 			Session session=req.session();
 			User user = session.attribute("user");
-			List<Comments> comments=s.getApartments().get(id).getComments();
+			List<Apartment> apartments= new ArrayList<Apartment>(s.getHosts().get(user.getUserName()).getApartments().values());
 			
-			/*for (Comments comment : comments) {
-				if(comment.getApartment().getHost().equals(user.getUserName())) {
-					
-					comment.setStatus(CommentStatus.HIDDEN);
-					return g.toJson(comments);
+			for (Apartment a : apartments) {
+				for (Comments comment : a.getComments()) {
+					if(comment.getCommentText().equals(id)) {
+						
+						comment.setStatus(CommentStatus.HIDDEN);
+						return g.toJson(comment);
+					}
 				}
-			}*/
+			}
 			res.status(404);
 			return g.toJson(null);
 		});

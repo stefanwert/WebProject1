@@ -96,6 +96,17 @@ public class CrudReservation implements CrudInterface{
 			
 		});
 		
+		get("/ReservationAdmin",(req,res)->{
+			res.type("application/json");
+			
+			List<Reservation> reservations=new ArrayList<Reservation>();
+			for (Apartment a : s.getApartments().values()) {
+				reservations.addAll(a.getReservations());
+			}
+			return g.toJson(reservations);
+	
+		});
+		
 		post("/Reservation",(req,res)->{
 			res.type("application/json");
 			

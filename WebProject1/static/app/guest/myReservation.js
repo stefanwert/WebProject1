@@ -17,7 +17,6 @@ Vue.component("my-reservation", {
 				<td> {{r.totalPrice}}</td>
 				<td> {{r.hostUserName}}</td>
 				<td> {{r.reservStatus}}</td>
-				
 			</tr>
 	</table><br />
 </div>		  
